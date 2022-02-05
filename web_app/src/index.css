@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#data-grid {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+}
+
+#data-grid div {
+  padding: 1rem;
+  border-bottom: 1px solid;
+  border-color: hsla(var(--b2) / var(--tw-border-opacity, 1));
+}
