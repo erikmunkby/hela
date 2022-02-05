@@ -29,6 +29,7 @@ def test_json_generator():
          'type': 'Catalog',
          'description': 'Test Catalog Structure.',
          'rich_description': None,
+         'id': 'TestCatalog',
          'children': [
              {'name': 'test_dataset',
               'type': 'Dataset',
