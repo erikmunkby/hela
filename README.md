@@ -22,15 +22,13 @@ Using poetry:
 `poetry add catalog`
 
 # Developing
-Install [Poetry](https://python-poetry.org/), then run either:
+Install [Poetry](https://python-poetry.org/), then run:
 
-`poetry install`
+`make init`
 
-for base dependencies or:
+to setup the project and add githooks. Followed by:
 
-`poetry install --extras "spark glue bigquery"`
-
-depending on which package you want to further develop.
+`make install`
 
 ## Testing
 The test suite is built on pytest with test flags found in `pyproject.toml`. The available flags are:

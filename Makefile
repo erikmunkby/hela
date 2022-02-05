@@ -10,7 +10,7 @@ init:
 # Install poetry
 .PHONY: install
 install:
-	poetry install
+	poetry install --extras "spark glue bigquery"
 
 # Linting
 .PHONY: lint

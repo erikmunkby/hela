@@ -19,6 +19,11 @@ orders = PandasParquetDataset(
         Col('order_id', String(), 'A unique id for each specific order.'),
         Col('order_status', String(), 'The status of the order, e.g. cancelled or completed.'),
         Col('price', Double(), 'How much money the order is worth or customer has to pay.'),
-        Col('currency', String(), 'Three letter combination describing currency e.g. EUR.')
+        Col('currency', String(), 'Three letter combination describing currency e.g. EUR.'),
+        Col('test_col', String(),
+            'This is a test column. Its primary purpose is to test the generated'
+            ' web catalog. It should have text enough to require multiple lines in the generated'
+            ' web catalog. Do you know why the prices of car tires has increased lately? Inflation.'
+            )
     ]
 )
