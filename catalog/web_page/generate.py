@@ -9,7 +9,8 @@ def generate_webpage(
     catalogs: Union[Catalog, Sequence[Catalog]],
     output_folder: str,
     overwrite_existing: bool = False,
-    include_samples: bool = False
+    include_samples: bool = False,
+    web_app_title: str = None
 ) -> None:
     """Generates an index.html file that can be used as a data catalog website.
 
@@ -24,6 +25,7 @@ def generate_webpage(
         overwrite_existing: Flag whether and potential index.html file should be overwritten if existing.
         include_samples:    Flag whether to attempt to fetch sample datapoints from the columns in each
                             dataset. Requires `catalog.BaseDataset.get_samples` function implemented.
+        web_app_title:  Optional title of the web app.
 
     Raises:
         FileExistsError: If the index.html file already exists under `output_folder` and overwrite_existing=False.
@@ -53,4 +55,8 @@ def generate_webpage(
     match_str = '<script id="tree-list-data"></script>'
     original_index_file = pkg_resources.resource_string(__name__, 'index.html').decode()
     output_file = original_index_file.replace(match_str, replacement_str)
+
+    # Replace web app title with custom title
+    if web_app_title:
+        output_file = output_file.replace('<title>Dashboard</title>', f'<title>{web_app_title}</title>')
     file_path.write_text(output_file)
