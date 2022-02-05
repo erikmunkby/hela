@@ -53,6 +53,12 @@ Following commit message intros are used in this package:
 | `tests: always more tests`                    | Test related commit. No new version. |
 | `chore: moved X to folder`                    | Other small change or refactoring. No new version. |
 
+## Docs page
+In order to write and test the docs page you need all `--extras` packages installed in poetry.
+When you have made updates to the docs you can make sure everything looks good running:
+
+`pdoc --http localhost:8080 catalog`
+
 # Make Commands
 List of make commands and when to use them:
 
