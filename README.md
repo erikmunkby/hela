@@ -10,7 +10,7 @@ makes your catalog searchable, referenceable, reliable, platform agnostic, sets 
 and much more! This library is built to fit small and large data landscapes, but is happiest when included
 from the start.
 
-TODO: Add link to homepage, pypi?
+TODO: Add link to homepage, pypi?, demo repo
 
 # Installing
 Using pip:
