@@ -1,4 +1,5 @@
 from pathlib import Path
+import pkg_resources
 from typing import Union, Sequence
 from catalog import Catalog
 from catalog.web_page._json_generator import JsonGenerator
@@ -47,5 +48,9 @@ def generate_webpage(
             raise FileExistsError(f'File {file_path} already exists, delete or set overwrite_existing=True')
         file_path.unlink()
 
-    # TODO: Pipe the json_str into an index.html file
-    file_path.write_text(json_str)
+    # Replace placeholder script with actual json data
+    replacement_str = f'<script>window.treeListData = {json_str}</script>'
+    match_str = '<script id="tree-list-data"></script>'
+    original_index_file = pkg_resources.resource_string(__name__, 'index.html').decode()
+    output_file = original_index_file.replace(match_str, replacement_str)
+    file_path.write_text(output_file)

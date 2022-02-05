@@ -4,8 +4,6 @@ from pathlib import Path
 from catalog import Catalog, BaseDataset
 from typing import Dict, Any, Sequence
 from collections import defaultdict
-# Flags
-# --samples, --dates,
 
 
 class JsonGenerator:
@@ -70,6 +68,7 @@ class JsonGenerator:
             child_list.append(
                 {
                     **dataset._desc_().__dict__,
+                    'id': dataset._id,
                     'rich_description': self._load_rich_description(dataset.rich_description_path),
                     'columns': column_data,
                 }
@@ -77,6 +76,7 @@ class JsonGenerator:
 
         return {
             **catalog._desc_().__dict__,
+            'rich_description': self._load_rich_description(catalog._rich_description_path),
             'children': child_list
         }
 
