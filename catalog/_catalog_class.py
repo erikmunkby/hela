@@ -67,6 +67,7 @@ class Catalog:
             database:   Used for database style datasets (e.g. bigquery,
                         aws glue) builds the catalogs database structure.
             description:    A description of this catalog.
+            rich_description_path: Path to markdown file with richer descriptions of this catalog.
         """
 
         def wrap(cls: Catalog):

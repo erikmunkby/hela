@@ -1,5 +1,5 @@
-# This is a rich description
-Here you have some text
+## Orders dataset description
+This dataset contains orders of beer, one order per row. Columns of note is:
 
-* Bullet point
-* Another bullet point
+* `order_status` not all orders went through
+* `test_col` description contains a hidden dad-joke
