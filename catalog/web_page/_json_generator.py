@@ -59,9 +59,9 @@ class JsonGenerator:
                                     include_samples: bool = False
                                     ) -> Dict[str, Any]:
         child_list = []
-        parent_str = catalog.__name__ if parent is None else parent + '--' + catalog.__name__
+        catalog_id_str = catalog.__name__ if parent is None else parent + '--' + catalog.__name__
         for cat in catalog.get_catalogs(recursive=False):
-            child_list.append(self._build_catalog_descriptions(cat, parent_str))
+            child_list.append(self._build_catalog_descriptions(cat, catalog_id_str))
 
         for dataset in catalog.get_datasets(recursive=False):
             column_data = self._build_dataset_columns_json(dataset, include_samples=include_samples)
@@ -76,6 +76,7 @@ class JsonGenerator:
 
         return {
             **catalog._desc_().__dict__,
+            'id': catalog_id_str,
             'rich_description': self._load_rich_description(catalog._rich_description_path),
             'children': child_list
         }
