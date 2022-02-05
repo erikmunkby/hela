@@ -49,7 +49,7 @@ markers = [
 ]
 
 [tool.semantic_release]
-branch = "main"
+branch = "master"
 commit_subject = "chore(release): {version}"
 remove_dist = true
 upload_to_repository = false
