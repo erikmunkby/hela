@@ -1,0 +1,55 @@
+name: AWS Glue
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  aws-glue-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Install poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install dependencies
+        run: poetry install -E glue
+
+      - name: Run glue tests
+        run: |
+          poetry run pytest -m glue
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.GLUETESTKEY }}
+          aws-secret-access-key: ${{ secrets.GLUETESTSECRETKEY }}
+          aws-region: eu-north-1
+
+      - name: Install, deploy and destroy glue stack
+        run: |
+          export NPM_CONFIG_PREFIX=$HOME/.npm-global
+          export PATH=$PATH:$HOME/.npm-global/bin
+          npm install -g aws-cdk @aws-cdk/cloud-assembly-schema
+          cd tests/integration/aws_glue
+          poetry run cdk deploy --require-approval never --app "python cdk_test_app.py"
+          poetry run cdk destroy --force --app "python cdk_test_app.py"
+          

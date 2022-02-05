@@ -1,0 +1,14 @@
+
+
+# ----------------------------------------------------------
+# Commit messages should follow Conventional Commits standard (link) example:
+# feat: look at this cool new feature
+# https://www.conventionalcommits.org/en/v1.0.0/
+# ----------------------------------------------------------
+#    * BREAKING CHANGE  Breaking API change - SemVar MAJOR
+#    * feat             A new feature - SemVar PATCH
+#    * fix              A bug fix - SemVar MINOR
+#    * docs             Change to documentation only
+#    * test             Change that adds/modifies tests
+#    * ci               Change to CI pipeline/workflow
+#    * chore            General tooling/config/min refactor

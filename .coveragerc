@@ -1,0 +1,5 @@
+[run]
+source=catalog
+omit = 
+    *__init__*
+    */datasets/*

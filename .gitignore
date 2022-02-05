@@ -1,0 +1,10 @@
+__pycache__
+.pytest_cache
+.venv
+.vscode
+.pytest_folder
+.coverage
+.example_data
+*_temp/**
+cdk.out
+.DS_STORE

@@ -1,0 +1,42 @@
+#!/usr/local/bin/python3
+
+import sys
+import subprocess
+
+
+# Will trigger linting and tests before any push is completed
+
+def print_error(text: str) -> None:
+    print('\033[91m' + text + '\033[0m')
+
+
+def print_success(text: str) -> None:
+    print('\033[92m' + text + '\033[0m')
+
+
+def main():
+    failed = False
+    # Run flake8 linting
+    result = subprocess.run(['flake8', 'catalog/'], stdout=subprocess.PIPE)
+    if result.stdout:
+        failed = True
+        print_error('LINTING FAILED: run linter `flake8` for more info.')
+    else:
+        print_success('LINTING: flake8 check passed.')
+
+    # Run unit tests
+    result = subprocess.run(['pytest', 'tests/unit/'], stdout=subprocess.PIPE)
+    if result.returncode:
+        failed = True
+        print_error('TESTING FAILED: run unittests `pytest tests/unit` for more info.')
+    else:
+        print_success('TESTING: unit tests passed.')
+
+    if failed:
+        print_error('One ore more checks/tests failed, push aborted.')
+        sys.exit(1)
+    print_success('All checks and tests passed.')
+
+
+if __name__ == '__main__':
+    main()

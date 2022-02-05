@@ -1,0 +1,58 @@
+[tool.poetry]
+authors = [
+  "Erik Munkby <erik.munkby@gmail.com>",
+  "John Rossberg <john.rossberg@gmail.com>",
+]
+description = "Your data catalog as code and one schema to rule them all."
+homepage = "https://github.com/erikmunkby/catalog"
+keywords = ["catalog", "big", "data", "web", "deploy"]
+license = "Apache License v2.0"
+name = "catalog"
+readme = "README.md"
+repository = "https://github.com/erikmunkby/catalog"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+"aws-cdk.aws-glue" = {version = "^1", optional = true}
+google-cloud-bigquery = {version = "^2", optional = true}
+numpy = "^1.20.1"
+pandas = "^1.2.3"
+pyspark = {version = "^3", optional = true}
+python = ">=3.7.1,<3.11"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.5.7"
+coverage = "^5.5"
+flake8 = "^3.9.1"
+jsonschema = "^3.2.0"
+nltk = "^3.6.7"
+pdoc3 = "^0.10.0"
+pyarrow = "^4.0.0"
+pytest = "^6.2.3"
+python-semantic-release = "^7.23.0"
+
+[tool.poetry.extras]
+bigquery = ["google-cloud-bigquery"]
+glue = ["aws-cdk.aws-glue"]
+spark = ["pyspark"]
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
+
+[tool.pytest.ini_options]
+markers = [
+  "base: marks these tests as base functionality",
+  "spark: marks these tests as spark dependant",
+  "glue: marks these tests as glue dependant",
+  "bigquery: marks these tests as bigquery dependant",
+]
+
+[tool.semantic_release]
+branch = "main"
+commit_subject = "chore(release): {version}"
+remove_dist = true
+upload_to_repository = false
+version_variable = [
+  "pyproject.toml:version",
+]

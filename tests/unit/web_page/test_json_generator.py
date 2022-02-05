@@ -1,0 +1,62 @@
+import json
+from catalog.web_page._json_generator import JsonGenerator
+from catalog.datasets.pandas_parquet_dataset import PandasParquetDataset
+from catalog import Col, NestedCol, Catalog
+from catalog.data_types import Int, String
+
+test_dataset = PandasParquetDataset(
+    name='test_dataset',
+    description='Test Dataset Structure.',
+    columns=[
+        Col('test_col', Int(), 'testcol'),
+        NestedCol('nested', [
+            Col('test_col2', String(), 'nested testcol'),
+            Col('filler_col', String(), 'filler col')
+        ])
+    ]
+)
+
+
+@Catalog.setup(description='Test Catalog Structure.')
+class TestCatalog(Catalog):
+    test_dataset = test_dataset
+
+
+def test_json_generator():
+    excepted_output = [
+        {'name': 'TestCatalog',
+         'type': 'Catalog',
+         'description': 'Test Catalog Structure.',
+         'children': [
+             {'name': 'test_dataset',
+              'type': 'Dataset',
+              'description': 'Test Dataset Structure.',
+              'rich_description': None,
+              'columns': [
+                  {'name': 'test_col',
+                   'data_type': 'Int',
+                   'description': 'testcol',
+                   'from_store': False,
+                   'sample_data': None,
+                   'other_dataset': []
+                   },
+                  {'name': 'nested.test_col2',
+                   'data_type': 'String',
+                   'description': 'nested testcol',
+                   'from_store': False,
+                   'sample_data': None,
+                   'other_dataset': []
+                   },
+                  {'name': 'nested.filler_col',
+                   'data_type': 'String',
+                   'description': 'filler col',
+                   'from_store': False,
+                   'sample_data': None,
+                   'other_dataset': []
+                   }
+              ]
+              }]
+         }
+    ]
+    jg = JsonGenerator()
+    assert json.loads(jg.generate_docs_jsons([TestCatalog], include_samples=False)) == excepted_output
