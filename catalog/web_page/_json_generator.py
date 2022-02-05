@@ -68,8 +68,8 @@ class JsonGenerator:
             child_list.append(
                 {
                     **dataset._desc_().__dict__,
-                    'id': dataset._id,
                     'rich_description': self._load_rich_description(dataset.rich_description_path),
+                    'id': dataset._id,
                     'columns': column_data,
                 }
             )
