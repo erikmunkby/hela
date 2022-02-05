@@ -1,0 +1,1786 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>catalog API documentation</title>
+<meta name="description" content="You probably already have your data job scripts version controlled, but what about your data catalog?
+The answer: **write your data catalog as code!** …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>catalog</code></h1>
+</header>
+<section id="section-intro">
+<p>You probably already have your data job scripts version controlled, but what about your data catalog?
+The answer: <strong>write your data catalog as code!</strong> Storing your data catalog and data documentation as code
+makes your catalog searchable, referenceable, reliable, platform agnostic, sets you up for easy collaboration
+and much more! This library is built to fit small and large data landscapes, but is happiest when included
+from the start.</p>
+<p>TODO: Add link to github for contributions.
+TODO: Add link to repo with example catalog.</p>
+<h1 id="overview">Overview</h1>
+<p>The catalog package consists of four primary components:</p>
+<ul>
+<li><code><a title="catalog.Catalog" href="#catalog.Catalog">Catalog</a></code>: The eponymous class of this package. This inheritable class holds your entire catalog together,
+and you can build trees of datasets in catalogs in catalogs.</li>
+<li><code><a title="catalog.BaseDataset" href="#catalog.BaseDataset">BaseDataset</a></code>: An inheritable dataset class, the second cornerstone of the package. Depending on how much
+time you want to invest in this data <strong>catalog</strong>, it is in your own datasets you would write the most code.
+See <code><a title="catalog.datasets.pandas_parquet_dataset.PandasParquetDataset" href="datasets/pandas_parquet_dataset.html#catalog.datasets.pandas_parquet_dataset.PandasParquetDataset">PandasParquetDataset</a></code> for examples.</li>
+<li><code><a title="catalog.Col" href="#catalog.Col">Col</a></code> &amp; <code><a title="catalog.NestedCol" href="#catalog.NestedCol">NestedCol</a></code>: The leaves of your beautiful <strong>catalog</strong> tree. These are referenceable,
+reusable and (hopefully) well documented column objects.</li>
+<li><code><a title="catalog.column_store" href="#catalog.column_store">column_store()</a></code>: The most generous store filled with columns used in multiple datasets of your <strong>catalog</strong> landscape.</li>
+</ul>
+<p>And let's not forget the crown of this beautiful tree:</p>
+<ul>
+<li><code><a title="catalog.generate_webpage" href="#catalog.generate_webpage">generate_webpage()</a></code> Giving you the possibility to democratize and share your <strong>catalog</strong> with all recipients you want to.
+Serve the site wherever you can host a static <em>index.html</em> file such <a href="https://pages.github.com/">github pages</a>.</li>
+</ul>
+<h1 id="one-schema-to-rule-them-all">One schema to rule them all</h1>
+<p>With high probability you have at some point have stumbled upon a situation where you have the same type of data,
+represented in multiple locations of different formats. Be it JSON, a database, Parquet files or BigQuery, usually a
+datapoint called <em>weekday</em> will mean the same no matter where you are. With <strong>catalog</strong> you can make sure these
+datapoints are of the same type, and described the same no matter the source.</p>
+<p>Let's say you have an API that dumps JSON into some kind of blob storage. You want to dump this data into your BigQuery
+table and ensure that you have the correct schema end-to-end. Using the same dataset (or list of columns) you can generate
+a schema for both BigQuery and JSON:</p>
+<pre><code class="language-python">from catalog import Col, schema_generators
+from catalog.data_types import String, Int
+columns = [
+    Col('product_name', String(), 'The name of the product.'),
+    NestedCol('ratings', [
+        Col('taste', Int(), 'A taste rating of 1-5'),
+        Col('design', Int(), 'A design rating of 1-5')
+    ])
+]
+# Generates BigQuery schema (using BigQuery SDK)
+bigquery_schema = schema_generators.bigquery_schema(columns)
+# Generates JSON schema (according to json-schema.org)
+json_schema = schema_generators.json_schema(columns)
+</code></pre>
+<p>Or if you have some data stored in parquet read by spark, with overlapping columns stored in S3 managed by AWS Glue:</p>
+<pre><code class="language-python">from catalog import Col, NestedCol, schema_generators, column_store
+from catalog.data_types import String, Int
+
+@column_store()
+class MyStore:
+    product_name = Col('product_name', String(), 'The name of the product.')
+
+glue_columns = [
+    MyStore.product_name,
+    Col('nbr_sold', Int(), 'Number sold of a specific product.')
+]
+spark_columns = [
+    MyStore.product_name,
+    Col('product_id', Int(), 'Integer identificator of a specific product.')
+]
+# Generates glue schema (using AWS CDK)
+schema_generators.aws_glue_schema(glue_columns)
+# Generate spark schema (using pyspark)
+schema_generators.spark_schema(spark_columns)
+</code></pre>
+<h1 id="getting-started">Getting Started</h1>
+<p>Setting up, reference the infer module here?</p>
+<p>When building your data <strong>catalog</strong> it is recommended to keep the folder structure
+in line with how the data will be structure in your data lake/warehouse as the example below
+(for a complete example see the <a href="TODO: link to showcase repo">showcase repo</a>).</p>
+<pre><code>my_catalog/
+├── rich_descriptions/
+│   ├── orders.md
+│   └── ...
+├── MyDatasets/
+│   ├── best_dataset.py
+│   └── ...
+├── MyOtherDatasets/
+│   ├── decent_dataset.py
+│   └── ...
+├── my_catalog.py
+└── my_column_store.py
+</code></pre>
+<p>The next step is to build your own dataset, this is where you can put most of your code when it comes
+functionality such as:</p>
+<ul>
+<li>Authentication and permissions</li>
+<li>Connections and configs</li>
+<li>Write &amp; Load functionality</li>
+<li>Various partitioning and optimization logic</li>
+</ul>
+<p>Important is to inherit the <code><a title="catalog.BaseDataset" href="#catalog.BaseDataset">BaseDataset</a></code> class and shadow/hard-code any of the init fields
+required.</p>
+<pre><code class="language-python">from catalog import BaseDataset, Col
+from catalog.data_types import String
+
+class MyDatasetClass(BaseDataset):
+    def __init__(
+        self,
+        name: str, # Required
+        description: str, # Optional but recommended
+        columns: list, # Optional but recommended
+        rich_description_path: str = None, # Optional, primarily used for webpage catalog
+        partition_cols: list = None,  # Optional but recommended
+        folder: str = None, # Optional
+        # database: str, Only do one of either folder or database
+    ) -&gt; None:
+        super().__init__(
+            name,
+            data_type='bigquery',
+            folder=folder,
+            database=None,
+            description=description,
+            rich_description_path=rich_description_path,
+            partition_cols=partition_cols,
+            dependencies=None,
+            columns=columns
+        )
+        # Do more of your own init stuff
+
+my_dataset = MyDatasetClass('my_dataset', 'An example dataset.', [
+    Col('my_column', String(), 'An example column.')
+])
+</code></pre>
+<p>Now that you have a dataset class, and instantiated your first dataset, you can start populating your
+data catalog.</p>
+<pre><code class="language-python">from catalog import Catalog
+
+class MyCatalog(Catalog):
+    my_dataset = my_dataset
+</code></pre>
+<p>That's it! You now have a small catalog to keep building on. To view it as a web page you can
+add the following code to a python script, and in the future add it in whichever CI/CD tool you use:</p>
+<pre><code class="language-python">from catalog import generate_webpage
+
+generate_webpage(MyCatalog, output_folder='.')
+</code></pre>
+<p>For further reading check out:</p>
+<ul>
+<li><code><a title="catalog.Catalog.search" href="#catalog.Catalog.search">Catalog.search()</a></code> Smart search across your catalog!</li>
+<li><code><a title="catalog.test_suite" href="test_suite/index.html">catalog.test_suite</a></code> Quality assurance and smart validations for your testing pipeline.</li>
+<li><a href="TODO: link to showcase repo">Catalog Showcase Repo</a> See a bigger catalog in action.</li>
+</ul>
+<h1 id="highlights">Highlights</h1>
+<p>In the sections below you will find some important highlights of quality-of-life improvements given
+by the catalog package!</p>
+<h2 id="iterate-through-datasets">Iterate through datasets</h2>
+<p>Let's say you want to change the type of your column <code>best_column</code> from a string to an integer
+everywhere the column is used, you can do that by fetching all datasets that
+includes <code>best_column</code> using <code><a title="catalog.Catalog.get_columns_datasets" href="#catalog.Catalog.get_columns_datasets">Catalog.get_columns_datasets()</a></code>, then execute your query
+on these datasets:</p>
+<pre><code class="language-python">from my_package import MyCatalog
+columns_datasets_dict = MyCatalog.get_columns_datasets()
+for dataset in columns_datasets_dict['best_column']:
+    dataset.query('your schema changing spark query')
+</code></pre>
+<h2 id="anticipate-errors-before-they-happen">Anticipate errors before they happen</h2>
+<p>Everyone knows how difficult it is to name things, especially when managing multiple datasets
+across many similar domains. <strong>Catalog</strong> helps you keep your standards in check by making sure
+no column is unknowingly duplicated between different datasets.</p>
+<p>To combat this there is a pre-built <code><a title="catalog.test_suite" href="test_suite/index.html">catalog.test_suite</a></code> module filled with helper functions. The best
+way to use these functions is to include them in your package test setup (e.g. pytest). For example
+make sure no column name is duplicated using <code><a title="catalog.test_suite.catalog_tests.validate_no_duplicated_columns" href="test_suite/catalog_tests.html#catalog.test_suite.catalog_tests.validate_no_duplicated_columns">validate_no_duplicated_columns()</a></code>.</p>
+<p>On the other hand, sometimes as you build your catalog you find columns you would want to have the same name,
+as they might include the same type of information. In these cases we can only rely on that the descriptions are
+similar enough to get a hit using <code><a title="catalog.test_suite.description_tests.validate_description_similarity" href="test_suite/description_tests.html#catalog.test_suite.description_tests.validate_description_similarity">validate_description_similarity()</a></code>.</p>
+<h2 id="notebook-interactivity">Notebook interactivity</h2>
+<p><img alt="Date availability grid from show_dates function" src="TODO: Add url to image here when repo public">
+<img alt="Show Columns functionality" src="TODO: Add url to image here when repo public"></p>
+<h1 id="advanced">Advanced</h1>
+<p><strong>[Page under construction]</strong></p>
+<p>Sometimes things work almost, but not exactly, the way you want. Here is a brief guide on how to modify the behaviour among a variety of topics.
+If you improve something that you believe could be useful for other people as well, please consider contributing.</p>
+<p>Coming soon:</p>
+<ul>
+<li>Build your own schema generators</li>
+<li>Build your own data types</li>
+</ul>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+.. include:: ../gh_pages/catalog.md
+&#34;&#34;&#34;
+
+from catalog._catalog_class import Catalog
+from catalog._column_classes import Col, NestedCol
+from catalog._base_dataset import BaseDataset
+from catalog._column_store_class import column_store
+from catalog.web_page.generate import generate_webpage
+
+
+__all__ = [
+    &#39;Catalog&#39;,
+    &#39;BaseDataset&#39;,
+    &#39;column_store&#39;,
+    &#39;Col&#39;,
+    &#39;NestedCol&#39;,
+    &#39;generate_webpage&#39;
+]</code></pre>
+</details>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="catalog.data_types" href="data_types.html">catalog.data_types</a></code></dt>
+<dd>
+<div class="desc"><p>Module consisting of all pre-built data types.</p></div>
+</dd>
+<dt><code class="name"><a title="catalog.datasets" href="datasets/index.html">catalog.datasets</a></code></dt>
+<dd>
+<div class="desc"><p>Module with pre-built datasets for demonstrational purposes.</p></div>
+</dd>
+<dt><code class="name"><a title="catalog.errors" href="errors.html">catalog.errors</a></code></dt>
+<dd>
+<div class="desc"><p>Module with custom errors.</p></div>
+</dd>
+<dt><code class="name"><a title="catalog.infer" href="infer.html">catalog.infer</a></code></dt>
+<dd>
+<div class="desc"><p>Includes functions to infer Catalog schemas on various data structures.</p></div>
+</dd>
+<dt><code class="name"><a title="catalog.math" href="math/index.html">catalog.math</a></code></dt>
+<dd>
+<div class="desc"><p>Module for math and statistics related functions.</p></div>
+</dd>
+<dt><code class="name"><a title="catalog.plots" href="plots/index.html">catalog.plots</a></code></dt>
+<dd>
+<div class="desc"><p>Module for plot functions.</p></div>
+</dd>
+<dt><code class="name"><a title="catalog.schema_generators" href="schema_generators.html">catalog.schema_generators</a></code></dt>
+<dd>
+<div class="desc"><p>Module used to translate from catalog schema to other schema types.</p></div>
+</dd>
+<dt><code class="name"><a title="catalog.test_suite" href="test_suite/index.html">catalog.test_suite</a></code></dt>
+<dd>
+<div class="desc"><p>Module covering the test suite to make sure your catalog is set up properly …</p></div>
+</dd>
+<dt><code class="name"><a title="catalog.web_page" href="web_page/index.html">catalog.web_page</a></code></dt>
+<dd>
+<div class="desc"><p>This module includes function to generate a data catalog web page.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="catalog.column_store"><code class="name flex">
+<span>def <span class="ident">column_store</span></span>(<span>cls=None, label: str = None) ‑> object</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Decorator to used to flag a class as a column store.</p>
+<p>A column store is a referencable class used when multiple datasets use the same column.
+In order to ensure that this column is purposefully duplicated among datasets we
+check that any duplicated column must originate from the same column store.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>label</code></strong></dt>
+<dd>This string label will be passed down to all column objects within the store.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The decorated class.</p>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; from catalog import column_store, Col
+&gt;&gt;&gt; from catalog.data_types import String
+&gt;&gt;&gt; @column_store(label='cool_columns')
+&gt;&gt;&gt; class MyStore:
+...     my_column = Col('my_column', String(), 'Example column')
+&gt;&gt;&gt; MyStore.my_column
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def column_store(cls=None, label: str = None) -&gt; object:
+    &#34;&#34;&#34;Decorator to used to flag a class as a column store.
+
+    A column store is a referencable class used when multiple datasets use the same column.
+    In order to ensure that this column is purposefully duplicated among datasets we
+    check that any duplicated column must originate from the same column store.
+
+    Args:
+        label: This string label will be passed down to all column objects within the store.
+
+    Returns:
+        The decorated class.
+
+
+    Examples:
+        &gt;&gt;&gt; from catalog import column_store, Col
+        &gt;&gt;&gt; from catalog.data_types import String
+        &gt;&gt;&gt; @column_store(label=&#39;cool_columns&#39;)
+        &gt;&gt;&gt; class MyStore:
+        ...     my_column = Col(&#39;my_column&#39;, String(), &#39;Example column&#39;)
+        &gt;&gt;&gt; MyStore.my_column
+    &#34;&#34;&#34;
+
+    def wrap(cls):
+        return _make_column_store(cls, label=label)
+
+    # This is triggered when called as @column_store() (with parentheses)
+    if cls is None:
+        return wrap
+
+    # This is triggered when called as @column_store (no parentheses)
+    # Only allow triggered with parenthesis, this will keep IDE hints.
+    raise ValueError(&#39;A column store can only be decorated with called method: `@column_store()`&#39;)</code></pre>
+</details>
+</dd>
+<dt id="catalog.generate_webpage"><code class="name flex">
+<span>def <span class="ident">generate_webpage</span></span>(<span>catalogs: Union[catalog._catalog_class.Catalog, Sequence[catalog._catalog_class.Catalog]], output_folder: str, overwrite_existing: bool = False, include_samples: bool = False) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generates an index.html file that can be used as a data catalog website.</p>
+<p>Include a python script implementing this function in your CI/CD pipeline, outputting an index.html file
+that you can then use to share your data catalog (e.g. on github pages).
+For an example see (TODO: insert example repo link here).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>catalogs</code></strong></dt>
+<dd>One or multiple objects inheriting the Catalog class.
+If you have a tree of catalogs, only the root catalog is required.</dd>
+<dt><strong><code>output_folder</code></strong></dt>
+<dd>The folder where index.html file should end up.</dd>
+<dt><strong><code>overwrite_existing</code></strong></dt>
+<dd>Flag whether and potential index.html file should be overwritten if existing.</dd>
+<dt><strong><code>include_samples</code></strong></dt>
+<dd>Flag whether to attempt to fetch sample datapoints from the columns in each
+dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="#catalog.BaseDataset.get_samples">BaseDataset.get_samples()</a></code> function implemented.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>FileExistsError</code></dt>
+<dd>If the index.html file already exists under <code>output_folder</code> and overwrite_existing=False.</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; from my_catalog import MyCatalog
+&gt;&gt;&gt; from catalog import generate_webpage
+&gt;&gt;&gt; generate_webpage(MyCatalog, '.', overwrite_existing=True)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_webpage(
+    catalogs: Union[Catalog, Sequence[Catalog]],
+    output_folder: str,
+    overwrite_existing: bool = False,
+    include_samples: bool = False
+) -&gt; None:
+    &#34;&#34;&#34;Generates an index.html file that can be used as a data catalog website.
+
+    Include a python script implementing this function in your CI/CD pipeline, outputting an index.html file
+    that you can then use to share your data catalog (e.g. on github pages).
+    For an example see (TODO: insert example repo link here).
+
+    Args:
+        catalogs:   One or multiple objects inheriting the Catalog class.
+                    If you have a tree of catalogs, only the root catalog is required.
+        output_folder:  The folder where index.html file should end up.
+        overwrite_existing: Flag whether and potential index.html file should be overwritten if existing.
+        include_samples:    Flag whether to attempt to fetch sample datapoints from the columns in each
+                            dataset. Requires `catalog.BaseDataset.get_samples` function implemented.
+
+    Raises:
+        FileExistsError: If the index.html file already exists under `output_folder` and overwrite_existing=False.
+
+    Examples:
+    &gt;&gt;&gt; from my_catalog import MyCatalog
+    &gt;&gt;&gt; from catalog import generate_webpage
+    &gt;&gt;&gt; generate_webpage(MyCatalog, &#39;.&#39;, overwrite_existing=True)
+    &#34;&#34;&#34;
+    if not isinstance(catalogs, Sequence):
+        catalogs = [catalogs]
+
+    jg = JsonGenerator()
+    json_str = jg.generate_docs_jsons(catalogs, include_samples=include_samples)
+    folder_path = Path(output_folder)
+    file_path = folder_path / &#39;index.html&#39;
+    if not folder_path.exists():
+        folder_path.mkdir(parents=True)
+
+    if file_path.exists():
+        if not overwrite_existing:
+            raise FileExistsError(f&#39;File {file_path} already exists, delete or set overwrite_existing=True&#39;)
+        file_path.unlink()
+
+    # Replace placeholder script with actual json data
+    replacement_str = f&#39;&lt;script&gt;window.treeListData = {json_str}&lt;/script&gt;&#39;
+    match_str = &#39;&lt;script id=&#34;tree-list-data&#34;&gt;&lt;/script&gt;&#39;
+    original_index_file = pkg_resources.resource_string(__name__, &#39;index.html&#39;).decode()
+    output_file = original_index_file.replace(match_str, replacement_str)
+    file_path.write_text(output_file)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="catalog.BaseDataset"><code class="flex name class">
+<span>class <span class="ident">BaseDataset</span></span>
+<span>(</span><span>name: str, data_type: str, folder: Optional[Union[str, Path]] = None, database: Optional[str] = None, description: Optional[str] = None, rich_description_path: Optional[str] = None, partition_cols: Optional[Sequence[str]] = None, columns: Optional[Sequence[_ColumnType]] = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Abstract Dataset class to be used when defining building your own datasets.</p>
+<p>If you choose to build data interactivity through the data catalog, it is within
+your own dataset classes you would build authentication and connection logic.</p>
+<p>For full usage of the available catalog features implement the functions
+<code><a title="catalog.BaseDataset.get_samples" href="#catalog.BaseDataset.get_samples">BaseDataset.get_samples()</a></code> and <code><a title="catalog.BaseDataset.get_dates" href="#catalog.BaseDataset.get_dates">BaseDataset.get_dates()</a></code>.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the dataset</dd>
+<dt><strong><code>data_type</code></strong></dt>
+<dd>The data type of the dataset e.g. "parquet" or "bigquery</dd>
+<dt><strong><code>description</code></strong></dt>
+<dd>A description of the dataset as a string</dd>
+<dt><strong><code>partition_cols</code></strong></dt>
+<dd>A list of column names to be used for partitioning as strings</dd>
+<dt><strong><code>rich_description_path</code></strong></dt>
+<dd>A path to a markdown file with possibilities for longer,
+more detailed descriptions. Primarily used for generated catalog web page.</dd>
+<dt><strong><code>columns</code></strong></dt>
+<dd>A list of class ColumnType objects defining the columns of the dataset</dd>
+<dt><strong><code>path</code></strong></dt>
+<dd>The path to the dataset (combination of folder and name)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class BaseDataset(ABC):
+    &#34;&#34;&#34;Abstract Dataset class to be used when defining building your own datasets.
+
+    If you choose to build data interactivity through the data catalog, it is within
+    your own dataset classes you would build authentication and connection logic.
+
+    For full usage of the available catalog features implement the functions
+    `BaseDataset.get_samples` and `BaseDataset.get_dates`.
+
+    Attributes:
+        name: The name of the dataset
+        data_type: The data type of the dataset e.g. &#34;parquet&#34; or &#34;bigquery
+        description: A description of the dataset as a string
+        partition_cols: A list of column names to be used for partitioning as strings
+        rich_description_path:  A path to a markdown file with possibilities for longer,
+                                more detailed descriptions. Primarily used for generated catalog web page.
+        columns: A list of class ColumnType objects defining the columns of the dataset
+        path: The path to the dataset (combination of folder and name)
+    &#34;&#34;&#34;
+    _is_dataset: bool = True
+    _type: str = &#39;Dataset&#39;
+
+    def __init__(
+        self,
+        name: str,
+        data_type: str,
+        folder: Optional[Union[str, Path]] = None,
+        database: Optional[str] = None,
+        description: Optional[str] = None,
+        rich_description_path: Optional[str] = None,
+        partition_cols: Optional[Sequence[str]] = None,
+        columns: Optional[Sequence[_ColumnType]] = None,
+    ) -&gt; None:
+        self.name = name
+        self.data_type = data_type
+        self.description = description
+        self.rich_description_path = rich_description_path
+        self.partition_cols = partition_cols
+        self.database = database
+        self.folder = folder
+        self.path = None
+        self._set_path()
+        self._set_columns(columns)
+        # _id used to build links in generated catalog website
+        self._id: str = str(uuid.uuid4())
+
+    def _set_columns(self, columns: Optional[Sequence[_ColumnType]] = None) -&gt; None:
+        if columns is None:
+            self.columns = columns
+            return
+        duplicated_columns = &#39;, &#39;.join(
+            [f&#39;&#34;{col.name}&#34;&#39; for col, count in Counter(columns).items() if count &gt; 1]
+        )
+        if duplicated_columns:
+            raise DuplicationError(f&#39;Found duplication of column(s) {duplicated_columns} in dataset &#34;{self.name}&#34;.&#39;)
+        col_list = Columns(columns)
+        for c in columns:
+            setattr(col_list, c.name, c)
+        self.columns = col_list
+
+    def _set_path(self) -&gt; None:
+        if self.folder is None:
+            return
+        path = join_paths(self.folder, self.name).with_suffix(f&#39;.{self.data_type}&#39;)
+        self.path = path
+        setattr(self, _PATH_VAR, path)
+
+    def _describe(self) -&gt; _DatasetInfo:
+        info_obj = _DatasetInfo(
+            name=self.name,
+            data_type=self.data_type,
+            description=self.description
+        )
+        try:
+            dates = self.get_dates()
+            if dates is None:
+                return info_obj
+            info_obj.min_date = min(dates)
+            info_obj.max_date = max(dates)
+            info_obj.nbr_missing_dates = len(get_missing_dates(dates))
+        except NotImplementedError:
+            pass
+        return info_obj
+
+    def show_columns(self, samples: bool = True) -&gt; pd.DataFrame:
+        &#34;&#34;&#34;Returns a dataframe with information of the columns of this dataset, one column per row.
+
+        Args:
+            samples:    When true will include a sample datapoint for all columns.
+                        Requires implementation of `BaseDataset.get_samples` function.
+
+        Returns:
+            A pandas dataframe with one column per row.
+        &#34;&#34;&#34;
+        if self.columns is None:
+            return None
+
+        column_df = pd.DataFrame([
+            cinfo.__dict__ for c in self.columns for cinfo in c._describe()
+        ])
+        if samples:
+            try:
+                fetched_samples = self.get_samples()
+                if fetched_samples:
+                    fetched_samples = {**fetched_samples, **flatten_dict(fetched_samples)}
+                    column_df.loc[:, &#39;Sample&#39;] = column_df.name.apply(lambda x: fetched_samples.get(x, None))
+            except NotImplementedError:
+                pass
+        return column_df
+
+    def show_dates(self) -&gt; None:
+        &#34;&#34;&#34;
+        Will generate a grid plot of all available dates for this dataset.
+        Requires `BaseDataset.get_dates` implemented.
+        &#34;&#34;&#34;
+        dates = self.get_dates()
+        if dates is None:
+            raise ValueError(f&#39;No dates could be fetched from dataset {self}&#39;)
+        return plot_date_availability_calendar(dates)
+
+    def check_columns(
+        self,
+        column_list: Sequence[str],
+        raise_undefined_columns: bool = False,
+        raise_missing_columns: bool = False
+    ) -&gt; None:
+        &#34;&#34;&#34;
+        Will compare the sent in column list against the dataset&#39;s defined columns
+        and inform (warn or raise) regarding any discrepancies.
+
+        Args:
+            column_list: A list of names of columns as strings
+            raise_undefined_columns: Optional; If True will raise if columns
+                found in column_list not defined in dataset
+            raise_missing_columns: If True will raise if columns
+                defined in dataset not found in column_list
+
+        Raises:
+            DatasetError: If any of raise flags are set to True
+
+        Examples:
+        &gt;&gt;&gt; my_dataset.check_columns(df.columns, raise_undefined_columns=True)
+        &#34;&#34;&#34;
+        if self.columns is None:
+            warnings.warn(&#39;Dataset has no columns specified.&#39;)
+            return
+        undefined_columns = set(column_list) - set([c.name for c in self.columns])
+        msg = f&#39;The following columns are not defined in dataset: {list(undefined_columns)}&#39;
+        if raise_undefined_columns:
+            raise DatasetError(msg)
+        warnings.warn(msg)
+
+        missing_columns = set([c.name for c in self.columns]) - set(column_list)
+        msg = f&#39;The following columns are missing from column_list: {list(missing_columns)}&#39;
+        if raise_missing_columns:
+            raise DatasetError(msg)
+        warnings.warn(msg)
+
+    @property
+    def _prefix(self) -&gt; str:
+        &#34;&#34;&#34;Returns the prefix as either folder, database or empty string.&#34;&#34;&#34;
+        if self.folder:
+            return self.folder
+        if self.database:
+            return self.database
+        return &#39;&#39;
+
+    def __str__(self) -&gt; str:
+        prefix = self._prefix
+        if prefix:
+            return f&#39;{prefix}:{self.name}&#39;
+        return self.name
+
+    def __repr__(self) -&gt; str:
+        return self.__str__()
+
+    def __eq__(self, o: BaseDataset) -&gt; bool:
+        return self.name == o.name and self._id == o._id
+
+    def __hash__(self) -&gt; int:
+        return hash(self.__str__())
+
+    def _desc_(self) -&gt; ShortDescription:
+        return ShortDescription(name=self.name, type=self._type, description=self.description)
+
+    def get_dates(self) -&gt; Optional[Set[date]]:
+        &#34;&#34;&#34;Implement this function for date inspection functionality such as `BaseDataset.show_dates`.
+
+        Should return a set of dates when called or None if dates for some reason could not be fetched.
+        &#34;&#34;&#34;
+        raise NotImplementedError
+
+    def get_samples(self) -&gt; Optional[Dict[str, Any]]:
+        &#34;&#34;&#34;Implement this function for sample inspection functionality used in e.g. `BaseDataset.show_columns`.
+
+        Should return a dictionary of string keys for column names with samples:
+        &gt;&gt;&gt; {&#39;my_column&#39;: 123}
+
+        Nested columns should return names with dot-notation:
+        &gt;&gt;&gt; {&#39;parent_column.my_column&#39;: 123}
+
+        Or None if samples could not be fetched:
+        &gt;&gt;&gt; None
+        &#34;&#34;&#34;
+        raise NotImplementedError</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="catalog.datasets.bigquery_dataset.BigqueryDataset" href="datasets/bigquery_dataset.html#catalog.datasets.bigquery_dataset.BigqueryDataset">BigqueryDataset</a></li>
+<li><a title="catalog.datasets.pandas_parquet_dataset.PandasParquetDataset" href="datasets/pandas_parquet_dataset.html#catalog.datasets.pandas_parquet_dataset.PandasParquetDataset">PandasParquetDataset</a></li>
+<li><a title="catalog.datasets.spark_parquet_dataset.SparkParquetDataset" href="datasets/spark_parquet_dataset.html#catalog.datasets.spark_parquet_dataset.SparkParquetDataset">SparkParquetDataset</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="catalog.BaseDataset.check_columns"><code class="name flex">
+<span>def <span class="ident">check_columns</span></span>(<span>self, column_list: Sequence[str], raise_undefined_columns: bool = False, raise_missing_columns: bool = False) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Will compare the sent in column list against the dataset's defined columns
+and inform (warn or raise) regarding any discrepancies.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>column_list</code></strong></dt>
+<dd>A list of names of columns as strings</dd>
+<dt><strong><code>raise_undefined_columns</code></strong></dt>
+<dd>Optional; If True will raise if columns
+found in column_list not defined in dataset</dd>
+<dt><strong><code>raise_missing_columns</code></strong></dt>
+<dd>If True will raise if columns
+defined in dataset not found in column_list</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>DatasetError</code></dt>
+<dd>If any of raise flags are set to True</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; my_dataset.check_columns(df.columns, raise_undefined_columns=True)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_columns(
+    self,
+    column_list: Sequence[str],
+    raise_undefined_columns: bool = False,
+    raise_missing_columns: bool = False
+) -&gt; None:
+    &#34;&#34;&#34;
+    Will compare the sent in column list against the dataset&#39;s defined columns
+    and inform (warn or raise) regarding any discrepancies.
+
+    Args:
+        column_list: A list of names of columns as strings
+        raise_undefined_columns: Optional; If True will raise if columns
+            found in column_list not defined in dataset
+        raise_missing_columns: If True will raise if columns
+            defined in dataset not found in column_list
+
+    Raises:
+        DatasetError: If any of raise flags are set to True
+
+    Examples:
+    &gt;&gt;&gt; my_dataset.check_columns(df.columns, raise_undefined_columns=True)
+    &#34;&#34;&#34;
+    if self.columns is None:
+        warnings.warn(&#39;Dataset has no columns specified.&#39;)
+        return
+    undefined_columns = set(column_list) - set([c.name for c in self.columns])
+    msg = f&#39;The following columns are not defined in dataset: {list(undefined_columns)}&#39;
+    if raise_undefined_columns:
+        raise DatasetError(msg)
+    warnings.warn(msg)
+
+    missing_columns = set([c.name for c in self.columns]) - set(column_list)
+    msg = f&#39;The following columns are missing from column_list: {list(missing_columns)}&#39;
+    if raise_missing_columns:
+        raise DatasetError(msg)
+    warnings.warn(msg)</code></pre>
+</details>
+</dd>
+<dt id="catalog.BaseDataset.get_dates"><code class="name flex">
+<span>def <span class="ident">get_dates</span></span>(<span>self) ‑> Optional[Set[datetime.date]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Implement this function for date inspection functionality such as <code><a title="catalog.BaseDataset.show_dates" href="#catalog.BaseDataset.show_dates">BaseDataset.show_dates()</a></code>.</p>
+<p>Should return a set of dates when called or None if dates for some reason could not be fetched.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_dates(self) -&gt; Optional[Set[date]]:
+    &#34;&#34;&#34;Implement this function for date inspection functionality such as `BaseDataset.show_dates`.
+
+    Should return a set of dates when called or None if dates for some reason could not be fetched.
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="catalog.BaseDataset.get_samples"><code class="name flex">
+<span>def <span class="ident">get_samples</span></span>(<span>self) ‑> Optional[Dict[str, Any]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Implement this function for sample inspection functionality used in e.g. <code><a title="catalog.BaseDataset.show_columns" href="#catalog.BaseDataset.show_columns">BaseDataset.show_columns()</a></code>.</p>
+<p>Should return a dictionary of string keys for column names with samples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; {'my_column': 123}
+</code></pre>
+<p>Nested columns should return names with dot-notation:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; {'parent_column.my_column': 123}
+</code></pre>
+<p>Or None if samples could not be fetched:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; None
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_samples(self) -&gt; Optional[Dict[str, Any]]:
+    &#34;&#34;&#34;Implement this function for sample inspection functionality used in e.g. `BaseDataset.show_columns`.
+
+    Should return a dictionary of string keys for column names with samples:
+    &gt;&gt;&gt; {&#39;my_column&#39;: 123}
+
+    Nested columns should return names with dot-notation:
+    &gt;&gt;&gt; {&#39;parent_column.my_column&#39;: 123}
+
+    Or None if samples could not be fetched:
+    &gt;&gt;&gt; None
+    &#34;&#34;&#34;
+    raise NotImplementedError</code></pre>
+</details>
+</dd>
+<dt id="catalog.BaseDataset.show_columns"><code class="name flex">
+<span>def <span class="ident">show_columns</span></span>(<span>self, samples: bool = True) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a dataframe with information of the columns of this dataset, one column per row.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>samples</code></strong></dt>
+<dd>When true will include a sample datapoint for all columns.
+Requires implementation of <code><a title="catalog.BaseDataset.get_samples" href="#catalog.BaseDataset.get_samples">BaseDataset.get_samples()</a></code> function.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A pandas dataframe with one column per row.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_columns(self, samples: bool = True) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;Returns a dataframe with information of the columns of this dataset, one column per row.
+
+    Args:
+        samples:    When true will include a sample datapoint for all columns.
+                    Requires implementation of `BaseDataset.get_samples` function.
+
+    Returns:
+        A pandas dataframe with one column per row.
+    &#34;&#34;&#34;
+    if self.columns is None:
+        return None
+
+    column_df = pd.DataFrame([
+        cinfo.__dict__ for c in self.columns for cinfo in c._describe()
+    ])
+    if samples:
+        try:
+            fetched_samples = self.get_samples()
+            if fetched_samples:
+                fetched_samples = {**fetched_samples, **flatten_dict(fetched_samples)}
+                column_df.loc[:, &#39;Sample&#39;] = column_df.name.apply(lambda x: fetched_samples.get(x, None))
+        except NotImplementedError:
+            pass
+    return column_df</code></pre>
+</details>
+</dd>
+<dt id="catalog.BaseDataset.show_dates"><code class="name flex">
+<span>def <span class="ident">show_dates</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Will generate a grid plot of all available dates for this dataset.
+Requires <code><a title="catalog.BaseDataset.get_dates" href="#catalog.BaseDataset.get_dates">BaseDataset.get_dates()</a></code> implemented.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_dates(self) -&gt; None:
+    &#34;&#34;&#34;
+    Will generate a grid plot of all available dates for this dataset.
+    Requires `BaseDataset.get_dates` implemented.
+    &#34;&#34;&#34;
+    dates = self.get_dates()
+    if dates is None:
+        raise ValueError(f&#39;No dates could be fetched from dataset {self}&#39;)
+    return plot_date_availability_calendar(dates)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="catalog.Catalog"><code class="flex name class">
+<span>class <span class="ident">Catalog</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Inheritable Catalog class, used when building your own data catalog.</p>
+<p>The namesake of the python package, this class will turn your code from just being code into a data catalog.
+This class will make your datasets iterable, testable, referenceable and more.
+You can also decorate the catalog with the <code><a title="catalog.Catalog.setup" href="#catalog.Catalog.setup">Catalog.setup()</a></code> function, giving your catalog a description and
+enriching datasets within it.</p>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; # Without decorator
+&gt;&gt;&gt; from catalog import Catalog
+&gt;&gt;&gt; class MyCatalog(Catalog):
+...     my_dataset = Dataset(...)
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; # With decorator
+&gt;&gt;&gt; from catalog import Catalog
+&gt;&gt;&gt; @Catalog.setup(folder='sales', description='Datasets related to sales.')
+&gt;&gt;&gt; class SalesCatalog(Catalog):
+...     my_dales_dataset = Dataset(...)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Catalog:
+    &#34;&#34;&#34;Inheritable Catalog class, used when building your own data catalog.
+
+    The namesake of the python package, this class will turn your code from just being code into a data catalog.
+    This class will make your datasets iterable, testable, referenceable and more.
+    You can also decorate the catalog with the `Catalog.setup` function, giving your catalog a description and
+    enriching datasets within it.
+
+    Examples:
+    &gt;&gt;&gt; # Without decorator
+    &gt;&gt;&gt; from catalog import Catalog
+    &gt;&gt;&gt; class MyCatalog(Catalog):
+    ...     my_dataset = Dataset(...)
+
+    &gt;&gt;&gt; # With decorator
+    &gt;&gt;&gt; from catalog import Catalog
+    &gt;&gt;&gt; @Catalog.setup(folder=&#39;sales&#39;, description=&#39;Datasets related to sales.&#39;)
+    &gt;&gt;&gt; class SalesCatalog(Catalog):
+    ...     my_dales_dataset = Dataset(...)
+    &#34;&#34;&#34;
+    _is_catalog: bool = True
+    _type: str = &#39;Catalog&#39;
+    _folder: str = None
+    _database: str = None
+    _description: str = None
+    _rich_description_path: str = None
+
+    @staticmethod
+    def setup(
+        cls: Catalog = None,
+        folder: Optional[str] = None,
+        database: Optional[str] = None,
+        description: Optional[str] = None,
+        rich_description_path: Optional[str] = None
+    ) -&gt; Catalog:
+        &#34;&#34;&#34;Decorator enriching the catalog with a description, and optionally binding
+        a folder or database to all datasets within it.
+
+        Args:
+            folder: Used for filestore style datasets (e.g. spark),
+                    build the catalogs folder structure.
+            database:   Used for database style datasets (e.g. bigquery,
+                        aws glue) builds the catalogs database structure.
+            description:    A description of this catalog.
+            rich_description_path: Path to markdown file with richer descriptions of this catalog.
+        &#34;&#34;&#34;
+
+        def wrap(cls: Catalog):
+            if not getattr(cls, &#39;_is_catalog&#39;, False):
+                raise ValueError(f&#39;Class {cls} must inherit Catalog class.&#39;)
+            cls._folder = folder
+            cls._database = database
+            cls._description = description
+            cls._rich_description_path = rich_description_path
+            _enrich_datasets(cls, folder=folder, database=database)
+            return cls
+
+        # When called with pathentheses &#34;@catalog()&#34;
+        if cls is None:
+            return wrap
+
+        # When called without pathentheses &#34;@catalog&#34;
+        return wrap(cls)
+
+    @classmethod
+    def get_catalogs(cls, recursive: bool = True) -&gt; Sequence[Catalog]:
+        &#34;&#34;&#34;Get a list of all sub-catalogs of this catalog, not including self.
+
+        Args:
+            recursive:  Flag whether to search for sub-catalog in this catalog&#39;s sub-catalogs.
+
+        Returns:
+            A list of objects inheriting the Catalog class.
+        &#34;&#34;&#34;
+        catalog_list = []
+        for obj in cls.__dict__.values():
+            catalog = is_catalog(obj)
+            if catalog:
+                catalog_list.append(catalog)
+                if recursive:
+                    catalog_list.extend(catalog.get_catalogs())
+        return catalog_list
+
+    @classmethod
+    def get_datasets(cls, recursive: bool = True) -&gt; Sequence[BaseDataset]:
+        &#34;&#34;&#34;Returns a list of all datasets within this catalog, recursively if flag is set.
+
+        Args:
+            recursive: When set to true this function will fetch datasets from sub-catalogs of this catalog.
+
+        Returns:
+            A list of dataset objects.
+        &#34;&#34;&#34;
+        dataset_list = []
+        for obj in cls.__dict__.values():
+            dataset = is_dataset(obj)
+            if dataset:
+                dataset_list.append(obj)
+            elif recursive:
+                catalog = is_catalog(obj)
+                if catalog:
+                    dataset_list.extend(catalog.get_datasets())
+        return dataset_list
+
+    @classmethod
+    def get_columns_datasets(cls, recursive: bool = True) -&gt; Dict[_ColumnType, Sequence[BaseDataset]]:
+        column_dict = defaultdict(list)
+        for dataset in cls.get_datasets(recursive=recursive):
+            if dataset.columns is None:
+                continue
+
+            for column in dataset.columns:
+                column_dict[column].append(dataset)
+        return column_dict
+
+    @classmethod
+    def show_datasets(cls, recursive: bool = True) -&gt; DFDisplay:
+        &#34;&#34;&#34;Returns a DFDisplay with a description of all datasets in this catalog, one dataset per row.
+
+        Args:
+            recursive: Whether to show dataset recursively in subcatalogs.
+
+        Returns:
+            DFDisplay (pandas dataframe)
+        &#34;&#34;&#34;
+        return DFDisplay([
+            d._describe().__dict__
+            for d in cls.get_datasets(recursive=recursive)
+        ])
+
+    @classmethod
+    def show_columns(cls, recursive: bool = True) -&gt; DFDisplay:
+        &#34;&#34;&#34;Returns a pandas dataframe with a description of all columns in this catalog, one column per row.
+
+        Args:
+            recursive: Whether to show dataset recursively in subcatalogs.
+
+        Returns:
+            DFDisplay (pandas dataframe)
+        &#34;&#34;&#34;
+        df = DFDisplay([
+            {
+                **col.__dict__,
+                &#39;datasets&#39;: datasets
+            }
+            for col_obj, datasets in cls.get_columns_datasets(recursive=recursive).items()
+            for col in col_obj._describe()
+        ])
+        return df.sort_values(&#39;name&#39;).reset_index(drop=True)
+
+    @classmethod
+    def _all_descriptions(cls, recursive=True) -&gt; Sequence[ShortDescription]:
+        &#34;&#34;&#34;Collect descriptions for all Catalogs, Datasets and Columns.
+
+        Args:
+            recursive:  Whether to search recursively through sub-catalogs.
+
+        Returns:
+            A sequence of ShortDescription objects
+        &#34;&#34;&#34;
+        column_descriptions = []
+        for c in cls.get_columns_datasets(recursive=recursive).keys():
+            desc = c._desc_()
+            # Columns will sometimes give a sequence if it is a nested column
+            if isinstance(desc, Sequence):
+                column_descriptions.extend(desc)
+            else:
+                column_descriptions.append(desc)
+        return [
+            *column_descriptions,
+            *[d._desc_() for d in cls.get_datasets(recursive=recursive)],
+            *[c._desc_() for c in cls.get_catalogs(recursive=recursive)],
+            cls._desc_()
+        ]
+
+    @classmethod
+    def search(cls, query_str: str, recursive: bool = True, max_hits: int = 5, min_relevance: float = .1) -&gt; DFDisplay:
+        &#34;&#34;&#34;Searches across names and descriptions of Catalogs, Datasets and Columns.
+
+        * Search on name is based on Levenshtein distance (fuzzy search).
+        * Search on description is based on cosine similarity of TF-IDF matrix.
+
+        Args:
+            query_str:  The string to base the search on.
+            recursive:  Whether to search recursively through sub-catalogs.
+            max_hits:   Maximum number of hits to return.
+            min_relevance: Minimum required relevance score to return a hit.
+
+        Returns:
+            A DFDisplay (pandas) dataframe with hits sorted on relevance.
+        &#34;&#34;&#34;
+
+        # Create dictionaries to collect into unique name/desc keys
+        name_dict, desc_dict = defaultdict(list), defaultdict(list)
+        for short_desc in cls._all_descriptions(recursive=recursive):
+            name = short_desc.name
+            if name is not None:
+                name_dict[name].append(short_desc)
+                # Take both original and split version if we&#39;re dealing with nested columns
+                # E.g. ratings.taste
+                if &#39;.&#39; in name:
+                    name_dict[name.split(&#39;.&#39;)[-1]].append(short_desc)
+            if short_desc.description is not None:
+                desc_dict[short_desc.description].append(short_desc)
+
+        l_search = levenshtein.sort(query_str, list(name_dict.keys()), min_similarity=.5)
+        try:
+            tf_idf_search = tf_idf.sort(query_str, list(desc_dict.keys()))
+        except ValueError:
+            # Raised when we get no vocabulary matches at all
+            tf_idf_search = []
+
+        relevance_col = &#39;relevance&#39;
+
+        hit_df = DFDisplay([
+            *[
+                {
+                    **short_desc.__dict__,
+                    relevance_col: hit.score,
+                    &#39;hit_on&#39;: &#39;name&#39;
+                }
+                for hit in l_search
+                for short_desc in name_dict[hit.match_string]
+            ],
+            *[
+                {
+                    **short_desc.__dict__,
+                    relevance_col: hit.score,
+                    &#39;hit_on&#39;: &#39;description&#39;
+                }
+                for hit in tf_idf_search
+                for short_desc in desc_dict[hit.match_string]
+            ]
+        ])
+        error_msg = f&#39;No hits good enough found on query string: &#34;{query_str}&#34;&#39;
+        if len(hit_df) == 0:
+            raise ValueError(error_msg)
+        hit_df = hit_df[hit_df[relevance_col] &gt; min_relevance]
+
+        if len(hit_df) == 0:
+            raise ValueError(error_msg)
+
+        hit_df.loc[:, relevance_col] = hit_df[relevance_col].round(2)
+        return (
+            hit_df
+            .sort_values(relevance_col, ascending=False)
+            .drop_duplicates(subset=[&#39;name&#39;, &#39;type&#39;])
+            [:max_hits]
+        )
+
+    @classmethod
+    def _desc_(self) -&gt; ShortDescription:
+        return ShortDescription(name=self.__name__, type=self._type, description=self._description)</code></pre>
+</details>
+<h3>Static methods</h3>
+<dl>
+<dt id="catalog.Catalog.get_catalogs"><code class="name flex">
+<span>def <span class="ident">get_catalogs</span></span>(<span>recursive: bool = True) ‑> Sequence[catalog._catalog_class.Catalog]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get a list of all sub-catalogs of this catalog, not including self.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>recursive</code></strong></dt>
+<dd>Flag whether to search for sub-catalog in this catalog's sub-catalogs.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A list of objects inheriting the Catalog class.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def get_catalogs(cls, recursive: bool = True) -&gt; Sequence[Catalog]:
+    &#34;&#34;&#34;Get a list of all sub-catalogs of this catalog, not including self.
+
+    Args:
+        recursive:  Flag whether to search for sub-catalog in this catalog&#39;s sub-catalogs.
+
+    Returns:
+        A list of objects inheriting the Catalog class.
+    &#34;&#34;&#34;
+    catalog_list = []
+    for obj in cls.__dict__.values():
+        catalog = is_catalog(obj)
+        if catalog:
+            catalog_list.append(catalog)
+            if recursive:
+                catalog_list.extend(catalog.get_catalogs())
+    return catalog_list</code></pre>
+</details>
+</dd>
+<dt id="catalog.Catalog.get_columns_datasets"><code class="name flex">
+<span>def <span class="ident">get_columns_datasets</span></span>(<span>recursive: bool = True) ‑> Dict[catalog._column_classes._ColumnType, Sequence[catalog._base_dataset.BaseDataset]]</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def get_columns_datasets(cls, recursive: bool = True) -&gt; Dict[_ColumnType, Sequence[BaseDataset]]:
+    column_dict = defaultdict(list)
+    for dataset in cls.get_datasets(recursive=recursive):
+        if dataset.columns is None:
+            continue
+
+        for column in dataset.columns:
+            column_dict[column].append(dataset)
+    return column_dict</code></pre>
+</details>
+</dd>
+<dt id="catalog.Catalog.get_datasets"><code class="name flex">
+<span>def <span class="ident">get_datasets</span></span>(<span>recursive: bool = True) ‑> Sequence[catalog._base_dataset.BaseDataset]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a list of all datasets within this catalog, recursively if flag is set.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>recursive</code></strong></dt>
+<dd>When set to true this function will fetch datasets from sub-catalogs of this catalog.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A list of dataset objects.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def get_datasets(cls, recursive: bool = True) -&gt; Sequence[BaseDataset]:
+    &#34;&#34;&#34;Returns a list of all datasets within this catalog, recursively if flag is set.
+
+    Args:
+        recursive: When set to true this function will fetch datasets from sub-catalogs of this catalog.
+
+    Returns:
+        A list of dataset objects.
+    &#34;&#34;&#34;
+    dataset_list = []
+    for obj in cls.__dict__.values():
+        dataset = is_dataset(obj)
+        if dataset:
+            dataset_list.append(obj)
+        elif recursive:
+            catalog = is_catalog(obj)
+            if catalog:
+                dataset_list.extend(catalog.get_datasets())
+    return dataset_list</code></pre>
+</details>
+</dd>
+<dt id="catalog.Catalog.search"><code class="name flex">
+<span>def <span class="ident">search</span></span>(<span>query_str: str, recursive: bool = True, max_hits: int = 5, min_relevance: float = 0.1) ‑> <a title="catalog.plots.html_displays.DFDisplay" href="plots/html_displays.html#catalog.plots.html_displays.DFDisplay">DFDisplay</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Searches across names and descriptions of Catalogs, Datasets and Columns.</p>
+<ul>
+<li>Search on name is based on Levenshtein distance (fuzzy search).</li>
+<li>Search on description is based on cosine similarity of TF-IDF matrix.</li>
+</ul>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>query_str</code></strong></dt>
+<dd>The string to base the search on.</dd>
+<dt><strong><code>recursive</code></strong></dt>
+<dd>Whether to search recursively through sub-catalogs.</dd>
+<dt><strong><code>max_hits</code></strong></dt>
+<dd>Maximum number of hits to return.</dd>
+<dt><strong><code>min_relevance</code></strong></dt>
+<dd>Minimum required relevance score to return a hit.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A DFDisplay (pandas) dataframe with hits sorted on relevance.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def search(cls, query_str: str, recursive: bool = True, max_hits: int = 5, min_relevance: float = .1) -&gt; DFDisplay:
+    &#34;&#34;&#34;Searches across names and descriptions of Catalogs, Datasets and Columns.
+
+    * Search on name is based on Levenshtein distance (fuzzy search).
+    * Search on description is based on cosine similarity of TF-IDF matrix.
+
+    Args:
+        query_str:  The string to base the search on.
+        recursive:  Whether to search recursively through sub-catalogs.
+        max_hits:   Maximum number of hits to return.
+        min_relevance: Minimum required relevance score to return a hit.
+
+    Returns:
+        A DFDisplay (pandas) dataframe with hits sorted on relevance.
+    &#34;&#34;&#34;
+
+    # Create dictionaries to collect into unique name/desc keys
+    name_dict, desc_dict = defaultdict(list), defaultdict(list)
+    for short_desc in cls._all_descriptions(recursive=recursive):
+        name = short_desc.name
+        if name is not None:
+            name_dict[name].append(short_desc)
+            # Take both original and split version if we&#39;re dealing with nested columns
+            # E.g. ratings.taste
+            if &#39;.&#39; in name:
+                name_dict[name.split(&#39;.&#39;)[-1]].append(short_desc)
+        if short_desc.description is not None:
+            desc_dict[short_desc.description].append(short_desc)
+
+    l_search = levenshtein.sort(query_str, list(name_dict.keys()), min_similarity=.5)
+    try:
+        tf_idf_search = tf_idf.sort(query_str, list(desc_dict.keys()))
+    except ValueError:
+        # Raised when we get no vocabulary matches at all
+        tf_idf_search = []
+
+    relevance_col = &#39;relevance&#39;
+
+    hit_df = DFDisplay([
+        *[
+            {
+                **short_desc.__dict__,
+                relevance_col: hit.score,
+                &#39;hit_on&#39;: &#39;name&#39;
+            }
+            for hit in l_search
+            for short_desc in name_dict[hit.match_string]
+        ],
+        *[
+            {
+                **short_desc.__dict__,
+                relevance_col: hit.score,
+                &#39;hit_on&#39;: &#39;description&#39;
+            }
+            for hit in tf_idf_search
+            for short_desc in desc_dict[hit.match_string]
+        ]
+    ])
+    error_msg = f&#39;No hits good enough found on query string: &#34;{query_str}&#34;&#39;
+    if len(hit_df) == 0:
+        raise ValueError(error_msg)
+    hit_df = hit_df[hit_df[relevance_col] &gt; min_relevance]
+
+    if len(hit_df) == 0:
+        raise ValueError(error_msg)
+
+    hit_df.loc[:, relevance_col] = hit_df[relevance_col].round(2)
+    return (
+        hit_df
+        .sort_values(relevance_col, ascending=False)
+        .drop_duplicates(subset=[&#39;name&#39;, &#39;type&#39;])
+        [:max_hits]
+    )</code></pre>
+</details>
+</dd>
+<dt id="catalog.Catalog.setup"><code class="name flex">
+<span>def <span class="ident">setup</span></span>(<span>cls: <a title="catalog.Catalog" href="#catalog.Catalog">Catalog</a> = None, folder: Optional[str] = None, database: Optional[str] = None, description: Optional[str] = None, rich_description_path: Optional[str] = None) ‑> catalog._catalog_class.Catalog</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Decorator enriching the catalog with a description, and optionally binding
+a folder or database to all datasets within it.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>folder</code></strong></dt>
+<dd>Used for filestore style datasets (e.g. spark),
+build the catalogs folder structure.</dd>
+<dt><strong><code>database</code></strong></dt>
+<dd>Used for database style datasets (e.g. bigquery,
+aws glue) builds the catalogs database structure.</dd>
+<dt><strong><code>description</code></strong></dt>
+<dd>A description of this catalog.</dd>
+<dt><strong><code>rich_description_path</code></strong></dt>
+<dd>Path to markdown file with richer descriptions of this catalog.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def setup(
+    cls: Catalog = None,
+    folder: Optional[str] = None,
+    database: Optional[str] = None,
+    description: Optional[str] = None,
+    rich_description_path: Optional[str] = None
+) -&gt; Catalog:
+    &#34;&#34;&#34;Decorator enriching the catalog with a description, and optionally binding
+    a folder or database to all datasets within it.
+
+    Args:
+        folder: Used for filestore style datasets (e.g. spark),
+                build the catalogs folder structure.
+        database:   Used for database style datasets (e.g. bigquery,
+                    aws glue) builds the catalogs database structure.
+        description:    A description of this catalog.
+        rich_description_path: Path to markdown file with richer descriptions of this catalog.
+    &#34;&#34;&#34;
+
+    def wrap(cls: Catalog):
+        if not getattr(cls, &#39;_is_catalog&#39;, False):
+            raise ValueError(f&#39;Class {cls} must inherit Catalog class.&#39;)
+        cls._folder = folder
+        cls._database = database
+        cls._description = description
+        cls._rich_description_path = rich_description_path
+        _enrich_datasets(cls, folder=folder, database=database)
+        return cls
+
+    # When called with pathentheses &#34;@catalog()&#34;
+    if cls is None:
+        return wrap
+
+    # When called without pathentheses &#34;@catalog&#34;
+    return wrap(cls)</code></pre>
+</details>
+</dd>
+<dt id="catalog.Catalog.show_columns"><code class="name flex">
+<span>def <span class="ident">show_columns</span></span>(<span>recursive: bool = True) ‑> <a title="catalog.plots.html_displays.DFDisplay" href="plots/html_displays.html#catalog.plots.html_displays.DFDisplay">DFDisplay</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a pandas dataframe with a description of all columns in this catalog, one column per row.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>recursive</code></strong></dt>
+<dd>Whether to show dataset recursively in subcatalogs.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>DFDisplay (pandas dataframe)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def show_columns(cls, recursive: bool = True) -&gt; DFDisplay:
+    &#34;&#34;&#34;Returns a pandas dataframe with a description of all columns in this catalog, one column per row.
+
+    Args:
+        recursive: Whether to show dataset recursively in subcatalogs.
+
+    Returns:
+        DFDisplay (pandas dataframe)
+    &#34;&#34;&#34;
+    df = DFDisplay([
+        {
+            **col.__dict__,
+            &#39;datasets&#39;: datasets
+        }
+        for col_obj, datasets in cls.get_columns_datasets(recursive=recursive).items()
+        for col in col_obj._describe()
+    ])
+    return df.sort_values(&#39;name&#39;).reset_index(drop=True)</code></pre>
+</details>
+</dd>
+<dt id="catalog.Catalog.show_datasets"><code class="name flex">
+<span>def <span class="ident">show_datasets</span></span>(<span>recursive: bool = True) ‑> <a title="catalog.plots.html_displays.DFDisplay" href="plots/html_displays.html#catalog.plots.html_displays.DFDisplay">DFDisplay</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a DFDisplay with a description of all datasets in this catalog, one dataset per row.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>recursive</code></strong></dt>
+<dd>Whether to show dataset recursively in subcatalogs.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>DFDisplay (pandas dataframe)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def show_datasets(cls, recursive: bool = True) -&gt; DFDisplay:
+    &#34;&#34;&#34;Returns a DFDisplay with a description of all datasets in this catalog, one dataset per row.
+
+    Args:
+        recursive: Whether to show dataset recursively in subcatalogs.
+
+    Returns:
+        DFDisplay (pandas dataframe)
+    &#34;&#34;&#34;
+    return DFDisplay([
+        d._describe().__dict__
+        for d in cls.get_datasets(recursive=recursive)
+    ])</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="catalog.Col"><code class="flex name class">
+<span>class <span class="ident">Col</span></span>
+<span>(</span><span>name: str, data_type: PrimitiveType, description: str = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A basic column object, for nested columns see <code><a title="catalog.NestedCol" href="#catalog.NestedCol">NestedCol</a></code>.</p>
+<p>This class is used to define columns within a <code><a title="catalog.BaseDataset" href="#catalog.BaseDataset">BaseDataset</a></code> or <code><a title="catalog.column_store" href="#catalog.column_store">column_store()</a></code>.
+Each defined column will be searchable, testable and referenceable.</p>
+<p>If you want to give further functionality to your columns, please this class.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the column.</dd>
+<dt><strong><code>data_type</code></strong></dt>
+<dd>The data type of the column, should be one of types found in <code><a title="catalog.data_types" href="data_types.html">catalog.data_types</a></code></dd>
+<dt><strong><code>description</code></strong></dt>
+<dd>A description of this column as a string, better descriptions yield a more secure catalog.</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; from catalog import Col
+&gt;&gt;&gt; from catalog.data_types import String
+&gt;&gt;&gt; my_col = Col('my_col', String(), 'This is an example column')
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Col(_ColumnType):
+    &#34;&#34;&#34;A basic column object, for nested columns see `catalog.NestedCol`.
+
+    This class is used to define columns within a `catalog.BaseDataset` or `catalog.column_store`.
+    Each defined column will be searchable, testable and referenceable.
+
+    If you want to give further functionality to your columns, please this class.
+
+    Attributes:
+        name:   The name of the column.
+        data_type:  The data type of the column, should be one of types found in `catalog.data_types`
+        description: A description of this column as a string, better descriptions yield a more secure catalog.
+
+    Examples:
+    &gt;&gt;&gt; from catalog import Col
+    &gt;&gt;&gt; from catalog.data_types import String
+    &gt;&gt;&gt; my_col = Col(&#39;my_col&#39;, String(), &#39;This is an example column&#39;)
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        name: str,
+        data_type: PrimitiveType,
+        description: str = None,
+    ) -&gt; None:
+        super().__init__(name=name, data_type=data_type, description=description)
+
+    def _describe(self) -&gt; Sequence[_ColInfo]:
+        return [_ColInfo(
+            name=self.name,
+            data_type=str(self.data_type),
+            description=self.description,
+            from_store=self.from_store
+        )]
+
+    def _spark_type(self):
+        return StructField(name=self.name, dataType=self.data_type._spark_type())
+
+    def _glue_type(self):
+        return GlueColumn(name=self.name, type=self.data_type._glue_type(), comment=self.description)
+
+    def _json_type(self):
+        return {self.name: self.data_type._json_type()}
+
+    def _bigquery_type(self):
+        return bigquery.SchemaField(
+            name=self.name,
+            description=self.description,
+            **self.data_type._bigquery_type().__dict__
+        )
+
+    def __str__(self) -&gt; str:
+        return f&#39;Col(name=&#34;{self.name}&#34;, data_type={self.data_type}, description={self.description})&#39;
+
+    def __repr__(self) -&gt; str:
+        return self.__str__()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>catalog._column_classes._ColumnType</li>
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="catalog.Col.data_type"><code class="name">var <span class="ident">data_type</span> : catalog._base_data_type.BaseDataType</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="catalog.Col.from_store"><code class="name">var <span class="ident">from_store</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="catalog.Col.label"><code class="name">var <span class="ident">label</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="catalog.NestedCol"><code class="flex name class">
+<span>class <span class="ident">NestedCol</span></span>
+<span>(</span><span>name: str, columns: Sequence[_ColumnType])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A nested style column object, should be instantiated with sub columns.</p>
+<p>Most data stores support nested style columns, these can be built using this column class.
+These columns will be referenced with dot-notation when shown in the <strong>catalog</strong>.
+For dict/struct style columns see <code><a title="catalog.data_types.Struct" href="data_types.html#catalog.data_types.Struct">Struct</a></code>.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the column.</dd>
+<dt><strong><code>columns</code></strong></dt>
+<dd>A sequence of columns nested within this column. Can be Col or NestedCol objects.</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; from catalog import NestedCol, Col
+&gt;&gt;&gt; from catalog.data_types import String, Int
+&gt;&gt;&gt; my_col = NestedCol('my_nested_col', [
+...     Col('nested_string', String(), 'Nested string column'),
+...     Col('nested_int', Int(), 'Nested int column')
+... ])
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class NestedCol(_ColumnType):
+    &#34;&#34;&#34;A nested style column object, should be instantiated with sub columns.
+
+    Most data stores support nested style columns, these can be built using this column class.
+    These columns will be referenced with dot-notation when shown in the **catalog**.
+    For dict/struct style columns see `catalog.data_types.Struct`.
+
+    Attributes:
+        name:   The name of the column.
+        columns:    A sequence of columns nested within this column. Can be Col or NestedCol objects.
+
+    Examples:
+    &gt;&gt;&gt; from catalog import NestedCol, Col
+    &gt;&gt;&gt; from catalog.data_types import String, Int
+    &gt;&gt;&gt; my_col = NestedCol(&#39;my_nested_col&#39;, [
+    ...     Col(&#39;nested_string&#39;, String(), &#39;Nested string column&#39;),
+    ...     Col(&#39;nested_int&#39;, Int(), &#39;Nested int column&#39;)
+    ... ])
+    &#34;&#34;&#34;
+
+    def __init__(self, name: str, columns: Sequence[_ColumnType]) -&gt; None:
+        self.columns = columns
+        data_type = Struct({c.name: c.data_type for c in columns})
+        super().__init__(name=name, data_type=data_type, description=&#39;A subset of columns.&#39;)
+
+    def _describe(self) -&gt; Sequence[_ColInfo]:
+        col_info_list = []
+        for c in self.columns:
+            for c_desc in c._describe():
+                desc = copy(c_desc)
+                desc.name = f&#39;{self.name}.{desc.name}&#39;
+                col_info_list.append(desc)
+        return col_info_list
+
+    def _spark_type(self):
+        return StructField(name=self.name, dataType=self.data_type._spark_type())
+
+    def _glue_type(self):
+        return GlueColumn(name=self.name, type=self.data_type._glue_type())
+
+    def _json_type(self):
+        return {self.name: self.data_type._json_type()}
+
+    def _bigquery_type(self):
+        return bigquery.SchemaField(
+            name=self.name,
+            field_type=&#39;RECORD&#39;,
+            mode=BigqueryMode.NULLABLE,
+            fields=[c._bigquery_type() for c in self.columns]
+        )
+
+    def __str__(self) -&gt; str:
+        subs = [str(c) for c in self.columns]
+        return f&#39;NestedCol(name=&#34;{self.name}&#34;, subcols={subs})&#39;
+
+    def _desc_(self) -&gt; Sequence[ShortDescription]:
+        desc_list = []
+        for c_desc in self.columns:
+            desc = copy(c_desc._desc_())
+            desc.name = f&#39;{self.name}.{c_desc.name}&#39;
+            desc_list.append(desc)
+        return desc_list
+
+    def __repr__(self) -&gt; str:
+        return self.__str__()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>catalog._column_classes._ColumnType</li>
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="catalog.NestedCol.data_type"><code class="name">var <span class="ident">data_type</span> : catalog._base_data_type.BaseDataType</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="catalog.NestedCol.from_store"><code class="name">var <span class="ident">from_store</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="catalog.NestedCol.label"><code class="name">var <span class="ident">label</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#one-schema-to-rule-them-all">One schema to rule them all</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#highlights">Highlights</a><ul>
+<li><a href="#iterate-through-datasets">Iterate through datasets</a></li>
+<li><a href="#anticipate-errors-before-they-happen">Anticipate errors before they happen</a></li>
+<li><a href="#notebook-interactivity">Notebook interactivity</a></li>
+</ul>
+</li>
+<li><a href="#advanced">Advanced</a></li>
+</ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="catalog.data_types" href="data_types.html">catalog.data_types</a></code></li>
+<li><code><a title="catalog.datasets" href="datasets/index.html">catalog.datasets</a></code></li>
+<li><code><a title="catalog.errors" href="errors.html">catalog.errors</a></code></li>
+<li><code><a title="catalog.infer" href="infer.html">catalog.infer</a></code></li>
+<li><code><a title="catalog.math" href="math/index.html">catalog.math</a></code></li>
+<li><code><a title="catalog.plots" href="plots/index.html">catalog.plots</a></code></li>
+<li><code><a title="catalog.schema_generators" href="schema_generators.html">catalog.schema_generators</a></code></li>
+<li><code><a title="catalog.test_suite" href="test_suite/index.html">catalog.test_suite</a></code></li>
+<li><code><a title="catalog.web_page" href="web_page/index.html">catalog.web_page</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="catalog.column_store" href="#catalog.column_store">column_store</a></code></li>
+<li><code><a title="catalog.generate_webpage" href="#catalog.generate_webpage">generate_webpage</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="catalog.BaseDataset" href="#catalog.BaseDataset">BaseDataset</a></code></h4>
+<ul class="">
+<li><code><a title="catalog.BaseDataset.check_columns" href="#catalog.BaseDataset.check_columns">check_columns</a></code></li>
+<li><code><a title="catalog.BaseDataset.get_dates" href="#catalog.BaseDataset.get_dates">get_dates</a></code></li>
+<li><code><a title="catalog.BaseDataset.get_samples" href="#catalog.BaseDataset.get_samples">get_samples</a></code></li>
+<li><code><a title="catalog.BaseDataset.show_columns" href="#catalog.BaseDataset.show_columns">show_columns</a></code></li>
+<li><code><a title="catalog.BaseDataset.show_dates" href="#catalog.BaseDataset.show_dates">show_dates</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="catalog.Catalog" href="#catalog.Catalog">Catalog</a></code></h4>
+<ul class="">
+<li><code><a title="catalog.Catalog.get_catalogs" href="#catalog.Catalog.get_catalogs">get_catalogs</a></code></li>
+<li><code><a title="catalog.Catalog.get_columns_datasets" href="#catalog.Catalog.get_columns_datasets">get_columns_datasets</a></code></li>
+<li><code><a title="catalog.Catalog.get_datasets" href="#catalog.Catalog.get_datasets">get_datasets</a></code></li>
+<li><code><a title="catalog.Catalog.search" href="#catalog.Catalog.search">search</a></code></li>
+<li><code><a title="catalog.Catalog.setup" href="#catalog.Catalog.setup">setup</a></code></li>
+<li><code><a title="catalog.Catalog.show_columns" href="#catalog.Catalog.show_columns">show_columns</a></code></li>
+<li><code><a title="catalog.Catalog.show_datasets" href="#catalog.Catalog.show_datasets">show_datasets</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="catalog.Col" href="#catalog.Col">Col</a></code></h4>
+<ul class="">
+<li><code><a title="catalog.Col.data_type" href="#catalog.Col.data_type">data_type</a></code></li>
+<li><code><a title="catalog.Col.from_store" href="#catalog.Col.from_store">from_store</a></code></li>
+<li><code><a title="catalog.Col.label" href="#catalog.Col.label">label</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="catalog.NestedCol" href="#catalog.NestedCol">NestedCol</a></code></h4>
+<ul class="">
+<li><code><a title="catalog.NestedCol.data_type" href="#catalog.NestedCol.data_type">data_type</a></code></li>
+<li><code><a title="catalog.NestedCol.from_store" href="#catalog.NestedCol.from_store">from_store</a></code></li>
+<li><code><a title="catalog.NestedCol.label" href="#catalog.NestedCol.label">label</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>catalog.data_types API documentation</title>
+<meta name="description" content="Module consisting of all pre-built data types." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>catalog.data_types</code></h1>
+</header>
+<section id="section-intro">
+<p>Module consisting of all pre-built data types.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Module consisting of all pre-built data types.&#34;&#34;&#34;
+import json
+from abc import abstractmethod
+from catalog._base_data_type import BaseDataType
+from catalog._utils.bigquery_utils import BigqueryType, BigqueryMode
+from typing import Dict
+
+try:
+    from aws_cdk.aws_glue import Schema as GlueSchema, Column as GlueColumn
+except ModuleNotFoundError:
+    pass
+except json.decoder.JSONDecodeError:
+    pass
+
+try:
+    from pyspark.sql import types as spark_types
+except ModuleNotFoundError:
+    pass
+
+try:
+    from google.cloud import bigquery
+except ModuleNotFoundError:
+    pass
+
+
+class PrimitiveType(BaseDataType):
+    &#34;&#34;&#34;Helper class that sets up abstract methods for all other data_type classes.
+
+    Attributes:
+        name:   The name of the data type.
+        description:    A description of the data type.
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, name: str, description: str, json_kwargs: dict = None) -&gt; None:
+        super().__init__(name=name, description=description)
+        self.json_kwargs = {} if json_kwargs is None else json_kwargs
+
+    @abstractmethod
+    def _spark_type(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def _glue_type(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def _json_type(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def _bigquery_type(self) -&gt; BigqueryType:
+        raise NotImplementedError
+
+
+class String(PrimitiveType):
+    &#34;&#34;&#34;Regular string data type.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;String&#39;, &#39;String object&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.StringType()
+
+    def _glue_type(self):
+        return GlueSchema.STRING
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;string&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;STRING&#39;)
+
+
+class Int(PrimitiveType):
+    &#34;&#34;&#34;Integer data type, represented by 32 bits.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;Int&#39;, &#39;Integer&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.IntegerType()
+
+    def _glue_type(self):
+        return GlueSchema.INTEGER
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;integer&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;INT64&#39;)
+
+
+class Long(PrimitiveType):
+    &#34;&#34;&#34;Long numerical data type, represented by 64 bits.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;Long&#39;, &#39;Long&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.LongType()
+
+    def _glue_type(self):
+        return GlueSchema.BIG_INT
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;integer&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;INT64&#39;)
+
+
+class Float(PrimitiveType):
+    &#34;&#34;&#34;Float decimal data type, usually represented by 32 bits.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;Float&#39;, &#39;Float&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.FloatType()
+
+    def _glue_type(self):
+        return GlueSchema.FLOAT
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;number&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;FLOAT64&#39;)
+
+
+class Double(PrimitiveType):
+    &#34;&#34;&#34;Double decimal data type, usually represented by 64 bits.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;Double&#39;, &#39;Double&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.DoubleType()
+
+    def _glue_type(self):
+        return GlueSchema.DOUBLE
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;number&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;FLOAT64&#39;)
+
+
+class Date(PrimitiveType):
+    &#34;&#34;&#34;Date data type e.g. YYYY-MM-dd
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;Date&#39;, &#39;Date&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.DateType()
+
+    def _glue_type(self):
+        return GlueSchema.DATE
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;string&#39;, &#39;format&#39;: &#39;date&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;DATE&#39;)
+
+
+class DateTime(PrimitiveType):
+    &#34;&#34;&#34;Datetime data type.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;DateTime&#39;, &#39;DateTime&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.TimestampType()
+
+    def _glue_type(self):
+        return GlueSchema.TIMESTAMP
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;string&#39;, &#39;format&#39;: &#39;date-time&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;DATETIME&#39;)
+
+
+class Bool(PrimitiveType):
+    &#34;&#34;&#34;Bool data type.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;Bool&#39;, &#39;Boolean&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.BooleanType()
+
+    def _glue_type(self):
+        return GlueSchema.BOOLEAN
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;boolean&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;BOOL&#39;)
+
+
+class Array(PrimitiveType):
+    &#34;&#34;&#34;Array data type, expects another primitive data type upon initialization.
+
+    Attributes:
+        item_type:  Another data type held within the array. All sub items must be of the same type.
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+
+    Examples:
+    &gt;&gt;&gt; from catalog.data_types import Array, String
+    &gt;&gt;&gt; Array(String())
+    &#34;&#34;&#34;
+
+    def __init__(self, item_type: PrimitiveType, json_kwargs: dict = None) -&gt; None:
+        super().__init__(f&#39;Array({item_type.name})&#39;, &#39;No Description.&#39;, json_kwargs=json_kwargs)
+        self.item_type = item_type
+
+    def _spark_type(self):
+        return spark_types.ArrayType(self.item_type._spark_type())
+
+    def _glue_type(self):
+        sub_type = self.item_type._glue_type()  # Returns e.g. GlueSchema.INTEGER
+        return GlueSchema.array(
+            input_string=sub_type.input_string,
+            is_primitive=sub_type.is_primitive
+        )
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;array&#39;, &#39;items&#39;: self.item_type._json_type(), **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        array_type = self.item_type._bigquery_type()
+        array_type.mode = BigqueryMode.REPEATED
+        return array_type
+
+
+class Struct(PrimitiveType):
+    &#34;&#34;&#34;Struct/dict/record data type, expects a dict of {str: PrimitiveType}.
+
+    For nested columns see `catalog.NestedCol`.
+
+    Attributes:
+        nested_types:   A dictionary of str: Primitive type.
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+
+    Examples:
+    &gt;&gt;&gt; from catalog.data_types import Struct, String, Int
+    &gt;&gt;&gt; Struct({&#39;my_string&#39;: String(), &#39;my_int&#39;: Int()})
+    &#34;&#34;&#34;
+
+    def __init__(self, nested_types: Dict[str, PrimitiveType], json_kwargs: dict = None) -&gt; None:
+        desc_repr = {name: type_.name for name, type_ in nested_types.items()}
+        super().__init__(f&#39;Struct({desc_repr})&#39;, description=&#39;No Description.&#39;, json_kwargs=json_kwargs)
+        self.nested_types = nested_types
+
+    def _spark_type(self):
+        return spark_types.StructType([
+            spark_types.StructField(name=name, dataType=type_._spark_type())
+            for name, type_ in self.nested_types.items()
+        ])
+
+    def _glue_type(self):
+        return GlueSchema.struct([
+            GlueColumn(name=name, type=type_._glue_type())
+            for name, type_ in self.nested_types.items()
+        ])
+
+    def _json_type(self):
+        nested_json_types = {name: type_._json_type() for name, type_ in self.nested_types.items()}
+        return {&#39;type&#39;: &#39;object&#39;, &#39;properties&#39;: nested_json_types, &#39;additionalProperties&#39;: False, **self.json_kwargs}
+
+    def _bigquery_type(self):
+        fields = (
+            bigquery.SchemaField(name, **type_._bigquery_type().__dict__)
+            for name, type_ in self.nested_types.items()
+        )
+        return BigqueryType(
+            &#39;RECORD&#39;,
+            mode=BigqueryMode.NULLABLE,
+            fields=fields
+        )</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="catalog.data_types.Array"><code class="flex name class">
+<span>class <span class="ident">Array</span></span>
+<span>(</span><span>item_type: <a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a>, json_kwargs: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Array data type, expects another primitive data type upon initialization.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>item_type</code></strong></dt>
+<dd>Another data type held within the array. All sub items must be of the same type.</dd>
+<dt><strong><code>json_kwargs</code></strong></dt>
+<dd>Optional json key-value arguments to use for generating json schemas.</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; from catalog.data_types import Array, String
+&gt;&gt;&gt; Array(String())
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Array(PrimitiveType):
+    &#34;&#34;&#34;Array data type, expects another primitive data type upon initialization.
+
+    Attributes:
+        item_type:  Another data type held within the array. All sub items must be of the same type.
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+
+    Examples:
+    &gt;&gt;&gt; from catalog.data_types import Array, String
+    &gt;&gt;&gt; Array(String())
+    &#34;&#34;&#34;
+
+    def __init__(self, item_type: PrimitiveType, json_kwargs: dict = None) -&gt; None:
+        super().__init__(f&#39;Array({item_type.name})&#39;, &#39;No Description.&#39;, json_kwargs=json_kwargs)
+        self.item_type = item_type
+
+    def _spark_type(self):
+        return spark_types.ArrayType(self.item_type._spark_type())
+
+    def _glue_type(self):
+        sub_type = self.item_type._glue_type()  # Returns e.g. GlueSchema.INTEGER
+        return GlueSchema.array(
+            input_string=sub_type.input_string,
+            is_primitive=sub_type.is_primitive
+        )
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;array&#39;, &#39;items&#39;: self.item_type._json_type(), **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        array_type = self.item_type._bigquery_type()
+        array_type.mode = BigqueryMode.REPEATED
+        return array_type</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+</dd>
+<dt id="catalog.data_types.Bool"><code class="flex name class">
+<span>class <span class="ident">Bool</span></span>
+<span>(</span><span>json_kwargs: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Bool data type.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>json_kwargs</code></strong></dt>
+<dd>Optional json key-value arguments to use for generating json schemas.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Bool(PrimitiveType):
+    &#34;&#34;&#34;Bool data type.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;Bool&#39;, &#39;Boolean&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.BooleanType()
+
+    def _glue_type(self):
+        return GlueSchema.BOOLEAN
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;boolean&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;BOOL&#39;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+</dd>
+<dt id="catalog.data_types.Date"><code class="flex name class">
+<span>class <span class="ident">Date</span></span>
+<span>(</span><span>json_kwargs: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Date data type e.g. YYYY-MM-dd</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>json_kwargs</code></strong></dt>
+<dd>Optional json key-value arguments to use for generating json schemas.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Date(PrimitiveType):
+    &#34;&#34;&#34;Date data type e.g. YYYY-MM-dd
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;Date&#39;, &#39;Date&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.DateType()
+
+    def _glue_type(self):
+        return GlueSchema.DATE
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;string&#39;, &#39;format&#39;: &#39;date&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;DATE&#39;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+</dd>
+<dt id="catalog.data_types.DateTime"><code class="flex name class">
+<span>class <span class="ident">DateTime</span></span>
+<span>(</span><span>json_kwargs: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Datetime data type.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>json_kwargs</code></strong></dt>
+<dd>Optional json key-value arguments to use for generating json schemas.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DateTime(PrimitiveType):
+    &#34;&#34;&#34;Datetime data type.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;DateTime&#39;, &#39;DateTime&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.TimestampType()
+
+    def _glue_type(self):
+        return GlueSchema.TIMESTAMP
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;string&#39;, &#39;format&#39;: &#39;date-time&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;DATETIME&#39;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+</dd>
+<dt id="catalog.data_types.Double"><code class="flex name class">
+<span>class <span class="ident">Double</span></span>
+<span>(</span><span>json_kwargs: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Double decimal data type, usually represented by 64 bits.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>json_kwargs</code></strong></dt>
+<dd>Optional json key-value arguments to use for generating json schemas.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Double(PrimitiveType):
+    &#34;&#34;&#34;Double decimal data type, usually represented by 64 bits.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;Double&#39;, &#39;Double&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.DoubleType()
+
+    def _glue_type(self):
+        return GlueSchema.DOUBLE
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;number&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;FLOAT64&#39;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+</dd>
+<dt id="catalog.data_types.Float"><code class="flex name class">
+<span>class <span class="ident">Float</span></span>
+<span>(</span><span>json_kwargs: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Float decimal data type, usually represented by 32 bits.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>json_kwargs</code></strong></dt>
+<dd>Optional json key-value arguments to use for generating json schemas.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Float(PrimitiveType):
+    &#34;&#34;&#34;Float decimal data type, usually represented by 32 bits.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;Float&#39;, &#39;Float&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.FloatType()
+
+    def _glue_type(self):
+        return GlueSchema.FLOAT
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;number&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;FLOAT64&#39;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+</dd>
+<dt id="catalog.data_types.Int"><code class="flex name class">
+<span>class <span class="ident">Int</span></span>
+<span>(</span><span>json_kwargs: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Integer data type, represented by 32 bits.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>json_kwargs</code></strong></dt>
+<dd>Optional json key-value arguments to use for generating json schemas.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Int(PrimitiveType):
+    &#34;&#34;&#34;Integer data type, represented by 32 bits.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;Int&#39;, &#39;Integer&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.IntegerType()
+
+    def _glue_type(self):
+        return GlueSchema.INTEGER
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;integer&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;INT64&#39;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+</dd>
+<dt id="catalog.data_types.Long"><code class="flex name class">
+<span>class <span class="ident">Long</span></span>
+<span>(</span><span>json_kwargs: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Long numerical data type, represented by 64 bits.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>json_kwargs</code></strong></dt>
+<dd>Optional json key-value arguments to use for generating json schemas.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Long(PrimitiveType):
+    &#34;&#34;&#34;Long numerical data type, represented by 64 bits.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;Long&#39;, &#39;Long&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.LongType()
+
+    def _glue_type(self):
+        return GlueSchema.BIG_INT
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;integer&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;INT64&#39;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+</dd>
+<dt id="catalog.data_types.PrimitiveType"><code class="flex name class">
+<span>class <span class="ident">PrimitiveType</span></span>
+<span>(</span><span>name: str, description: str, json_kwargs: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Helper class that sets up abstract methods for all other data_type classes.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the data type.</dd>
+<dt><strong><code>description</code></strong></dt>
+<dd>A description of the data type.</dd>
+<dt><strong><code>json_kwargs</code></strong></dt>
+<dd>Optional json key-value arguments to use for generating json schemas.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PrimitiveType(BaseDataType):
+    &#34;&#34;&#34;Helper class that sets up abstract methods for all other data_type classes.
+
+    Attributes:
+        name:   The name of the data type.
+        description:    A description of the data type.
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, name: str, description: str, json_kwargs: dict = None) -&gt; None:
+        super().__init__(name=name, description=description)
+        self.json_kwargs = {} if json_kwargs is None else json_kwargs
+
+    @abstractmethod
+    def _spark_type(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def _glue_type(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def _json_type(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def _bigquery_type(self) -&gt; BigqueryType:
+        raise NotImplementedError</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="catalog.data_types.Array" href="#catalog.data_types.Array">Array</a></li>
+<li><a title="catalog.data_types.Bool" href="#catalog.data_types.Bool">Bool</a></li>
+<li><a title="catalog.data_types.Date" href="#catalog.data_types.Date">Date</a></li>
+<li><a title="catalog.data_types.DateTime" href="#catalog.data_types.DateTime">DateTime</a></li>
+<li><a title="catalog.data_types.Double" href="#catalog.data_types.Double">Double</a></li>
+<li><a title="catalog.data_types.Float" href="#catalog.data_types.Float">Float</a></li>
+<li><a title="catalog.data_types.Int" href="#catalog.data_types.Int">Int</a></li>
+<li><a title="catalog.data_types.Long" href="#catalog.data_types.Long">Long</a></li>
+<li><a title="catalog.data_types.String" href="#catalog.data_types.String">String</a></li>
+<li><a title="catalog.data_types.Struct" href="#catalog.data_types.Struct">Struct</a></li>
+</ul>
+</dd>
+<dt id="catalog.data_types.String"><code class="flex name class">
+<span>class <span class="ident">String</span></span>
+<span>(</span><span>json_kwargs: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Regular string data type.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>json_kwargs</code></strong></dt>
+<dd>Optional json key-value arguments to use for generating json schemas.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class String(PrimitiveType):
+    &#34;&#34;&#34;Regular string data type.
+
+    Attributes:
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+    &#34;&#34;&#34;
+
+    def __init__(self, json_kwargs: dict = None) -&gt; None:
+        super().__init__(&#39;String&#39;, &#39;String object&#39;, json_kwargs=json_kwargs)
+
+    def _spark_type(self):
+        return spark_types.StringType()
+
+    def _glue_type(self):
+        return GlueSchema.STRING
+
+    def _json_type(self):
+        return {&#39;type&#39;: &#39;string&#39;, **self.json_kwargs}
+
+    def _bigquery_type(self) -&gt; BigqueryType:
+        return BigqueryType(&#39;STRING&#39;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+</dd>
+<dt id="catalog.data_types.Struct"><code class="flex name class">
+<span>class <span class="ident">Struct</span></span>
+<span>(</span><span>nested_types: Dict[str, <a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a>], json_kwargs: dict = None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Struct/dict/record data type, expects a dict of {str: PrimitiveType}.</p>
+<p>For nested columns see <code><a title="catalog.NestedCol" href="index.html#catalog.NestedCol">NestedCol</a></code>.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>nested_types</code></strong></dt>
+<dd>A dictionary of str: Primitive type.</dd>
+<dt><strong><code>json_kwargs</code></strong></dt>
+<dd>Optional json key-value arguments to use for generating json schemas.</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; from catalog.data_types import Struct, String, Int
+&gt;&gt;&gt; Struct({'my_string': String(), 'my_int': Int()})
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Struct(PrimitiveType):
+    &#34;&#34;&#34;Struct/dict/record data type, expects a dict of {str: PrimitiveType}.
+
+    For nested columns see `catalog.NestedCol`.
+
+    Attributes:
+        nested_types:   A dictionary of str: Primitive type.
+        json_kwargs:    Optional json key-value arguments to use for generating json schemas.
+
+    Examples:
+    &gt;&gt;&gt; from catalog.data_types import Struct, String, Int
+    &gt;&gt;&gt; Struct({&#39;my_string&#39;: String(), &#39;my_int&#39;: Int()})
+    &#34;&#34;&#34;
+
+    def __init__(self, nested_types: Dict[str, PrimitiveType], json_kwargs: dict = None) -&gt; None:
+        desc_repr = {name: type_.name for name, type_ in nested_types.items()}
+        super().__init__(f&#39;Struct({desc_repr})&#39;, description=&#39;No Description.&#39;, json_kwargs=json_kwargs)
+        self.nested_types = nested_types
+
+    def _spark_type(self):
+        return spark_types.StructType([
+            spark_types.StructField(name=name, dataType=type_._spark_type())
+            for name, type_ in self.nested_types.items()
+        ])
+
+    def _glue_type(self):
+        return GlueSchema.struct([
+            GlueColumn(name=name, type=type_._glue_type())
+            for name, type_ in self.nested_types.items()
+        ])
+
+    def _json_type(self):
+        nested_json_types = {name: type_._json_type() for name, type_ in self.nested_types.items()}
+        return {&#39;type&#39;: &#39;object&#39;, &#39;properties&#39;: nested_json_types, &#39;additionalProperties&#39;: False, **self.json_kwargs}
+
+    def _bigquery_type(self):
+        fields = (
+            bigquery.SchemaField(name, **type_._bigquery_type().__dict__)
+            for name, type_ in self.nested_types.items()
+        )
+        return BigqueryType(
+            &#39;RECORD&#39;,
+            mode=BigqueryMode.NULLABLE,
+            fields=fields
+        )</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>catalog._base_data_type.BaseDataType</li>
+<li>abc.ABC</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="catalog" href="index.html">catalog</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="catalog.data_types.Array" href="#catalog.data_types.Array">Array</a></code></h4>
+</li>
+<li>
+<h4><code><a title="catalog.data_types.Bool" href="#catalog.data_types.Bool">Bool</a></code></h4>
+</li>
+<li>
+<h4><code><a title="catalog.data_types.Date" href="#catalog.data_types.Date">Date</a></code></h4>
+</li>
+<li>
+<h4><code><a title="catalog.data_types.DateTime" href="#catalog.data_types.DateTime">DateTime</a></code></h4>
+</li>
+<li>
+<h4><code><a title="catalog.data_types.Double" href="#catalog.data_types.Double">Double</a></code></h4>
+</li>
+<li>
+<h4><code><a title="catalog.data_types.Float" href="#catalog.data_types.Float">Float</a></code></h4>
+</li>
+<li>
+<h4><code><a title="catalog.data_types.Int" href="#catalog.data_types.Int">Int</a></code></h4>
+</li>
+<li>
+<h4><code><a title="catalog.data_types.Long" href="#catalog.data_types.Long">Long</a></code></h4>
+</li>
+<li>
+<h4><code><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></code></h4>
+</li>
+<li>
+<h4><code><a title="catalog.data_types.String" href="#catalog.data_types.String">String</a></code></h4>
+</li>
+<li>
+<h4><code><a title="catalog.data_types.Struct" href="#catalog.data_types.Struct">Struct</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
