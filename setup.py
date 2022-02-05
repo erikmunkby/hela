@@ -12,7 +12,7 @@ setuptools.setup(
     description='Your data catalog as code and one schema to rule them all.',
 
     packages=setuptools.find_packages(),
-    package_data={'catalog': ['math/stopwords.txt']},
+    package_data={'catalog': ['math/stopwords.txt', 'web_page/index.html']},
     python_requires='>=3.7.1',
     install_requires=['pandas', 'numpy'],
 )

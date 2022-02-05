@@ -15,6 +15,7 @@ test_dataset = PandasParquetDataset(
         ])
     ]
 )
+test_dataset._id = 'test_id'
 
 
 @Catalog.setup(description='Test Catalog Structure.')
@@ -27,11 +28,13 @@ def test_json_generator():
         {'name': 'TestCatalog',
          'type': 'Catalog',
          'description': 'Test Catalog Structure.',
+         'rich_description': None,
          'children': [
              {'name': 'test_dataset',
               'type': 'Dataset',
               'description': 'Test Dataset Structure.',
               'rich_description': None,
+              'id': 'test_id',
               'columns': [
                   {'name': 'test_col',
                    'data_type': 'Int',

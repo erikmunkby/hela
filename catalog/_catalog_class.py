@@ -48,13 +48,15 @@ class Catalog:
     _folder: str = None
     _database: str = None
     _description: str = None
+    _rich_description_path: str = None
 
     @staticmethod
     def setup(
         cls: Catalog = None,
         folder: Optional[str] = None,
         database: Optional[str] = None,
-        description: Optional[str] = None
+        description: Optional[str] = None,
+        rich_description_path: Optional[str] = None
     ) -> Catalog:
         """Decorator enriching the catalog with a description, and optionally binding
         a folder or database to all datasets within it.
@@ -67,12 +69,13 @@ class Catalog:
             description:    A description of this catalog.
         """
 
-        def wrap(cls):
+        def wrap(cls: Catalog):
             if not getattr(cls, '_is_catalog', False):
                 raise ValueError(f'Class {cls} must inherit Catalog class.')
-            setattr(cls, '_folder', folder)
-            setattr(cls, '_database', database)
-            setattr(cls, '_description', description)
+            cls._folder = folder
+            cls._database = database
+            cls._description = description
+            cls._rich_description_path = rich_description_path
             _enrich_datasets(cls, folder=folder, database=database)
             return cls
 
