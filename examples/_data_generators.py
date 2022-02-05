@@ -64,3 +64,20 @@ def generate_beer_reviews_dataframe():
     # Randomly "remove" some dates by replacing with already existing date
     df.loc[df.sample(5, random_state=42).index, 'date'] = datetime.date(2021, 1, 1)
     return df
+
+
+def generate_beer_info_dataframe():
+    row = {
+        'product_code': 321,
+        'product_name': 'Carlsmountain Silver',
+        'product_category': 'Lager',
+        'country': 'Sweden',
+        'description': 'Probably the west beer in the world',
+        'profile': {
+            'bitterness': 4,
+            'sourness': 5
+        },
+        'alcohol_content': 5.4,
+    }
+    df = pd.DataFrame([row for _ in range(120)])
+    return df
