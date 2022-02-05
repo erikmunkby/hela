@@ -5,7 +5,7 @@ authors = [
 ]
 description = "Your data catalog as code and one schema to rule them all."
 homepage = "https://github.com/erikmunkby/catalog"
-keywords = ["catalog", "big", "data", "web", "deploy"]
+keywords = ["catalog", "big", "data", "web", "deploy", "aws", "glue", "bigquery", "spark"]
 license = "Apache License v2.0"
 name = "catalog"
 readme = "README.md"
