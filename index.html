@@ -337,7 +337,7 @@ check that any duplicated column must originate from the same column store.</p>
 </details>
 </dd>
 <dt id="catalog.generate_webpage"><code class="name flex">
-<span>def <span class="ident">generate_webpage</span></span>(<span>catalogs: Union[catalog._catalog_class.Catalog, Sequence[catalog._catalog_class.Catalog]], output_folder: str, overwrite_existing: bool = False, include_samples: bool = False) ‑> None</span>
+<span>def <span class="ident">generate_webpage</span></span>(<span>catalogs: Union[catalog._catalog_class.Catalog, Sequence[catalog._catalog_class.Catalog]], output_folder: str, overwrite_existing: bool = False, include_samples: bool = False, web_app_title: str = None) ‑> None</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generates an index.html file that can be used as a data catalog website.</p>
@@ -356,6 +356,8 @@ If you have a tree of catalogs, only the root catalog is required.</dd>
 <dt><strong><code>include_samples</code></strong></dt>
 <dd>Flag whether to attempt to fetch sample datapoints from the columns in each
 dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="#catalog.BaseDataset.get_samples">BaseDataset.get_samples()</a></code> function implemented.</dd>
+<dt><strong><code>web_app_title</code></strong></dt>
+<dd>Optional title of the web app.</dd>
 </dl>
 <h2 id="raises">Raises</h2>
 <dl>
@@ -375,7 +377,8 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="#catalo
     catalogs: Union[Catalog, Sequence[Catalog]],
     output_folder: str,
     overwrite_existing: bool = False,
-    include_samples: bool = False
+    include_samples: bool = False,
+    web_app_title: str = None
 ) -&gt; None:
     &#34;&#34;&#34;Generates an index.html file that can be used as a data catalog website.
 
@@ -390,6 +393,7 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="#catalo
         overwrite_existing: Flag whether and potential index.html file should be overwritten if existing.
         include_samples:    Flag whether to attempt to fetch sample datapoints from the columns in each
                             dataset. Requires `catalog.BaseDataset.get_samples` function implemented.
+        web_app_title:  Optional title of the web app.
 
     Raises:
         FileExistsError: If the index.html file already exists under `output_folder` and overwrite_existing=False.
@@ -419,6 +423,10 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="#catalo
     match_str = &#39;&lt;script id=&#34;tree-list-data&#34;&gt;&lt;/script&gt;&#39;
     original_index_file = pkg_resources.resource_string(__name__, &#39;index.html&#39;).decode()
     output_file = original_index_file.replace(match_str, replacement_str)
+
+    # Replace web app title with custom title
+    if web_app_title:
+        output_file = output_file.replace(&#39;&lt;title&gt;Dashboard&lt;/title&gt;&#39;, f&#39;&lt;title&gt;{web_app_title}&lt;/title&gt;&#39;)
     file_path.write_text(output_file)</code></pre>
 </details>
 </dd>
