@@ -1,6 +1,6 @@
 """Module covering the test suite to make sure your catalog is set up properly.
 
-.. include:: ../../homepage/test_suite.md
+.. include:: ../../gh_pages/test_suite.md
 """
 from . import catalog_tests
 from . import column_store_tests

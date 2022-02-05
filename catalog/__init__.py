@@ -1,5 +1,5 @@
 """
-.. include:: ../homepage/catalog.md
+.. include:: ../gh_pages/catalog.md
 """
 
 from catalog._catalog_class import Catalog
