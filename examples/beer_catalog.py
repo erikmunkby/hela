@@ -5,6 +5,7 @@ from examples.datasets.web.user_interactions import user_interactions
 from examples.datasets.web.beer_reviews import beer_reviews
 
 
+@Catalog.setup(rich_description_path='examples/rich_descriptions/beer_catalog.md')
 class BeerCatalog(Catalog):
 
     @Catalog.setup(folder='sales', description='Collection of datasets related to sales.')
