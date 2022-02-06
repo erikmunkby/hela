@@ -5,27 +5,12 @@ import { TreeList } from './components/tree-list';
 const themes = [
   'light',
   'dark',
-  'cupcake',
   'bumblebee',
-  'emerald',
-  'corporate',
   'synthwave',
-  'retro',
   'cyberpunk',
-  'valentine',
-  'halloween',
-  'garden',
-  'forest',
-  'aqua',
-  'lofi',
-  'pastel',
-  'fantasy',
-  'wireframe',
-  'black',
-  'luxury',
   'dracula',
-  'cmyk',
 ];
+
 function App() {
   const [theme, setTheme] = useState('dark');
   useEffect(() => {
