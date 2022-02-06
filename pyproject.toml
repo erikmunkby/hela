@@ -10,7 +10,7 @@ license = "Apache License v2.0"
 name = "catalog"
 readme = "README.md"
 repository = "https://github.com/erikmunkby/catalog"
-version = "0.1.0"
+version = "0.2.0"
 
 [tool.poetry.dependencies]
 "aws-cdk.aws-glue" = {version = "^1", optional = true}
