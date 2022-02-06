@@ -49,6 +49,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          repo-token: ${{ secrets.SEMANTICRELEASETOKEN }}
 
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
@@ -78,4 +79,4 @@ jobs:
           git config user.email github-actions@github.com
           poetry run semantic-release publish
         env:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.SEMANTICRELEASETOKEN }}
