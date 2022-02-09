@@ -421,7 +421,7 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="#catalo
     # Replace placeholder script with actual json data
     replacement_str = f&#39;&lt;script&gt;window.treeListData = {json_str}&lt;/script&gt;&#39;
     match_str = &#39;&lt;script id=&#34;tree-list-data&#34;&gt;&lt;/script&gt;&#39;
-    original_index_file = pkg_resources.resource_string(__name__, &#39;index.html&#39;).decode()
+    original_index_file = gzip.decompress(pkg_resources.resource_string(__name__, &#39;index.html.gz&#39;)).decode()
     output_file = original_index_file.replace(match_str, replacement_str)
 
     # Replace web app title with custom title
