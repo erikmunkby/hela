@@ -10,5 +10,6 @@ build-local:
 generate-index-html:
 	npm run build
 	npm run merge-to-one-file
-	cp dist/index.html ../catalog/web_page/index.html
+	gzip dist/index.html
+	cp dist/index.html.gz ../catalog/web_page/index.html.gz
 	rm -rf dist

@@ -1,5 +1,6 @@
-from pathlib import Path
+import gzip
 import pkg_resources
+from pathlib import Path
 from typing import Union, Sequence
 from catalog import Catalog
 from catalog.web_page._json_generator import JsonGenerator
@@ -53,7 +54,7 @@ def generate_webpage(
     # Replace placeholder script with actual json data
     replacement_str = f'<script>window.treeListData = {json_str}</script>'
     match_str = '<script id="tree-list-data"></script>'
-    original_index_file = pkg_resources.resource_string(__name__, 'index.html').decode()
+    original_index_file = gzip.decompress(pkg_resources.resource_string(__name__, 'index.html.gz')).decode()
     output_file = original_index_file.replace(match_str, replacement_str)
 
     # Replace web app title with custom title
