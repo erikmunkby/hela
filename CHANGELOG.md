@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.1 (2022-02-09)
+### Fix
+* Index html file now zipped to reduce memory ([`5ad8dfd`](https://github.com/erikmunkby/catalog/commit/5ad8dfdf1ebb36b3761fbef6fe0c69b7912d6063))
+
 ## v0.2.0 (2022-02-06)
 ### Feature
 * Version 0.2 release ([`d7de1f1`](https://github.com/erikmunkby/catalog/commit/d7de1f182cb984a1cb9563551998a32d53955647))
