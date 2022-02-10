@@ -1,18 +1,16 @@
-# catalog: write your data catalog as code
+# `catalog`: write your data catalog as code
 ![Unit Tests](https://github.com/erikmunkby/catalog/actions/workflows/unit_tests.yaml/badge.svg)
 ![Spark](https://github.com/erikmunkby/catalog/actions/workflows/test_spark.yaml/badge.svg)
 ![BigQuery](https://github.com/erikmunkby/catalog/actions/workflows/test_bigquery.yaml/badge.svg)
 ![AWS Glue](https://github.com/erikmunkby/catalog/actions/workflows/test_aws_glue.yaml/badge.svg)
 
 You probably already have your data job scripts version controlled, but what about your data catalog?
-The answer: **write your data catalog as code!** Storing your data catalog and data documentation as code
-makes your catalog searchable, referenceable, reliable, platform agnostic, sets you up for easy collaboration
-and much more! This library is built to fit small and large data landscapes, but is happiest when included
-from the start.
+The answer: **write your data catalog as code!** Storing your data catalog and data documentation as code makes your catalog searchable, referenceable, reliable, platform agnostic, sets you up for easy collaboration and much more! 
+This library is built to fit small and large data landscapes, but is happiest when included from the start.
 
 TODO: Add link to homepage, pypi?, demo repo
 
-# Installing
+## Installing
 Using pip:
 
 `pip install catalog`
@@ -21,48 +19,77 @@ Using poetry:
 
 `poetry add catalog`
 
-# Developing
-Install [Poetry](https://python-poetry.org/), then run:
+## Roadmap
+These are up-coming features in no particular order, but contributions towards these milestones are highly appreciated! To read more about contributing check out `CONTRIBUTING.md`.
 
-`make init`
-
-to setup the project and add githooks. Followed by:
-
-`make install`
-
-## Testing
-The test suite is built on pytest with test flags found in `pyproject.toml`. The available flags are:
-
-`pytest -m base | spark | glue | bigquery`
+* Search functionality in web app
+* More integrations (Snowflake, Redshift)
+* More feature rich dataset classes
+* Data lineage functionality (both in catalog and web app)
+* Prettier docs page
 
 
-## Versioning
-The versioning follows [semantic versioning](https://semver.org/) standards, together with semantic-release python package. This means
-that the version number will adjust according to the commit message.
-Following commit message intros are used in this package:
+## (Mega) Quick start
+If you want to read more check out the [docs page](TODO: insert docs page link). If you do not have patience for that, the following is all you need to get started.
 
-| Commit message                                | Release type                  |
-| -----------------------------                 | ----------------------------- |
-| `fix: my small fix`                           | ~~Patch~~ Fix Release    (0.0.X)|
-| `feat: my new feature`                        | ~~Minor~~ Feature Release  (0.X.0)|
-| `fix: removed something`<br><br>`BREAKING CHANGE: The cool feature has been removed.` | ~~Major~~ Breaking Release (X.0.0)<br /> (Note that the `BREAKING CHANGE: ` token must be in the footer of the commit) |
-| `docs: documentation updates`                 | Documentation related commit. No new version |
-| `ci: New workflow`                            | Continuous integration related commit (github actions). No new version |
-| `tests: always more tests`                    | Test related commit. No new version. |
-| `chore: moved X to folder`                    | Other small change or refactoring. No new version. |
+First of all build your own dataset class by inheriting the `BaseDataset` class. This class will hold most of your project specific functionality such as read/write, authentication etc.
 
-## Docs page
-In order to write and test the docs page you need all `--extras` packages installed in poetry.
-When you have made updates to the docs you can make sure everything looks good running:
+```python
+from catalog import BaseDataset, Col
+from catalog.data_types import String
 
-`pdoc --http localhost:8080 catalog`
+class MyDatasetClass(BaseDataset):
+    def __init__(
+        self,
+        name: str, # Required
+        description: str, # Optional but recommended
+        columns: list, # Optional but recommended
+        rich_description_path: str = None, # Optional, used for web app
+        partition_cols: list = None,  # Optional but recommended
+        folder: str = None, # Optional
+        # database: str, Only do one of either folder or database
+    ) -> None:
+        super().__init__(
+            name,
+            data_type='bigquery',
+            folder=folder,
+            database=None,
+            description=description,
+            rich_description_path=rich_description_path,
+            partition_cols=partition_cols,
+            dependencies=None,
+            columns=columns
+        )
+        # Do more of your own init stuff
 
-# Make Commands
-List of make commands and when to use them:
+    def my_func(self) -> None:
+        # Your own dataset function
+        pass
+        
+# Now instantiate your dataset class with one example column
+my_dataset = MyDatasetClass('my_dataset', 'An example dataset.', [
+    Col('my_column', String(), 'An example column.')
+])
+```
 
-* `make init` initializes the repo, setting up githooks
-* `make install` runs poetry install
-* `make lint` runs linting checks
-* `make unittest` runs unit tests
-* `make update-stopwords` downloads and overwrites the stopwords file
-* `make testcov` runs unit tests and prints code coverage report
+Now that you have a dataset class, and instantiated your first dataset, you can start populating your
+data catalog.
+
+```python
+from catalog import Catalog
+
+class MyCatalog(Catalog):
+    my_dataset = my_dataset
+```
+
+That's it! You now have a small catalog to keep building on. To view it as a web page you can
+add the following code to a python script, and in the future add it in whichever CI/CD tool you use.
+This will generate an `index.html` file that you can view in your browser or host on e.g. github pages.
+
+```python
+from catalog import generate_webpage
+
+generate_webpage(MyCatalog, output_folder='.')
+```
+
+To view what a bigger data catalog can look like check out the [showcase catalog](TODO: add link to showcase repo).
