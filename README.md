@@ -46,14 +46,14 @@ class MyDatasetClass(BaseDataset):
         columns: list, # Optional but recommended
         rich_description_path: str = None, # Optional, used for web app
         partition_cols: list = None,  # Optional but recommended
-        folder: str = None, # Optional
-        # database: str, Only do one of either folder or database
+        # folder: str = None, # Only do one of either folder or database
+        database: str, # Optional, can also be enriched via Catalog
     ) -> None:
         super().__init__(
             name,
             data_type='bigquery',
-            folder=folder,
-            database=None,
+            folder=None,
+            database=database,
             description=description,
             rich_description_path=rich_description_path,
             partition_cols=partition_cols,
