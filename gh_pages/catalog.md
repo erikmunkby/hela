@@ -116,16 +116,16 @@ class MyDatasetClass(BaseDataset):
         name: str, # Required
         description: str, # Optional but recommended
         columns: list, # Optional but recommended
-        rich_description_path: str = None, # Optional, primarily used for webpage catalog
+        rich_description_path: str = None, # Optional, used for web app
         partition_cols: list = None,  # Optional but recommended
-        folder: str = None, # Optional
-        # database: str, Only do one of either folder or database
+        # folder: str = None, # Only do one of either folder or database
+        database: str, # Optional, can also be enriched via Catalog
     ) -> None:
         super().__init__(
             name,
             data_type='bigquery',
-            folder=folder,
-            database=None,
+            folder=None,
+            database=database,
             description=description,
             rich_description_path=rich_description_path,
             partition_cols=partition_cols,
@@ -133,7 +133,12 @@ class MyDatasetClass(BaseDataset):
             columns=columns
         )
         # Do more of your own init stuff
+
+    def my_func(self) -> None:
+        # Your own dataset function
+        pass
         
+# Now instantiate your dataset class with one example column
 my_dataset = MyDatasetClass('my_dataset', 'An example dataset.', [
     Col('my_column', String(), 'An example column.')
 ])
