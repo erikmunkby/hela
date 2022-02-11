@@ -11,6 +11,12 @@ to setup the project and add githooks. Followed by:
 
 `make install`
 
+To install all required packages including all extras. For minor development you can optionally run:
+
+`poetry install --extras "spark glue bigquery"`
+
+Where you can omit one or all extra packages.
+
 ## Testing
 The test suite is built on pytest with test flags found in `pyproject.toml`. The available flags are:
 
