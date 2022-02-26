@@ -1,6 +1,6 @@
-from catalog import _constants
-from catalog._column_classes import _ColumnType
-from catalog.errors import ValidationError
+from hela import _constants
+from hela._column_classes import _ColumnType
+from hela.errors import ValidationError
 from collections import Counter
 
 

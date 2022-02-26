@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from catalog.data_types import String, Double, Long, DateTime, Date, Bool
+from hela.data_types import String, Double, Long, DateTime, Date, Bool
 from datetime import date, datetime
 
 

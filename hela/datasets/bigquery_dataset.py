@@ -1,10 +1,10 @@
 import os
 import pandas as pd
 from typing import Optional, Sequence
-from catalog import BaseDataset
-from catalog._column_classes import _ColumnType
-from catalog.schema_generators import bigquery_schema
-from catalog._utils.dict_utils import flatten_dict
+from hela import BaseDataset
+from hela._column_classes import _ColumnType
+from hela.schema_generators import bigquery_schema
+from hela._utils.dict_utils import flatten_dict
 try:
     from google.cloud import bigquery
 except ModuleNotFoundError:

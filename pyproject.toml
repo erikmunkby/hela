@@ -4,12 +4,12 @@ authors = [
   "John Rossberg <john.rossberg@gmail.com>",
 ]
 description = "Your data catalog as code and one schema to rule them all."
-homepage = "https://github.com/erikmunkby/catalog"
-keywords = ["catalog", "big", "data", "web", "deploy", "aws", "glue", "bigquery", "spark"]
+homepage = "https://github.com/erikmunkby/hela"
+keywords = ["data", "catalog", "big", "web", "deploy", "aws", "glue", "bigquery", "spark", "democratize"]
 license = "Apache License v2.0"
-name = "catalog"
+name = "hela"
 readme = "README.md"
-repository = "https://github.com/erikmunkby/catalog"
+repository = "https://github.com/erikmunkby/hela"
 version = "0.2.1"
 
 [tool.poetry.dependencies]

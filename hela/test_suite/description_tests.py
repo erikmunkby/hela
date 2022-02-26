@@ -1,7 +1,7 @@
-from catalog import Catalog
-from catalog.math.tf_idf import find_similar_occurrences
-from catalog.math.preprocessing import clean_document
-from catalog.errors import ValidationError
+from hela import Catalog
+from hela.math.tf_idf import find_similar_occurrences
+from hela.math.preprocessing import clean_document
+from hela.errors import ValidationError
 from collections import defaultdict
 
 

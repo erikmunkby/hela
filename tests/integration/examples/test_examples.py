@@ -1,7 +1,7 @@
 import pytest
 import shutil
 from examples import BeerCatalog
-from catalog._utils.path_utils import join_paths
+from hela._utils.path_utils import join_paths
 from examples import _data_generators
 
 

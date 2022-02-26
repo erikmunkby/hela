@@ -1,8 +1,8 @@
 import pytest
-from catalog.errors import ValidationError
-from catalog.test_suite import column_store_tests
-from catalog import column_store, Col
-from catalog.data_types import String, Bool
+from hela.errors import ValidationError
+from hela.test_suite import column_store_tests
+from hela import column_store, Col
+from hela.data_types import String, Bool
 
 
 @pytest.mark.base

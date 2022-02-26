@@ -1,6 +1,6 @@
-from catalog.datasets.pandas_parquet_dataset import PandasParquetDataset
-from catalog import Col, NestedCol, Catalog, generate_webpage
-from catalog.data_types import Int, String
+from hela.datasets.pandas_parquet_dataset import PandasParquetDataset
+from hela import Col, NestedCol, Catalog, generate_webpage
+from hela.data_types import Int, String
 
 test_dataset = PandasParquetDataset(
     name='test_dataset',

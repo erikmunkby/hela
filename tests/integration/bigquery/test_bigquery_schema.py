@@ -1,6 +1,6 @@
 import pytest
 from tests import test_schemas
-from catalog.schema_generators import bigquery_schema
+from hela.schema_generators import bigquery_schema
 try:
     from google.cloud.bigquery import SchemaField
 except ModuleNotFoundError:

@@ -7,9 +7,9 @@ from aws_cdk.aws_glue import (
 from aws_cdk.aws_s3 import (
     Bucket
 )
-from catalog.schema_generators import aws_glue_schema
-from catalog import Col, NestedCol
-from catalog.data_types import Int, String, Date, DateTime, Float, Array, Struct, Long
+from hela.schema_generators import aws_glue_schema
+from hela import Col, NestedCol
+from hela.data_types import Int, String, Date, DateTime, Float, Array, Struct, Long
 from aws_cdk.core import Stack, Construct
 
 all_types_with_desc = [

@@ -2,13 +2,13 @@
 from __future__ import annotations
 from typing import Optional, Sequence, Dict, Union
 from collections import defaultdict
-from catalog._constants import _PATH_VAR
-from catalog.plots.html_displays import DFDisplay
-from catalog._utils.path_utils import join_paths
-from catalog.math import levenshtein, tf_idf
-from catalog._base_dataset import BaseDataset
-from catalog._column_classes import _ColumnType
-from catalog._utils.short_description import ShortDescription
+from hela._constants import _PATH_VAR
+from hela.plots.html_displays import DFDisplay
+from hela._utils.path_utils import join_paths
+from hela.math import levenshtein, tf_idf
+from hela._base_dataset import BaseDataset
+from hela._column_classes import _ColumnType
+from hela._utils.short_description import ShortDescription
 
 
 def is_catalog(obj: object) -> Union[Catalog, None]:

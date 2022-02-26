@@ -17,7 +17,7 @@ def print_success(text: str) -> None:
 def main():
     failed = False
     # Run flake8 linting
-    result = subprocess.run(['flake8', 'catalog/'], stdout=subprocess.PIPE)
+    result = subprocess.run(['flake8'], stdout=subprocess.PIPE)
     if result.stdout:
         failed = True
         print_error('LINTING FAILED: run linter `flake8` for more info.')

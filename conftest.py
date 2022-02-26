@@ -2,9 +2,9 @@ import pytest
 import pandas as pd
 import shutil
 from pathlib import Path
-from catalog import Col, NestedCol
-from catalog._column_classes import _ColumnType
-from catalog.data_types import Int, String, Date, DateTime, Struct, Float, Long, Array
+from hela import Col, NestedCol
+from hela._column_classes import _ColumnType
+from hela.data_types import Int, String, Date, DateTime, Struct, Float, Long, Array
 from typing import List, Tuple
 from datetime import datetime, date
 

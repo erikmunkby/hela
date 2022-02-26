@@ -2,8 +2,8 @@ import gzip
 import pkg_resources
 from pathlib import Path
 from typing import Union, Sequence
-from catalog import Catalog
-from catalog.web_page._json_generator import JsonGenerator
+from hela import Catalog
+from hela.web_page._json_generator import JsonGenerator
 
 
 def generate_webpage(
@@ -25,7 +25,7 @@ def generate_webpage(
         output_folder:  The folder where index.html file should end up.
         overwrite_existing: Flag whether and potential index.html file should be overwritten if existing.
         include_samples:    Flag whether to attempt to fetch sample datapoints from the columns in each
-                            dataset. Requires `catalog.BaseDataset.get_samples` function implemented.
+                            dataset. Requires `hela.BaseDataset.get_samples` function implemented.
         web_app_title:  Optional title of the web app.
 
     Raises:
@@ -33,7 +33,7 @@ def generate_webpage(
 
     Examples:
     >>> from my_catalog import MyCatalog
-    >>> from catalog import generate_webpage
+    >>> from hela import generate_webpage
     >>> generate_webpage(MyCatalog, '.', overwrite_existing=True)
     """
     if not isinstance(catalogs, Sequence):

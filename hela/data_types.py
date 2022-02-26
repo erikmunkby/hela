@@ -1,8 +1,8 @@
 """Module consisting of all pre-built data types."""
 import json
 from abc import abstractmethod
-from catalog._base_data_type import BaseDataType
-from catalog._utils.bigquery_utils import BigqueryType, BigqueryMode
+from hela._base_data_type import BaseDataType
+from hela._utils.bigquery_utils import BigqueryType, BigqueryMode
 from typing import Dict
 
 try:
@@ -245,7 +245,7 @@ class Array(PrimitiveType):
         json_kwargs:    Optional json key-value arguments to use for generating json schemas.
 
     Examples:
-    >>> from catalog.data_types import Array, String
+    >>> from hela.data_types import Array, String
     >>> Array(String())
     """
 
@@ -275,14 +275,14 @@ class Array(PrimitiveType):
 class Struct(PrimitiveType):
     """Struct/dict/record data type, expects a dict of {str: PrimitiveType}.
 
-    For nested columns see `catalog.NestedCol`.
+    For nested columns see `hela.NestedCol`.
 
     Attributes:
         nested_types:   A dictionary of str: Primitive type.
         json_kwargs:    Optional json key-value arguments to use for generating json schemas.
 
     Examples:
-    >>> from catalog.data_types import Struct, String, Int
+    >>> from hela.data_types import Struct, String, Int
     >>> Struct({'my_string': String(), 'my_int': Int()})
     """
 

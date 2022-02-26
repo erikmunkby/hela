@@ -1,8 +1,8 @@
 import numpy as np
 from collections import Counter
-from catalog.math.preprocessing import clean_document, clean_corpus
-from catalog.math.levenshtein import replace
-from catalog.math.score_info import SimilarityInfo
+from hela.math.preprocessing import clean_document, clean_corpus
+from hela.math.levenshtein import replace
+from hela.math.score_info import SimilarityInfo
 from typing import Sequence, Tuple
 
 

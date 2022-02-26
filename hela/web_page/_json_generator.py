@@ -1,7 +1,7 @@
 import json
 import warnings
 from pathlib import Path
-from catalog import Catalog, BaseDataset
+from hela import Catalog, BaseDataset
 from typing import Dict, Any, Sequence
 from collections import defaultdict
 

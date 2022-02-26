@@ -1,8 +1,8 @@
 from typing import Sequence
 import pandas as pd
 import datetime
-from catalog._utils.date_utils import get_date_range_from_set
-from catalog.plots.html_displays import HTMLDisplay
+from hela._utils.date_utils import get_date_range_from_set
+from hela.plots.html_displays import HTMLDisplay
 
 
 def plot_date_availability_calendar(dates: Sequence[datetime.date]) -> HTMLDisplay:

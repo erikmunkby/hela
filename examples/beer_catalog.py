@@ -1,4 +1,4 @@
-from catalog import Catalog
+from hela import Catalog
 from examples.datasets.sales.orders import orders
 from examples.datasets.sales.beer_info import beer_info
 from examples.datasets.web.user_interactions import user_interactions

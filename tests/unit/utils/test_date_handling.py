@@ -1,6 +1,6 @@
 import pytest
 from datetime import date
-from catalog._utils.date_utils import get_date_range_from_set, get_missing_dates
+from hela._utils.date_utils import get_date_range_from_set, get_missing_dates
 
 
 @pytest.mark.base

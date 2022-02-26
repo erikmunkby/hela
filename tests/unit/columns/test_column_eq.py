@@ -1,6 +1,6 @@
 import pytest
-from catalog.data_types import Double, Int, Struct
-from catalog import Col, NestedCol
+from hela.data_types import Double, Int, Struct
+from hela import Col, NestedCol
 
 
 @pytest.mark.base

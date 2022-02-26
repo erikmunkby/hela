@@ -8,14 +8,14 @@ from typing import Optional, Set, Union, Sequence, Dict, Any, Tuple
 from datetime import date
 from collections import Counter
 from dataclasses import dataclass
-from catalog._utils.date_utils import get_missing_dates
-from catalog._utils.dict_utils import flatten_dict
-from catalog._column_classes import _ColumnType
-from catalog._constants import _PATH_VAR
-from catalog._utils.path_utils import join_paths
-from catalog.errors import DatasetError, DuplicationError
-from catalog.plots.date_plots import plot_date_availability_calendar
-from catalog._utils.short_description import ShortDescription
+from hela._utils.date_utils import get_missing_dates
+from hela._utils.dict_utils import flatten_dict
+from hela._column_classes import _ColumnType
+from hela._constants import _PATH_VAR
+from hela._utils.path_utils import join_paths
+from hela.errors import DatasetError, DuplicationError
+from hela.plots.date_plots import plot_date_availability_calendar
+from hela._utils.short_description import ShortDescription
 
 
 @dataclass

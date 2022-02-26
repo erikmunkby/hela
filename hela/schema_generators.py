@@ -1,6 +1,6 @@
 """Module used to translate from catalog schema to other schema types."""
-from catalog._column_classes import _ColumnType
-from catalog import BaseDataset
+from hela._column_classes import _ColumnType
+from hela import BaseDataset
 from typing import Sequence, Union
 
 

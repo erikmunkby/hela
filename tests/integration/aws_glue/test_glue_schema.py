@@ -1,5 +1,5 @@
 import pytest
-from catalog.schema_generators import aws_glue_schema
+from hela.schema_generators import aws_glue_schema
 from tests import test_schemas
 try:
     from aws_cdk.aws_glue import Schema, Column

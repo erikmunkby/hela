@@ -6,11 +6,11 @@ import json
 from typing import List, Union
 from pathlib import Path
 from collections import defaultdict
-from catalog.data_types import PrimitiveType, String, Struct, Array
-from catalog._utils.maps import python_to_data_type_map
-from catalog import Col
-from catalog._column_classes import _ColumnType
-from catalog.errors import InferralError
+from hela.data_types import PrimitiveType, String, Struct, Array
+from hela._utils.maps import python_to_data_type_map
+from hela import Col
+from hela._column_classes import _ColumnType
+from hela.errors import InferralError
 from datetime import date
 
 

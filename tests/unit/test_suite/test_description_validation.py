@@ -1,8 +1,8 @@
 import pytest
-from catalog.test_suite import description_tests
-from catalog import Catalog, BaseDataset, Col, NestedCol
-from catalog.data_types import String
-from catalog.errors import ValidationError
+from hela.test_suite import description_tests
+from hela import Catalog, BaseDataset, Col, NestedCol
+from hela.data_types import String
+from hela.errors import ValidationError
 
 
 @pytest.fixture

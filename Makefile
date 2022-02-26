@@ -26,7 +26,7 @@ unittest:
 .phony: update-stopwords
 update-stopwords:
 	poetry run python -m nltk.downloader -d ./temp-nltk stopwords
-	cp temp-nltk/corpora/stopwords/english catalog/math/stopwords.txt
+	cp temp-nltk/corpora/stopwords/english hela/math/stopwords.txt
 	rm -rf temp-nltk
 
 # Run code coverage and get report

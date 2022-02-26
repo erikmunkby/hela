@@ -1,6 +1,6 @@
 import pytest
-from catalog import column_store, Col, NestedCol
-from catalog.data_types import String
+from hela import column_store, Col, NestedCol
+from hela.data_types import String
 
 
 @pytest.mark.base

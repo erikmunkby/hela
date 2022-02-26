@@ -1,6 +1,6 @@
 import pytest
-from catalog import Catalog
-from catalog.datasets.pandas_parquet_dataset import PandasParquetDataset
+from hela import Catalog
+from hela.datasets.pandas_parquet_dataset import PandasParquetDataset
 
 
 @pytest.mark.base

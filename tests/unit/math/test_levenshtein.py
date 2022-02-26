@@ -1,5 +1,5 @@
 import pytest
-from catalog.math import levenshtein
+from hela.math import levenshtein
 
 
 @pytest.mark.base
