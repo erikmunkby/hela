@@ -1,7 +1,7 @@
 import numpy as np
 from typing import Sequence
-from catalog.math.preprocessing import clean_corpus, clean_document
-from catalog.math.score_info import SimilarityInfo
+from hela.math.preprocessing import clean_corpus, clean_document
+from hela.math.score_info import SimilarityInfo
 
 
 def distance(s1: str, s2: str) -> float:

@@ -1,23 +1,26 @@
-# `catalog`: write your data catalog as code
-![Unit Tests](https://github.com/erikmunkby/catalog/actions/workflows/unit_tests.yaml/badge.svg)
-![Spark](https://github.com/erikmunkby/catalog/actions/workflows/test_spark.yaml/badge.svg)
-![BigQuery](https://github.com/erikmunkby/catalog/actions/workflows/test_bigquery.yaml/badge.svg)
-![AWS Glue](https://github.com/erikmunkby/catalog/actions/workflows/test_aws_glue.yaml/badge.svg)
+# `hela`: write your data catalog as code
+![Unit Tests](https://github.com/erikmunkby/hela/actions/workflows/unit_tests.yaml/badge.svg)
+![Spark](https://github.com/erikmunkby/hela/actions/workflows/test_spark.yaml/badge.svg)
+![BigQuery](https://github.com/erikmunkby/hela/actions/workflows/test_bigquery.yaml/badge.svg)
+![AWS Glue](https://github.com/erikmunkby/hela/actions/workflows/test_aws_glue.yaml/badge.svg)
 
 You probably already have your data job scripts version controlled, but what about your data catalog?
 The answer: **write your data catalog as code!** Storing your data catalog and data documentation as code makes your catalog searchable, referenceable, reliable, platform agnostic, sets you up for easy collaboration and much more! 
 This library is built to fit small and large data landscapes, but is happiest when included from the start.
+
+`Hela` (or Hel) is the norse mythological collector of souls, and the Swedish word for "whole" or "all of it". `Hela`
+is designed to give everyone a chance to build a data catalog, with a low entry barrier: pure python code.
 
 TODO: Add link to homepage, pypi?, demo repo
 
 ## Installing
 Using pip:
 
-`pip install catalog`
+`pip install hela`
 
 Using poetry:
 
-`poetry add catalog`
+`poetry add hela`
 
 ## Roadmap
 These are up-coming features in no particular order, but contributions towards these milestones are highly appreciated! To read more about contributing check out `CONTRIBUTING.md`.
@@ -25,7 +28,7 @@ These are up-coming features in no particular order, but contributions towards t
 * Search functionality in web app
 * More integrations (Snowflake, Redshift)
 * More feature rich dataset classes
-* Data lineage functionality (both in catalog and web app)
+* Data lineage functionality (both visualized in notebooks and web app)
 * Prettier docs page
 
 
@@ -35,8 +38,8 @@ If you want to read more check out the [docs page](TODO: insert docs page link).
 First of all build your own dataset class by inheriting the `BaseDataset` class. This class will hold most of your project specific functionality such as read/write, authentication etc.
 
 ```python
-from catalog import BaseDataset, Col
-from catalog.data_types import String
+from hela import BaseDataset, Col
+from hela.data_types import String
 
 class MyDatasetClass(BaseDataset):
     def __init__(
@@ -76,7 +79,7 @@ Now that you have a dataset class, and instantiated your first dataset, you can 
 data catalog.
 
 ```python
-from catalog import Catalog
+from hela import Catalog
 
 class MyCatalog(Catalog):
     my_dataset = my_dataset
@@ -87,7 +90,7 @@ add the following code to a python script, and in the future add it in whichever
 This will generate an `index.html` file that you can view in your browser or host on e.g. github pages.
 
 ```python
-from catalog import generate_webpage
+from hela import generate_webpage
 
 generate_webpage(MyCatalog, output_folder='.')
 ```

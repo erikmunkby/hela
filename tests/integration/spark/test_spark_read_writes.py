@@ -2,7 +2,7 @@ import pytest
 import json
 from dateutil.parser import parse
 from pathlib import Path
-from catalog.schema_generators import spark_schema
+from hela.schema_generators import spark_schema
 from tests import test_schemas
 try:
     from pyspark.sql import SparkSession

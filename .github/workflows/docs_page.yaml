@@ -40,9 +40,9 @@ jobs:
 
       - name: Build docs page
         run: |
-          poetry run pdoc --html catalog
+          poetry run pdoc --html hela
           mkdir docs
-          cp -r html/catalog/* docs
+          cp -r html/hela/* docs
           rm -rf html
 
       - name: Deploy docs page

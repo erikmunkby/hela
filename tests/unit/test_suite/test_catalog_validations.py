@@ -1,9 +1,9 @@
 import pytest
-from catalog.datasets.pandas_parquet_dataset import PandasParquetDataset
-from catalog.errors import ValidationError
-from catalog import column_store, Col, Catalog
-from catalog.data_types import String
-from catalog.test_suite.catalog_tests import (
+from hela.datasets.pandas_parquet_dataset import PandasParquetDataset
+from hela.errors import ValidationError
+from hela import column_store, Col, Catalog
+from hela.data_types import String
+from hela.test_suite.catalog_tests import (
     validate_dataset_variable_names,
     validate_no_duplicated_columns
 )

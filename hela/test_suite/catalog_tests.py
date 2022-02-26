@@ -1,6 +1,6 @@
-from catalog.errors import ValidationError
-from catalog import Catalog
-from catalog._catalog_class import is_dataset, is_catalog
+from hela.errors import ValidationError
+from hela import Catalog
+from hela._catalog_class import is_dataset, is_catalog
 
 
 def validate_dataset_variable_names(root_catalog: Catalog) -> True:

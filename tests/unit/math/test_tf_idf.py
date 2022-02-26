@@ -1,5 +1,5 @@
 import pytest
-from catalog.math import tf_idf
+from hela.math import tf_idf
 
 corpus = [
     'dummy string query',

@@ -1,4 +1,4 @@
-from catalog._utils.dict_utils import flatten_dict
+from hela._utils.dict_utils import flatten_dict
 
 
 def test_dict_utils():

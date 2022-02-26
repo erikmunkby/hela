@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import datetime, date
-from catalog import Col, NestedCol
-from catalog.data_types import (
+from hela import Col, NestedCol
+from hela.data_types import (
     Int,
     String,
     Date,

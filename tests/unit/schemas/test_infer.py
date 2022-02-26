@@ -1,8 +1,8 @@
 import pytest
 import pandas as pd
-from catalog import Col, NestedCol
-from catalog.data_types import Long, String, Date, DateTime, Struct, Double, Array
-from catalog.infer import infer_schema_pandas
+from hela import Col, NestedCol
+from hela.data_types import Long, String, Date, DateTime, Struct, Double, Array
+from hela.infer import infer_schema_pandas
 
 
 @pytest.mark.base

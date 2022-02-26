@@ -1,5 +1,5 @@
-from catalog import column_store, Col
-from catalog.data_types import DateTime, String, Array, Date, Int
+from hela import column_store, Col
+from hela.data_types import DateTime, String, Array, Date, Int
 
 
 @column_store()

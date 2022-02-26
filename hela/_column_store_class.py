@@ -1,5 +1,5 @@
-from catalog._column_classes import _ColumnType
-from catalog._constants import _COL_STORE_FLAG
+from hela._column_classes import _ColumnType
+from hela._constants import _COL_STORE_FLAG
 
 
 def _make_column_store(cls: object, label: str = None):
@@ -51,8 +51,8 @@ def column_store(cls=None, label: str = None) -> object:
 
 
     Examples:
-        >>> from catalog import column_store, Col
-        >>> from catalog.data_types import String
+        >>> from hela import column_store, Col
+        >>> from hela.data_types import String
         >>> @column_store(label='cool_columns')
         >>> class MyStore:
         ...     my_column = Col('my_column', String(), 'Example column')

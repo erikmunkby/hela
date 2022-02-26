@@ -1,6 +1,6 @@
-from catalog import Col
-from catalog.data_types import String
-from catalog.datasets.pandas_parquet_dataset import PandasParquetDataset
+from hela import Col
+from hela.data_types import String
+from hela.datasets.pandas_parquet_dataset import PandasParquetDataset
 from examples.column_store import ColumnStore
 
 

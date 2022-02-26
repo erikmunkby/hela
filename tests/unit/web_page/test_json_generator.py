@@ -1,8 +1,8 @@
 import json
-from catalog.web_page._json_generator import JsonGenerator
-from catalog.datasets.pandas_parquet_dataset import PandasParquetDataset
-from catalog import Col, NestedCol, Catalog
-from catalog.data_types import Int, String
+from hela.web_page._json_generator import JsonGenerator
+from hela.datasets.pandas_parquet_dataset import PandasParquetDataset
+from hela import Col, NestedCol, Catalog
+from hela.data_types import Int, String
 
 test_dataset = PandasParquetDataset(
     name='test_dataset',

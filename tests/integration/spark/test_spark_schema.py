@@ -1,6 +1,6 @@
 import pytest
 from tests import test_schemas
-from catalog.schema_generators import spark_schema
+from hela.schema_generators import spark_schema
 try:
     from pyspark.sql.types import (
         ArrayType, IntegerType, StringType, StructField, StructType, FloatType,

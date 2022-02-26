@@ -1,6 +1,6 @@
 import pytest
-from catalog.data_types import String, Bool, Struct, Int
-from catalog import Col
+from hela.data_types import String, Bool, Struct, Int
+from hela import Col
 
 
 @pytest.mark.base

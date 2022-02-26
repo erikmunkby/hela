@@ -1,6 +1,6 @@
 import pandas as pd
-from catalog import BaseDataset
-from catalog._column_classes import _ColumnType
+from hela import BaseDataset
+from hela._column_classes import _ColumnType
 from typing import Optional, Sequence, Set, Union, Dict, Any
 from datetime import date
 from pathlib import Path

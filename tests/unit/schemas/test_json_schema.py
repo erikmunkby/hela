@@ -1,9 +1,9 @@
 import pytest
 import jsonschema
 from jsonschema import ValidationError
-from catalog.schema_generators import json_schema
-from catalog import Col
-from catalog.data_types import String
+from hela.schema_generators import json_schema
+from hela import Col
+from hela.data_types import String
 
 
 @pytest.mark.base

@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-from catalog.plots.date_plots import plot_date_availability_calendar
+from hela.plots.date_plots import plot_date_availability_calendar
 
 
 def test_date_plots():

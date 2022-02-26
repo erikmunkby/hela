@@ -1,9 +1,9 @@
 import pytest
 import pandas as pd
 from pathlib import Path
-from catalog import Catalog
-from catalog.datasets.pandas_parquet_dataset import PandasParquetDataset
-from catalog._utils.path_utils import join_paths
+from hela import Catalog
+from hela.datasets.pandas_parquet_dataset import PandasParquetDataset
+from hela._utils.path_utils import join_paths
 
 
 @pytest.mark.base

@@ -2,12 +2,12 @@ from __future__ import annotations
 from abc import abstractmethod, ABC
 from copy import copy
 from dataclasses import dataclass
-from catalog._base_data_type import BaseDataType
-from catalog.data_types import Struct, PrimitiveType
-from catalog._utils.bigquery_utils import BigqueryMode
+from hela._base_data_type import BaseDataType
+from hela.data_types import Struct, PrimitiveType
+from hela._utils.bigquery_utils import BigqueryMode
 from typing import Optional, Sequence
 
-from catalog._utils.short_description import ShortDescription
+from hela._utils.short_description import ShortDescription
 
 try:
     from aws_cdk.aws_glue import Column as GlueColumn
@@ -80,21 +80,21 @@ class _ColumnType(BaseDataType, ABC):
 
 
 class Col(_ColumnType):
-    """A basic column object, for nested columns see `catalog.NestedCol`.
+    """A basic column object, for nested columns see `hela.NestedCol`.
 
-    This class is used to define columns within a `catalog.BaseDataset` or `catalog.column_store`.
+    This class is used to define columns within a `hela.BaseDataset` or `hela.column_store`.
     Each defined column will be searchable, testable and referenceable.
 
     If you want to give further functionality to your columns, please this class.
 
     Attributes:
         name:   The name of the column.
-        data_type:  The data type of the column, should be one of types found in `catalog.data_types`
+        data_type:  The data type of the column, should be one of types found in `hela.data_types`
         description: A description of this column as a string, better descriptions yield a more secure catalog.
 
     Examples:
-    >>> from catalog import Col
-    >>> from catalog.data_types import String
+    >>> from hela import Col
+    >>> from hela.data_types import String
     >>> my_col = Col('my_col', String(), 'This is an example column')
     """
 
@@ -142,15 +142,15 @@ class NestedCol(_ColumnType):
 
     Most data stores support nested style columns, these can be built using this column class.
     These columns will be referenced with dot-notation when shown in the **catalog**.
-    For dict/struct style columns see `catalog.data_types.Struct`.
+    For dict/struct style columns see `hela.data_types.Struct`.
 
     Attributes:
         name:   The name of the column.
         columns:    A sequence of columns nested within this column. Can be Col or NestedCol objects.
 
     Examples:
-    >>> from catalog import NestedCol, Col
-    >>> from catalog.data_types import String, Int
+    >>> from hela import NestedCol, Col
+    >>> from hela.data_types import String, Int
     >>> my_col = NestedCol('my_nested_col', [
     ...     Col('nested_string', String(), 'Nested string column'),
     ...     Col('nested_int', Int(), 'Nested int column')

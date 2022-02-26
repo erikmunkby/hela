@@ -3,12 +3,11 @@ import time
 import pytest
 import string
 import random
-from catalog.datasets.bigquery_dataset import BigqueryDataset
-from catalog import Catalog
+from hela.datasets.bigquery_dataset import BigqueryDataset
+from hela import Catalog
 from tests import test_schemas
 try:
     from google.cloud import bigquery
-    from google.api_core.exceptions import NotFound
 except ModuleNotFoundError:
     pass
 

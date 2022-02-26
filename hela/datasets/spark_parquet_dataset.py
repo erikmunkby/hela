@@ -1,5 +1,5 @@
-from catalog import BaseDataset
-from catalog._column_classes import _ColumnType
+from hela import BaseDataset
+from hela._column_classes import _ColumnType
 from datetime import date
 from typing import Optional, Union, Sequence, Set
 from pathlib import Path
