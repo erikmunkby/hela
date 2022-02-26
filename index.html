@@ -28,8 +28,10 @@ The answer: <strong>write your data catalog as code!</strong> Storing your data 
 This library is built to fit small and large data landscapes, but is happiest when included from the start.</p>
 <p><code>Hela</code> (or Hel) is the norse mythological collector of souls, and the Swedish word for "whole" or "all of it". <code>Hela</code>
 is designed to give everyone a chance to build a data catalog, with a low entry barrier: pure python code.</p>
-<p>TODO: Add link to github for contributions.
-TODO: Add link to repo with example catalog.</p>
+<ul>
+<li>Interested in contributing? Find <code><a title="hela" href="#hela">hela</a></code> on <a href="https://github.com/erikmunkby/hela">github</a></li>
+<li>For an example of a larger data catalog, view this <a href="https://github.com/erikmunkby/hela-showcase">showcase catalog</a></li>
+</ul>
 <h1 id="overview">Overview</h1>
 <p>The catalog package consists of four primary components:</p>
 <ul>
@@ -197,8 +199,15 @@ make sure no column name is duplicated using <code><a title="hela.test_suite.cat
 as they might include the same type of information. In these cases we can only rely on that the descriptions are
 similar enough to get a hit using <code><a title="hela.test_suite.description_tests.validate_description_similarity" href="test_suite/description_tests.html#hela.test_suite.description_tests.validate_description_similarity">validate_description_similarity()</a></code>.</p>
 <h2 id="notebook-interactivity">Notebook interactivity</h2>
-<p><img alt="Date availability grid from show_dates function" src="TODO: Add url to image here when repo public">
-<img alt="Show Columns functionality" src="TODO: Add url to image here when repo public"></p>
+<p>With <code><a title="hela" href="#hela">hela</a></code> you don't even have to leave your favorite notebook tool to study your data catalog!
+The <code><a title="hela.Catalog" href="#hela.Catalog">Catalog</a></code> and <code><a title="hela.BaseDataset" href="#hela.BaseDataset">BaseDataset</a></code> classes have built in functions that will in a notebook environment
+display informations such as:</p>
+<h3 id="columns-within-the-catalog">Columns within the catalog</h3>
+<p>This functionality also extends into sub-catalogs.</p>
+<p><img alt="Show Columns functionality" src="https://github.com/erikmunkby/hela/blob/master/gh_pages/images/show_columns.png?raw=true"></p>
+<h3 id="which-dates-a-dataset-is-available-on">Which dates a dataset is available on</h3>
+<p>This functionality requires <code><a title="hela.BaseDataset.get_dates" href="#hela.BaseDataset.get_dates">BaseDataset.get_dates()</a></code> function implemented.</p>
+<p><img alt="Date availability grid from show_dates function" src="https://github.com/erikmunkby/hela/blob/master/gh_pages/images/show_dates.png?raw=true"></p>
 <h1 id="advanced">Advanced</h1>
 <p><strong>[Page under construction]</strong></p>
 <p>Sometimes things work almost, but not exactly, the way you want. Here is a brief guide on how to modify the behaviour among a variety of topics.
@@ -1721,7 +1730,11 @@ For dict/struct style columns see <code><a title="hela.data_types.Struct" href="
 <li><a href="#highlights">Highlights</a><ul>
 <li><a href="#iterate-through-datasets">Iterate through datasets</a></li>
 <li><a href="#anticipate-errors-before-they-happen">Anticipate errors before they happen</a></li>
-<li><a href="#notebook-interactivity">Notebook interactivity</a></li>
+<li><a href="#notebook-interactivity">Notebook interactivity</a><ul>
+<li><a href="#columns-within-the-catalog">Columns within the catalog</a></li>
+<li><a href="#which-dates-a-dataset-is-available-on">Which dates a dataset is available on</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#advanced">Advanced</a></li>
