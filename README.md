@@ -11,7 +11,10 @@ This library is built to fit small and large data landscapes, but is happiest wh
 `Hela` (or Hel) is the norse mythological collector of souls, and the Swedish word for "whole" or "all of it". `Hela`
 is designed to give everyone a chance to build a data catalog, with a low entry barrier: pure python code.
 
-TODO: Add link to homepage, pypi?, demo repo
+Links:
+* [docs](https://erikmunkby.github.io/hela/)
+* [pypi](https://pypi.org/project/hela/)
+* [showcase catalog](https://erikmunkby.github.io/hela-showcase/)
 
 ## Installing
 Using pip:
@@ -33,7 +36,7 @@ These are up-coming features in no particular order, but contributions towards t
 
 
 ## (Mega) Quick start
-If you want to read more check out the [docs page](TODO: insert docs page link). If you do not have patience for that, the following is all you need to get started.
+If you want to read more check out the [docs page](https://erikmunkby.github.io/hela/). If you do not have patience for that, the following is all you need to get started.
 
 First of all build your own dataset class by inheriting the `BaseDataset` class. This class will hold most of your project specific functionality such as read/write, authentication etc.
 
@@ -95,4 +98,4 @@ from hela import generate_webpage
 generate_webpage(MyCatalog, output_folder='.')
 ```
 
-To view what a bigger data catalog can look like check out the [showcase catalog](TODO: add link to showcase repo).
+To view what a bigger data catalog can look like check out the [showcase catalog](https://erikmunkby.github.io/hela-showcase/).
