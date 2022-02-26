@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>catalog.web_page.generate API documentation</title>
+<title>hela.web_page.generate API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
@@ -19,7 +19,7 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>catalog.web_page.generate</code></h1>
+<h1 class="title">Module <code>hela.web_page.generate</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
@@ -30,8 +30,8 @@
 import pkg_resources
 from pathlib import Path
 from typing import Union, Sequence
-from catalog import Catalog
-from catalog.web_page._json_generator import JsonGenerator
+from hela import Catalog
+from hela.web_page._json_generator import JsonGenerator
 
 
 def generate_webpage(
@@ -53,7 +53,7 @@ def generate_webpage(
         output_folder:  The folder where index.html file should end up.
         overwrite_existing: Flag whether and potential index.html file should be overwritten if existing.
         include_samples:    Flag whether to attempt to fetch sample datapoints from the columns in each
-                            dataset. Requires `catalog.BaseDataset.get_samples` function implemented.
+                            dataset. Requires `hela.BaseDataset.get_samples` function implemented.
         web_app_title:  Optional title of the web app.
 
     Raises:
@@ -61,7 +61,7 @@ def generate_webpage(
 
     Examples:
     &gt;&gt;&gt; from my_catalog import MyCatalog
-    &gt;&gt;&gt; from catalog import generate_webpage
+    &gt;&gt;&gt; from hela import generate_webpage
     &gt;&gt;&gt; generate_webpage(MyCatalog, &#39;.&#39;, overwrite_existing=True)
     &#34;&#34;&#34;
     if not isinstance(catalogs, Sequence):
@@ -98,8 +98,8 @@ def generate_webpage(
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="catalog.web_page.generate.generate_webpage"><code class="name flex">
-<span>def <span class="ident">generate_webpage</span></span>(<span>catalogs: Union[catalog._catalog_class.Catalog, Sequence[catalog._catalog_class.Catalog]], output_folder: str, overwrite_existing: bool = False, include_samples: bool = False, web_app_title: str = None) ‑> None</span>
+<dt id="hela.web_page.generate.generate_webpage"><code class="name flex">
+<span>def <span class="ident">generate_webpage</span></span>(<span>catalogs: Union[hela._catalog_class.Catalog, Sequence[hela._catalog_class.Catalog]], output_folder: str, overwrite_existing: bool = False, include_samples: bool = False, web_app_title: str = None) ‑> None</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generates an index.html file that can be used as a data catalog website.</p>
@@ -117,7 +117,7 @@ If you have a tree of catalogs, only the root catalog is required.</dd>
 <dd>Flag whether and potential index.html file should be overwritten if existing.</dd>
 <dt><strong><code>include_samples</code></strong></dt>
 <dd>Flag whether to attempt to fetch sample datapoints from the columns in each
-dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="../index.html#catalog.BaseDataset.get_samples">BaseDataset.get_samples()</a></code> function implemented.</dd>
+dataset. Requires <code><a title="hela.BaseDataset.get_samples" href="../index.html#hela.BaseDataset.get_samples">BaseDataset.get_samples()</a></code> function implemented.</dd>
 <dt><strong><code>web_app_title</code></strong></dt>
 <dd>Optional title of the web app.</dd>
 </dl>
@@ -128,7 +128,7 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="../inde
 </dl>
 <p>Examples:</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; from my_catalog import MyCatalog
-&gt;&gt;&gt; from catalog import generate_webpage
+&gt;&gt;&gt; from hela import generate_webpage
 &gt;&gt;&gt; generate_webpage(MyCatalog, '.', overwrite_existing=True)
 </code></pre></div>
 <details class="source">
@@ -154,7 +154,7 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="../inde
         output_folder:  The folder where index.html file should end up.
         overwrite_existing: Flag whether and potential index.html file should be overwritten if existing.
         include_samples:    Flag whether to attempt to fetch sample datapoints from the columns in each
-                            dataset. Requires `catalog.BaseDataset.get_samples` function implemented.
+                            dataset. Requires `hela.BaseDataset.get_samples` function implemented.
         web_app_title:  Optional title of the web app.
 
     Raises:
@@ -162,7 +162,7 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="../inde
 
     Examples:
     &gt;&gt;&gt; from my_catalog import MyCatalog
-    &gt;&gt;&gt; from catalog import generate_webpage
+    &gt;&gt;&gt; from hela import generate_webpage
     &gt;&gt;&gt; generate_webpage(MyCatalog, &#39;.&#39;, overwrite_existing=True)
     &#34;&#34;&#34;
     if not isinstance(catalogs, Sequence):
@@ -205,12 +205,12 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="../inde
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="catalog.web_page" href="index.html">catalog.web_page</a></code></li>
+<li><code><a title="hela.web_page" href="index.html">hela.web_page</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="catalog.web_page.generate.generate_webpage" href="#catalog.web_page.generate.generate_webpage">generate_webpage</a></code></li>
+<li><code><a title="hela.web_page.generate.generate_webpage" href="#hela.web_page.generate.generate_webpage">generate_webpage</a></code></li>
 </ul>
 </li>
 </ul>

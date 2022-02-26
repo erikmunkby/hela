@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>catalog.datasets.bigquery_dataset API documentation</title>
+<title>hela.datasets.bigquery_dataset API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
@@ -19,7 +19,7 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>catalog.datasets.bigquery_dataset</code></h1>
+<h1 class="title">Module <code>hela.datasets.bigquery_dataset</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
@@ -29,10 +29,10 @@
 <pre><code class="python">import os
 import pandas as pd
 from typing import Optional, Sequence
-from catalog import BaseDataset
-from catalog._column_classes import _ColumnType
-from catalog.schema_generators import bigquery_schema
-from catalog._utils.dict_utils import flatten_dict
+from hela import BaseDataset
+from hela._column_classes import _ColumnType
+from hela.schema_generators import bigquery_schema
+from hela._utils.dict_utils import flatten_dict
 try:
     from google.cloud import bigquery
 except ModuleNotFoundError:
@@ -130,9 +130,9 @@ class BigqueryDataset(BaseDataset):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="catalog.datasets.bigquery_dataset.BigqueryDataset"><code class="flex name class">
+<dt id="hela.datasets.bigquery_dataset.BigqueryDataset"><code class="flex name class">
 <span>class <span class="ident">BigqueryDataset</span></span>
-<span>(</span><span>name: str, database: Optional[str] = None, description: Optional[str] = None, rich_description_path: Optional[str] = None, partition_cols: Optional[Sequence[str]] = None, columns: Optional[Sequence[catalog._column_classes._ColumnType]] = None)</span>
+<span>(</span><span>name: str, database: Optional[str] = None, description: Optional[str] = None, rich_description_path: Optional[str] = None, partition_cols: Optional[Sequence[str]] = None, columns: Optional[Sequence[hela._column_classes._ColumnType]] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Abstract Dataset class to be used when defining building your own datasets.</p>
@@ -245,12 +245,12 @@ more detailed descriptions. Primarily used for generated catalog web page.</dd>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li>catalog._base_dataset.BaseDataset</li>
+<li>hela._base_dataset.BaseDataset</li>
 <li>abc.ABC</li>
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="catalog.datasets.bigquery_dataset.BigqueryDataset.project_id"><code class="name">var <span class="ident">project_id</span> : str</code></dt>
+<dt id="hela.datasets.bigquery_dataset.BigqueryDataset.project_id"><code class="name">var <span class="ident">project_id</span> : str</code></dt>
 <dd>
 <div class="desc"><p>Returns the bigquery project id, assumes project_id exists under env variable "CLOUDSDK_CORE_PROJECT</p></div>
 <details class="source">
@@ -263,7 +263,7 @@ def project_id(self) -&gt; str:
     return os.environ[&#39;CLOUDSDK_CORE_PROJECT&#39;]</code></pre>
 </details>
 </dd>
-<dt id="catalog.datasets.bigquery_dataset.BigqueryDataset.table_id"><code class="name">var <span class="ident">table_id</span> : str</code></dt>
+<dt id="hela.datasets.bigquery_dataset.BigqueryDataset.table_id"><code class="name">var <span class="ident">table_id</span> : str</code></dt>
 <dd>
 <div class="desc"><p>Returns the full table id in style of: "project_id.database_id.table_id"
 Assumes project_id exists under env variable "CLOUDSDK_CORE_PROJECT"</p></div>
@@ -282,7 +282,7 @@ def table_id(self) -&gt; str:
 </dl>
 <h3>Methods</h3>
 <dl>
-<dt id="catalog.datasets.bigquery_dataset.BigqueryDataset.create_database"><code class="name flex">
+<dt id="hela.datasets.bigquery_dataset.BigqueryDataset.create_database"><code class="name flex">
 <span>def <span class="ident">create_database</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
@@ -298,7 +298,7 @@ def table_id(self) -&gt; str:
     self.client.create_dataset(f&#39;{self.project_id}.{self.database}&#39;)</code></pre>
 </details>
 </dd>
-<dt id="catalog.datasets.bigquery_dataset.BigqueryDataset.create_table"><code class="name flex">
+<dt id="hela.datasets.bigquery_dataset.BigqueryDataset.create_table"><code class="name flex">
 <span>def <span class="ident">create_table</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
@@ -316,7 +316,7 @@ def table_id(self) -&gt; str:
     self.client.create_table(table)</code></pre>
 </details>
 </dd>
-<dt id="catalog.datasets.bigquery_dataset.BigqueryDataset.delete_table"><code class="name flex">
+<dt id="hela.datasets.bigquery_dataset.BigqueryDataset.delete_table"><code class="name flex">
 <span>def <span class="ident">delete_table</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
@@ -330,7 +330,7 @@ def table_id(self) -&gt; str:
     self.client.delete_table(self.table_id)</code></pre>
 </details>
 </dd>
-<dt id="catalog.datasets.bigquery_dataset.BigqueryDataset.get_samples"><code class="name flex">
+<dt id="hela.datasets.bigquery_dataset.BigqueryDataset.get_samples"><code class="name flex">
 <span>def <span class="ident">get_samples</span></span>(<span>self) ‑> dict</span>
 </code></dt>
 <dd>
@@ -362,7 +362,7 @@ def table_id(self) -&gt; str:
     }</code></pre>
 </details>
 </dd>
-<dt id="catalog.datasets.bigquery_dataset.BigqueryDataset.query_table"><code class="name flex">
+<dt id="hela.datasets.bigquery_dataset.BigqueryDataset.query_table"><code class="name flex">
 <span>def <span class="ident">query_table</span></span>(<span>self, query_string: str) ‑> pandas.core.frame.DataFrame</span>
 </code></dt>
 <dd>
@@ -394,7 +394,7 @@ instead of
     return self.client.query(query_string).to_dataframe()</code></pre>
 </details>
 </dd>
-<dt id="catalog.datasets.bigquery_dataset.BigqueryDataset.write_json"><code class="name flex">
+<dt id="hela.datasets.bigquery_dataset.BigqueryDataset.write_json"><code class="name flex">
 <span>def <span class="ident">write_json</span></span>(<span>self, json_rows: Sequence[dict]) ‑> None</span>
 </code></dt>
 <dd>
@@ -420,22 +420,22 @@ instead of
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="catalog.datasets" href="index.html">catalog.datasets</a></code></li>
+<li><code><a title="hela.datasets" href="index.html">hela.datasets</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="catalog.datasets.bigquery_dataset.BigqueryDataset" href="#catalog.datasets.bigquery_dataset.BigqueryDataset">BigqueryDataset</a></code></h4>
+<h4><code><a title="hela.datasets.bigquery_dataset.BigqueryDataset" href="#hela.datasets.bigquery_dataset.BigqueryDataset">BigqueryDataset</a></code></h4>
 <ul class="two-column">
-<li><code><a title="catalog.datasets.bigquery_dataset.BigqueryDataset.create_database" href="#catalog.datasets.bigquery_dataset.BigqueryDataset.create_database">create_database</a></code></li>
-<li><code><a title="catalog.datasets.bigquery_dataset.BigqueryDataset.create_table" href="#catalog.datasets.bigquery_dataset.BigqueryDataset.create_table">create_table</a></code></li>
-<li><code><a title="catalog.datasets.bigquery_dataset.BigqueryDataset.delete_table" href="#catalog.datasets.bigquery_dataset.BigqueryDataset.delete_table">delete_table</a></code></li>
-<li><code><a title="catalog.datasets.bigquery_dataset.BigqueryDataset.get_samples" href="#catalog.datasets.bigquery_dataset.BigqueryDataset.get_samples">get_samples</a></code></li>
-<li><code><a title="catalog.datasets.bigquery_dataset.BigqueryDataset.project_id" href="#catalog.datasets.bigquery_dataset.BigqueryDataset.project_id">project_id</a></code></li>
-<li><code><a title="catalog.datasets.bigquery_dataset.BigqueryDataset.query_table" href="#catalog.datasets.bigquery_dataset.BigqueryDataset.query_table">query_table</a></code></li>
-<li><code><a title="catalog.datasets.bigquery_dataset.BigqueryDataset.table_id" href="#catalog.datasets.bigquery_dataset.BigqueryDataset.table_id">table_id</a></code></li>
-<li><code><a title="catalog.datasets.bigquery_dataset.BigqueryDataset.write_json" href="#catalog.datasets.bigquery_dataset.BigqueryDataset.write_json">write_json</a></code></li>
+<li><code><a title="hela.datasets.bigquery_dataset.BigqueryDataset.create_database" href="#hela.datasets.bigquery_dataset.BigqueryDataset.create_database">create_database</a></code></li>
+<li><code><a title="hela.datasets.bigquery_dataset.BigqueryDataset.create_table" href="#hela.datasets.bigquery_dataset.BigqueryDataset.create_table">create_table</a></code></li>
+<li><code><a title="hela.datasets.bigquery_dataset.BigqueryDataset.delete_table" href="#hela.datasets.bigquery_dataset.BigqueryDataset.delete_table">delete_table</a></code></li>
+<li><code><a title="hela.datasets.bigquery_dataset.BigqueryDataset.get_samples" href="#hela.datasets.bigquery_dataset.BigqueryDataset.get_samples">get_samples</a></code></li>
+<li><code><a title="hela.datasets.bigquery_dataset.BigqueryDataset.project_id" href="#hela.datasets.bigquery_dataset.BigqueryDataset.project_id">project_id</a></code></li>
+<li><code><a title="hela.datasets.bigquery_dataset.BigqueryDataset.query_table" href="#hela.datasets.bigquery_dataset.BigqueryDataset.query_table">query_table</a></code></li>
+<li><code><a title="hela.datasets.bigquery_dataset.BigqueryDataset.table_id" href="#hela.datasets.bigquery_dataset.BigqueryDataset.table_id">table_id</a></code></li>
+<li><code><a title="hela.datasets.bigquery_dataset.BigqueryDataset.write_json" href="#hela.datasets.bigquery_dataset.BigqueryDataset.write_json">write_json</a></code></li>
 </ul>
 </li>
 </ul>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>catalog.data_types API documentation</title>
+<title>hela.data_types API documentation</title>
 <meta name="description" content="Module consisting of all pre-built data types." />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
@@ -19,7 +19,7 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>catalog.data_types</code></h1>
+<h1 class="title">Module <code>hela.data_types</code></h1>
 </header>
 <section id="section-intro">
 <p>Module consisting of all pre-built data types.</p>
@@ -30,8 +30,8 @@
 <pre><code class="python">&#34;&#34;&#34;Module consisting of all pre-built data types.&#34;&#34;&#34;
 import json
 from abc import abstractmethod
-from catalog._base_data_type import BaseDataType
-from catalog._utils.bigquery_utils import BigqueryType, BigqueryMode
+from hela._base_data_type import BaseDataType
+from hela._utils.bigquery_utils import BigqueryType, BigqueryMode
 from typing import Dict
 
 try:
@@ -274,7 +274,7 @@ class Array(PrimitiveType):
         json_kwargs:    Optional json key-value arguments to use for generating json schemas.
 
     Examples:
-    &gt;&gt;&gt; from catalog.data_types import Array, String
+    &gt;&gt;&gt; from hela.data_types import Array, String
     &gt;&gt;&gt; Array(String())
     &#34;&#34;&#34;
 
@@ -304,14 +304,14 @@ class Array(PrimitiveType):
 class Struct(PrimitiveType):
     &#34;&#34;&#34;Struct/dict/record data type, expects a dict of {str: PrimitiveType}.
 
-    For nested columns see `catalog.NestedCol`.
+    For nested columns see `hela.NestedCol`.
 
     Attributes:
         nested_types:   A dictionary of str: Primitive type.
         json_kwargs:    Optional json key-value arguments to use for generating json schemas.
 
     Examples:
-    &gt;&gt;&gt; from catalog.data_types import Struct, String, Int
+    &gt;&gt;&gt; from hela.data_types import Struct, String, Int
     &gt;&gt;&gt; Struct({&#39;my_string&#39;: String(), &#39;my_int&#39;: Int()})
     &#34;&#34;&#34;
 
@@ -357,9 +357,9 @@ class Struct(PrimitiveType):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="catalog.data_types.Array"><code class="flex name class">
+<dt id="hela.data_types.Array"><code class="flex name class">
 <span>class <span class="ident">Array</span></span>
-<span>(</span><span>item_type: <a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a>, json_kwargs: dict = None)</span>
+<span>(</span><span>item_type: <a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a>, json_kwargs: dict = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Array data type, expects another primitive data type upon initialization.</p>
@@ -371,7 +371,7 @@ class Struct(PrimitiveType):
 <dd>Optional json key-value arguments to use for generating json schemas.</dd>
 </dl>
 <p>Examples:</p>
-<pre><code class="language-python-repl">&gt;&gt;&gt; from catalog.data_types import Array, String
+<pre><code class="language-python-repl">&gt;&gt;&gt; from hela.data_types import Array, String
 &gt;&gt;&gt; Array(String())
 </code></pre></div>
 <details class="source">
@@ -386,7 +386,7 @@ class Struct(PrimitiveType):
         json_kwargs:    Optional json key-value arguments to use for generating json schemas.
 
     Examples:
-    &gt;&gt;&gt; from catalog.data_types import Array, String
+    &gt;&gt;&gt; from hela.data_types import Array, String
     &gt;&gt;&gt; Array(String())
     &#34;&#34;&#34;
 
@@ -414,12 +414,12 @@ class Struct(PrimitiveType):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
-<li>catalog._base_data_type.BaseDataType</li>
+<li><a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 </dd>
-<dt id="catalog.data_types.Bool"><code class="flex name class">
+<dt id="hela.data_types.Bool"><code class="flex name class">
 <span>class <span class="ident">Bool</span></span>
 <span>(</span><span>json_kwargs: dict = None)</span>
 </code></dt>
@@ -458,12 +458,12 @@ class Struct(PrimitiveType):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
-<li>catalog._base_data_type.BaseDataType</li>
+<li><a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 </dd>
-<dt id="catalog.data_types.Date"><code class="flex name class">
+<dt id="hela.data_types.Date"><code class="flex name class">
 <span>class <span class="ident">Date</span></span>
 <span>(</span><span>json_kwargs: dict = None)</span>
 </code></dt>
@@ -502,12 +502,12 @@ class Struct(PrimitiveType):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
-<li>catalog._base_data_type.BaseDataType</li>
+<li><a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 </dd>
-<dt id="catalog.data_types.DateTime"><code class="flex name class">
+<dt id="hela.data_types.DateTime"><code class="flex name class">
 <span>class <span class="ident">DateTime</span></span>
 <span>(</span><span>json_kwargs: dict = None)</span>
 </code></dt>
@@ -546,12 +546,12 @@ class Struct(PrimitiveType):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
-<li>catalog._base_data_type.BaseDataType</li>
+<li><a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 </dd>
-<dt id="catalog.data_types.Double"><code class="flex name class">
+<dt id="hela.data_types.Double"><code class="flex name class">
 <span>class <span class="ident">Double</span></span>
 <span>(</span><span>json_kwargs: dict = None)</span>
 </code></dt>
@@ -590,12 +590,12 @@ class Struct(PrimitiveType):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
-<li>catalog._base_data_type.BaseDataType</li>
+<li><a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 </dd>
-<dt id="catalog.data_types.Float"><code class="flex name class">
+<dt id="hela.data_types.Float"><code class="flex name class">
 <span>class <span class="ident">Float</span></span>
 <span>(</span><span>json_kwargs: dict = None)</span>
 </code></dt>
@@ -634,12 +634,12 @@ class Struct(PrimitiveType):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
-<li>catalog._base_data_type.BaseDataType</li>
+<li><a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 </dd>
-<dt id="catalog.data_types.Int"><code class="flex name class">
+<dt id="hela.data_types.Int"><code class="flex name class">
 <span>class <span class="ident">Int</span></span>
 <span>(</span><span>json_kwargs: dict = None)</span>
 </code></dt>
@@ -678,12 +678,12 @@ class Struct(PrimitiveType):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
-<li>catalog._base_data_type.BaseDataType</li>
+<li><a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 </dd>
-<dt id="catalog.data_types.Long"><code class="flex name class">
+<dt id="hela.data_types.Long"><code class="flex name class">
 <span>class <span class="ident">Long</span></span>
 <span>(</span><span>json_kwargs: dict = None)</span>
 </code></dt>
@@ -722,12 +722,12 @@ class Struct(PrimitiveType):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
-<li>catalog._base_data_type.BaseDataType</li>
+<li><a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 </dd>
-<dt id="catalog.data_types.PrimitiveType"><code class="flex name class">
+<dt id="hela.data_types.PrimitiveType"><code class="flex name class">
 <span>class <span class="ident">PrimitiveType</span></span>
 <span>(</span><span>name: str, description: str, json_kwargs: dict = None)</span>
 </code></dt>
@@ -777,24 +777,24 @@ class Struct(PrimitiveType):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li>catalog._base_data_type.BaseDataType</li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 <h3>Subclasses</h3>
 <ul class="hlist">
-<li><a title="catalog.data_types.Array" href="#catalog.data_types.Array">Array</a></li>
-<li><a title="catalog.data_types.Bool" href="#catalog.data_types.Bool">Bool</a></li>
-<li><a title="catalog.data_types.Date" href="#catalog.data_types.Date">Date</a></li>
-<li><a title="catalog.data_types.DateTime" href="#catalog.data_types.DateTime">DateTime</a></li>
-<li><a title="catalog.data_types.Double" href="#catalog.data_types.Double">Double</a></li>
-<li><a title="catalog.data_types.Float" href="#catalog.data_types.Float">Float</a></li>
-<li><a title="catalog.data_types.Int" href="#catalog.data_types.Int">Int</a></li>
-<li><a title="catalog.data_types.Long" href="#catalog.data_types.Long">Long</a></li>
-<li><a title="catalog.data_types.String" href="#catalog.data_types.String">String</a></li>
-<li><a title="catalog.data_types.Struct" href="#catalog.data_types.Struct">Struct</a></li>
+<li><a title="hela.data_types.Array" href="#hela.data_types.Array">Array</a></li>
+<li><a title="hela.data_types.Bool" href="#hela.data_types.Bool">Bool</a></li>
+<li><a title="hela.data_types.Date" href="#hela.data_types.Date">Date</a></li>
+<li><a title="hela.data_types.DateTime" href="#hela.data_types.DateTime">DateTime</a></li>
+<li><a title="hela.data_types.Double" href="#hela.data_types.Double">Double</a></li>
+<li><a title="hela.data_types.Float" href="#hela.data_types.Float">Float</a></li>
+<li><a title="hela.data_types.Int" href="#hela.data_types.Int">Int</a></li>
+<li><a title="hela.data_types.Long" href="#hela.data_types.Long">Long</a></li>
+<li><a title="hela.data_types.String" href="#hela.data_types.String">String</a></li>
+<li><a title="hela.data_types.Struct" href="#hela.data_types.Struct">Struct</a></li>
 </ul>
 </dd>
-<dt id="catalog.data_types.String"><code class="flex name class">
+<dt id="hela.data_types.String"><code class="flex name class">
 <span>class <span class="ident">String</span></span>
 <span>(</span><span>json_kwargs: dict = None)</span>
 </code></dt>
@@ -833,18 +833,18 @@ class Struct(PrimitiveType):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
-<li>catalog._base_data_type.BaseDataType</li>
+<li><a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 </dd>
-<dt id="catalog.data_types.Struct"><code class="flex name class">
+<dt id="hela.data_types.Struct"><code class="flex name class">
 <span>class <span class="ident">Struct</span></span>
-<span>(</span><span>nested_types: Dict[str, <a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a>], json_kwargs: dict = None)</span>
+<span>(</span><span>nested_types: Dict[str, <a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a>], json_kwargs: dict = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Struct/dict/record data type, expects a dict of {str: PrimitiveType}.</p>
-<p>For nested columns see <code><a title="catalog.NestedCol" href="index.html#catalog.NestedCol">NestedCol</a></code>.</p>
+<p>For nested columns see <code><a title="hela.NestedCol" href="index.html#hela.NestedCol">NestedCol</a></code>.</p>
 <h2 id="attributes">Attributes</h2>
 <dl>
 <dt><strong><code>nested_types</code></strong></dt>
@@ -853,7 +853,7 @@ class Struct(PrimitiveType):
 <dd>Optional json key-value arguments to use for generating json schemas.</dd>
 </dl>
 <p>Examples:</p>
-<pre><code class="language-python-repl">&gt;&gt;&gt; from catalog.data_types import Struct, String, Int
+<pre><code class="language-python-repl">&gt;&gt;&gt; from hela.data_types import Struct, String, Int
 &gt;&gt;&gt; Struct({'my_string': String(), 'my_int': Int()})
 </code></pre></div>
 <details class="source">
@@ -863,14 +863,14 @@ class Struct(PrimitiveType):
 <pre><code class="python">class Struct(PrimitiveType):
     &#34;&#34;&#34;Struct/dict/record data type, expects a dict of {str: PrimitiveType}.
 
-    For nested columns see `catalog.NestedCol`.
+    For nested columns see `hela.NestedCol`.
 
     Attributes:
         nested_types:   A dictionary of str: Primitive type.
         json_kwargs:    Optional json key-value arguments to use for generating json schemas.
 
     Examples:
-    &gt;&gt;&gt; from catalog.data_types import Struct, String, Int
+    &gt;&gt;&gt; from hela.data_types import Struct, String, Int
     &gt;&gt;&gt; Struct({&#39;my_string&#39;: String(), &#39;my_int&#39;: Int()})
     &#34;&#34;&#34;
 
@@ -908,8 +908,8 @@ class Struct(PrimitiveType):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></li>
-<li>catalog._base_data_type.BaseDataType</li>
+<li><a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a></li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 </dd>
@@ -924,43 +924,43 @@ class Struct(PrimitiveType):
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="catalog" href="index.html">catalog</a></code></li>
+<li><code><a title="hela" href="index.html">hela</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="catalog.data_types.Array" href="#catalog.data_types.Array">Array</a></code></h4>
+<h4><code><a title="hela.data_types.Array" href="#hela.data_types.Array">Array</a></code></h4>
 </li>
 <li>
-<h4><code><a title="catalog.data_types.Bool" href="#catalog.data_types.Bool">Bool</a></code></h4>
+<h4><code><a title="hela.data_types.Bool" href="#hela.data_types.Bool">Bool</a></code></h4>
 </li>
 <li>
-<h4><code><a title="catalog.data_types.Date" href="#catalog.data_types.Date">Date</a></code></h4>
+<h4><code><a title="hela.data_types.Date" href="#hela.data_types.Date">Date</a></code></h4>
 </li>
 <li>
-<h4><code><a title="catalog.data_types.DateTime" href="#catalog.data_types.DateTime">DateTime</a></code></h4>
+<h4><code><a title="hela.data_types.DateTime" href="#hela.data_types.DateTime">DateTime</a></code></h4>
 </li>
 <li>
-<h4><code><a title="catalog.data_types.Double" href="#catalog.data_types.Double">Double</a></code></h4>
+<h4><code><a title="hela.data_types.Double" href="#hela.data_types.Double">Double</a></code></h4>
 </li>
 <li>
-<h4><code><a title="catalog.data_types.Float" href="#catalog.data_types.Float">Float</a></code></h4>
+<h4><code><a title="hela.data_types.Float" href="#hela.data_types.Float">Float</a></code></h4>
 </li>
 <li>
-<h4><code><a title="catalog.data_types.Int" href="#catalog.data_types.Int">Int</a></code></h4>
+<h4><code><a title="hela.data_types.Int" href="#hela.data_types.Int">Int</a></code></h4>
 </li>
 <li>
-<h4><code><a title="catalog.data_types.Long" href="#catalog.data_types.Long">Long</a></code></h4>
+<h4><code><a title="hela.data_types.Long" href="#hela.data_types.Long">Long</a></code></h4>
 </li>
 <li>
-<h4><code><a title="catalog.data_types.PrimitiveType" href="#catalog.data_types.PrimitiveType">PrimitiveType</a></code></h4>
+<h4><code><a title="hela.data_types.PrimitiveType" href="#hela.data_types.PrimitiveType">PrimitiveType</a></code></h4>
 </li>
 <li>
-<h4><code><a title="catalog.data_types.String" href="#catalog.data_types.String">String</a></code></h4>
+<h4><code><a title="hela.data_types.String" href="#hela.data_types.String">String</a></code></h4>
 </li>
 <li>
-<h4><code><a title="catalog.data_types.Struct" href="#catalog.data_types.Struct">Struct</a></code></h4>
+<h4><code><a title="hela.data_types.Struct" href="#hela.data_types.Struct">Struct</a></code></h4>
 </li>
 </ul>
 </li>

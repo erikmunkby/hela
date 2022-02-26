@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>catalog.test_suite.description_tests API documentation</title>
+<title>hela.test_suite.description_tests API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
@@ -19,17 +19,17 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>catalog.test_suite.description_tests</code></h1>
+<h1 class="title">Module <code>hela.test_suite.description_tests</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from catalog import Catalog
-from catalog.math.tf_idf import find_similar_occurrences
-from catalog.math.preprocessing import clean_document
-from catalog.errors import ValidationError
+<pre><code class="python">from hela import Catalog
+from hela.math.tf_idf import find_similar_occurrences
+from hela.math.preprocessing import clean_document
+from hela.errors import ValidationError
 from collections import defaultdict
 
 
@@ -105,8 +105,8 @@ def validate_no_description_duplication(root_catalog: Catalog) -&gt; True:
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="catalog.test_suite.description_tests.validate_description_similarity"><code class="name flex">
-<span>def <span class="ident">validate_description_similarity</span></span>(<span>root_catalog: catalog._catalog_class.Catalog, min_similarity: float = 0.75) ‑> True</span>
+<dt id="hela.test_suite.description_tests.validate_description_similarity"><code class="name flex">
+<span>def <span class="ident">validate_description_similarity</span></span>(<span>root_catalog: hela._catalog_class.Catalog, min_similarity: float = 0.75) ‑> True</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Runs a validation check to make sure there descriptions too similar within the catalog.</p>
@@ -163,8 +163,8 @@ def validate_no_description_duplication(root_catalog: Catalog) -&gt; True:
     return True</code></pre>
 </details>
 </dd>
-<dt id="catalog.test_suite.description_tests.validate_no_description_duplication"><code class="name flex">
-<span>def <span class="ident">validate_no_description_duplication</span></span>(<span>root_catalog: catalog._catalog_class.Catalog) ‑> True</span>
+<dt id="hela.test_suite.description_tests.validate_no_description_duplication"><code class="name flex">
+<span>def <span class="ident">validate_no_description_duplication</span></span>(<span>root_catalog: hela._catalog_class.Catalog) ‑> True</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Runs a validation check to make sure no descriptions are duplicated within the catalog.</p>
@@ -228,13 +228,13 @@ def validate_no_description_duplication(root_catalog: Catalog) -&gt; True:
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="catalog.test_suite" href="index.html">catalog.test_suite</a></code></li>
+<li><code><a title="hela.test_suite" href="index.html">hela.test_suite</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="catalog.test_suite.description_tests.validate_description_similarity" href="#catalog.test_suite.description_tests.validate_description_similarity">validate_description_similarity</a></code></li>
-<li><code><a title="catalog.test_suite.description_tests.validate_no_description_duplication" href="#catalog.test_suite.description_tests.validate_no_description_duplication">validate_no_description_duplication</a></code></li>
+<li><code><a title="hela.test_suite.description_tests.validate_description_similarity" href="#hela.test_suite.description_tests.validate_description_similarity">validate_description_similarity</a></code></li>
+<li><code><a title="hela.test_suite.description_tests.validate_no_description_duplication" href="#hela.test_suite.description_tests.validate_no_description_duplication">validate_no_description_duplication</a></code></li>
 </ul>
 </li>
 </ul>

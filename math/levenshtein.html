@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>catalog.math.levenshtein API documentation</title>
+<title>hela.math.levenshtein API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
@@ -19,7 +19,7 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>catalog.math.levenshtein</code></h1>
+<h1 class="title">Module <code>hela.math.levenshtein</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
@@ -28,8 +28,8 @@
 </summary>
 <pre><code class="python">import numpy as np
 from typing import Sequence
-from catalog.math.preprocessing import clean_corpus, clean_document
-from catalog.math.score_info import SimilarityInfo
+from hela.math.preprocessing import clean_corpus, clean_document
+from hela.math.score_info import SimilarityInfo
 
 
 def distance(s1: str, s2: str) -&gt; float:
@@ -102,7 +102,7 @@ def replace(query_str: str, corpus: Sequence[str], min_similarity: float = .75) 
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="catalog.math.levenshtein.distance"><code class="name flex">
+<dt id="hela.math.levenshtein.distance"><code class="name flex">
 <span>def <span class="ident">distance</span></span>(<span>s1: str, s2: str) ‑> float</span>
 </code></dt>
 <dd>
@@ -135,7 +135,7 @@ def replace(query_str: str, corpus: Sequence[str], min_similarity: float = .75) 
     return round(1 - matrix[-1, -1] / max(len(s1), len(s2)), 3)</code></pre>
 </details>
 </dd>
-<dt id="catalog.math.levenshtein.replace"><code class="name flex">
+<dt id="hela.math.levenshtein.replace"><code class="name flex">
 <span>def <span class="ident">replace</span></span>(<span>query_str: str, corpus: Sequence[str], min_similarity: float = 0.75) ‑> str</span>
 </code></dt>
 <dd>
@@ -156,8 +156,8 @@ def replace(query_str: str, corpus: Sequence[str], min_similarity: float = .75) 
     return query_str</code></pre>
 </details>
 </dd>
-<dt id="catalog.math.levenshtein.sort"><code class="name flex">
-<span>def <span class="ident">sort</span></span>(<span>query_str: str, corpus: Sequence[str], min_similarity: float = 0.75) ‑> Sequence[<a title="catalog.math.score_info.SimilarityInfo" href="score_info.html#catalog.math.score_info.SimilarityInfo">SimilarityInfo</a>]</span>
+<dt id="hela.math.levenshtein.sort"><code class="name flex">
+<span>def <span class="ident">sort</span></span>(<span>query_str: str, corpus: Sequence[str], min_similarity: float = 0.75) ‑> Sequence[<a title="hela.math.score_info.SimilarityInfo" href="score_info.html#hela.math.score_info.SimilarityInfo">SimilarityInfo</a>]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Sorts a corpus of documents based on levenshtein distance similarity.</p>
@@ -221,14 +221,14 @@ def replace(query_str: str, corpus: Sequence[str], min_similarity: float = .75) 
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="catalog.math" href="index.html">catalog.math</a></code></li>
+<li><code><a title="hela.math" href="index.html">hela.math</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="catalog.math.levenshtein.distance" href="#catalog.math.levenshtein.distance">distance</a></code></li>
-<li><code><a title="catalog.math.levenshtein.replace" href="#catalog.math.levenshtein.replace">replace</a></code></li>
-<li><code><a title="catalog.math.levenshtein.sort" href="#catalog.math.levenshtein.sort">sort</a></code></li>
+<li><code><a title="hela.math.levenshtein.distance" href="#hela.math.levenshtein.distance">distance</a></code></li>
+<li><code><a title="hela.math.levenshtein.replace" href="#hela.math.levenshtein.replace">replace</a></code></li>
+<li><code><a title="hela.math.levenshtein.sort" href="#hela.math.levenshtein.sort">sort</a></code></li>
 </ul>
 </li>
 </ul>

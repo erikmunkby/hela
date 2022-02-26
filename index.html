@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>catalog API documentation</title>
+<title>hela API documentation</title>
 <meta name="description" content="You probably already have your data job scripts version controlled, but what about your data catalog?
 The answer: **write your data catalog as code!** …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -20,43 +20,43 @@ The answer: **write your data catalog as code!** …" />
 <main>
 <article id="content">
 <header>
-<h1 class="title">Package <code>catalog</code></h1>
+<h1 class="title">Package <code>hela</code></h1>
 </header>
 <section id="section-intro">
 <p>You probably already have your data job scripts version controlled, but what about your data catalog?
-The answer: <strong>write your data catalog as code!</strong> Storing your data catalog and data documentation as code
-makes your catalog searchable, referenceable, reliable, platform agnostic, sets you up for easy collaboration
-and much more! This library is built to fit small and large data landscapes, but is happiest when included
-from the start.</p>
+The answer: <strong>write your data catalog as code!</strong> Storing your data catalog and data documentation as code makes your catalog searchable, referenceable, reliable, platform agnostic, sets you up for easy collaboration and much more!
+This library is built to fit small and large data landscapes, but is happiest when included from the start.</p>
+<p><code>Hela</code> (or Hel) is the norse mythological collector of souls, and the Swedish word for "whole" or "all of it". <code>Hela</code>
+is designed to give everyone a chance to build a data catalog, with a low entry barrier: pure python code.</p>
 <p>TODO: Add link to github for contributions.
 TODO: Add link to repo with example catalog.</p>
 <h1 id="overview">Overview</h1>
 <p>The catalog package consists of four primary components:</p>
 <ul>
-<li><code><a title="catalog.Catalog" href="#catalog.Catalog">Catalog</a></code>: The eponymous class of this package. This inheritable class holds your entire catalog together,
+<li><code><a title="hela.Catalog" href="#hela.Catalog">Catalog</a></code>: The eponymous class of this package. This inheritable class holds your entire catalog together,
 and you can build trees of datasets in catalogs in catalogs.</li>
-<li><code><a title="catalog.BaseDataset" href="#catalog.BaseDataset">BaseDataset</a></code>: An inheritable dataset class, the second cornerstone of the package. Depending on how much
-time you want to invest in this data <strong>catalog</strong>, it is in your own datasets you would write the most code.
-See <code><a title="catalog.datasets.pandas_parquet_dataset.PandasParquetDataset" href="datasets/pandas_parquet_dataset.html#catalog.datasets.pandas_parquet_dataset.PandasParquetDataset">PandasParquetDataset</a></code> for examples.</li>
-<li><code><a title="catalog.Col" href="#catalog.Col">Col</a></code> &amp; <code><a title="catalog.NestedCol" href="#catalog.NestedCol">NestedCol</a></code>: The leaves of your beautiful <strong>catalog</strong> tree. These are referenceable,
-reusable and (hopefully) well documented column objects.</li>
-<li><code><a title="catalog.column_store" href="#catalog.column_store">column_store()</a></code>: The most generous store filled with columns used in multiple datasets of your <strong>catalog</strong> landscape.</li>
+<li><code><a title="hela.BaseDataset" href="#hela.BaseDataset">BaseDataset</a></code>: An inheritable dataset class, the second cornerstone of the package. Depending on how much
+time you want to invest in this data <strong>catalog</strong>, it is within your own datasets you would write the most code.
+See <code><a title="hela.datasets.pandas_parquet_dataset.PandasParquetDataset" href="datasets/pandas_parquet_dataset.html#hela.datasets.pandas_parquet_dataset.PandasParquetDataset">PandasParquetDataset</a></code> for examples.</li>
+<li><code><a title="hela.Col" href="#hela.Col">Col</a></code> &amp; <code><a title="hela.NestedCol" href="#hela.NestedCol">NestedCol</a></code>: The leaves of your beautiful <strong>catalog</strong> tree. These are referenceable,
+reusable and (preferably) well documented column objects.</li>
+<li><code><a title="hela.column_store" href="#hela.column_store">column_store()</a></code>: The most generous store filled with columns used in multiple datasets of your <strong>catalog</strong> landscape.</li>
 </ul>
 <p>And let's not forget the crown of this beautiful tree:</p>
 <ul>
-<li><code><a title="catalog.generate_webpage" href="#catalog.generate_webpage">generate_webpage()</a></code> Giving you the possibility to democratize and share your <strong>catalog</strong> with all recipients you want to.
+<li><code><a title="hela.generate_webpage" href="#hela.generate_webpage">generate_webpage()</a></code> Giving you the possibility to democratize and share your <strong>catalog</strong> with all recipients you want to.
 Serve the site wherever you can host a static <em>index.html</em> file such <a href="https://pages.github.com/">github pages</a>.</li>
 </ul>
 <h1 id="one-schema-to-rule-them-all">One schema to rule them all</h1>
 <p>With high probability you have at some point have stumbled upon a situation where you have the same type of data,
 represented in multiple locations of different formats. Be it JSON, a database, Parquet files or BigQuery, usually a
-datapoint called <em>weekday</em> will mean the same no matter where you are. With <strong>catalog</strong> you can make sure these
+datapoint called e.g. <em>weekday</em> will mean the same no matter where you are. With <strong>catalog</strong> you can make sure these
 datapoints are of the same type, and described the same no matter the source.</p>
 <p>Let's say you have an API that dumps JSON into some kind of blob storage. You want to dump this data into your BigQuery
 table and ensure that you have the correct schema end-to-end. Using the same dataset (or list of columns) you can generate
 a schema for both BigQuery and JSON:</p>
-<pre><code class="language-python">from catalog import Col, schema_generators
-from catalog.data_types import String, Int
+<pre><code class="language-python">from hela import Col, schema_generators
+from hela.data_types import String, Int
 columns = [
     Col('product_name', String(), 'The name of the product.'),
     NestedCol('ratings', [
@@ -70,8 +70,8 @@ bigquery_schema = schema_generators.bigquery_schema(columns)
 json_schema = schema_generators.json_schema(columns)
 </code></pre>
 <p>Or if you have some data stored in parquet read by spark, with overlapping columns stored in S3 managed by AWS Glue:</p>
-<pre><code class="language-python">from catalog import Col, NestedCol, schema_generators, column_store
-from catalog.data_types import String, Int
+<pre><code class="language-python">from hela import Col, NestedCol, schema_generators, column_store
+from hela.data_types import String, Int
 
 @column_store()
 class MyStore:
@@ -116,10 +116,10 @@ functionality such as:</p>
 <li>Write &amp; Load functionality</li>
 <li>Various partitioning and optimization logic</li>
 </ul>
-<p>Important is to inherit the <code><a title="catalog.BaseDataset" href="#catalog.BaseDataset">BaseDataset</a></code> class and shadow/hard-code any of the init fields
+<p>Important is to inherit the <code><a title="hela.BaseDataset" href="#hela.BaseDataset">BaseDataset</a></code> class and shadow/hard-code any of the init fields
 required.</p>
-<pre><code class="language-python">from catalog import BaseDataset, Col
-from catalog.data_types import String
+<pre><code class="language-python">from hela import BaseDataset, Col
+from hela.data_types import String
 
 class MyDatasetClass(BaseDataset):
     def __init__(
@@ -156,21 +156,21 @@ my_dataset = MyDatasetClass('my_dataset', 'An example dataset.', [
 </code></pre>
 <p>Now that you have a dataset class, and instantiated your first dataset, you can start populating your
 data catalog.</p>
-<pre><code class="language-python">from catalog import Catalog
+<pre><code class="language-python">from hela import Catalog
 
 class MyCatalog(Catalog):
     my_dataset = my_dataset
 </code></pre>
 <p>That's it! You now have a small catalog to keep building on. To view it as a web page you can
 add the following code to a python script, and in the future add it in whichever CI/CD tool you use:</p>
-<pre><code class="language-python">from catalog import generate_webpage
+<pre><code class="language-python">from hela import generate_webpage
 
 generate_webpage(MyCatalog, output_folder='.')
 </code></pre>
 <p>For further reading check out:</p>
 <ul>
-<li><code><a title="catalog.Catalog.search" href="#catalog.Catalog.search">Catalog.search()</a></code> Smart search across your catalog!</li>
-<li><code><a title="catalog.test_suite" href="test_suite/index.html">catalog.test_suite</a></code> Quality assurance and smart validations for your testing pipeline.</li>
+<li><code><a title="hela.Catalog.search" href="#hela.Catalog.search">Catalog.search()</a></code> Smart search across your catalog!</li>
+<li><code><a title="hela.test_suite" href="test_suite/index.html">hela.test_suite</a></code> Quality assurance and smart validations for your testing pipeline.</li>
 <li><a href="TODO: link to showcase repo">Catalog Showcase Repo</a> See a bigger catalog in action.</li>
 </ul>
 <h1 id="highlights">Highlights</h1>
@@ -179,7 +179,7 @@ by the catalog package!</p>
 <h2 id="iterate-through-datasets">Iterate through datasets</h2>
 <p>Let's say you want to change the type of your column <code>best_column</code> from a string to an integer
 everywhere the column is used, you can do that by fetching all datasets that
-includes <code>best_column</code> using <code><a title="catalog.Catalog.get_columns_datasets" href="#catalog.Catalog.get_columns_datasets">Catalog.get_columns_datasets()</a></code>, then execute your query
+includes <code>best_column</code> using <code><a title="hela.Catalog.get_columns_datasets" href="#hela.Catalog.get_columns_datasets">Catalog.get_columns_datasets()</a></code>, then execute your query
 on these datasets:</p>
 <pre><code class="language-python">from my_package import MyCatalog
 columns_datasets_dict = MyCatalog.get_columns_datasets()
@@ -190,12 +190,12 @@ for dataset in columns_datasets_dict['best_column']:
 <p>Everyone knows how difficult it is to name things, especially when managing multiple datasets
 across many similar domains. <strong>Catalog</strong> helps you keep your standards in check by making sure
 no column is unknowingly duplicated between different datasets.</p>
-<p>To combat this there is a pre-built <code><a title="catalog.test_suite" href="test_suite/index.html">catalog.test_suite</a></code> module filled with helper functions. The best
+<p>To combat this there is a pre-built <code><a title="hela.test_suite" href="test_suite/index.html">hela.test_suite</a></code> module filled with helper functions. The best
 way to use these functions is to include them in your package test setup (e.g. pytest). For example
-make sure no column name is duplicated using <code><a title="catalog.test_suite.catalog_tests.validate_no_duplicated_columns" href="test_suite/catalog_tests.html#catalog.test_suite.catalog_tests.validate_no_duplicated_columns">validate_no_duplicated_columns()</a></code>.</p>
+make sure no column name is duplicated using <code><a title="hela.test_suite.catalog_tests.validate_no_duplicated_columns" href="test_suite/catalog_tests.html#hela.test_suite.catalog_tests.validate_no_duplicated_columns">validate_no_duplicated_columns()</a></code>.</p>
 <p>On the other hand, sometimes as you build your catalog you find columns you would want to have the same name,
 as they might include the same type of information. In these cases we can only rely on that the descriptions are
-similar enough to get a hit using <code><a title="catalog.test_suite.description_tests.validate_description_similarity" href="test_suite/description_tests.html#catalog.test_suite.description_tests.validate_description_similarity">validate_description_similarity()</a></code>.</p>
+similar enough to get a hit using <code><a title="hela.test_suite.description_tests.validate_description_similarity" href="test_suite/description_tests.html#hela.test_suite.description_tests.validate_description_similarity">validate_description_similarity()</a></code>.</p>
 <h2 id="notebook-interactivity">Notebook interactivity</h2>
 <p><img alt="Date availability grid from show_dates function" src="TODO: Add url to image here when repo public">
 <img alt="Show Columns functionality" src="TODO: Add url to image here when repo public"></p>
@@ -213,14 +213,14 @@ If you improve something that you believe could be useful for other people as we
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">&#34;&#34;&#34;
-.. include:: ../gh_pages/catalog.md
+.. include:: ../gh_pages/hela.md
 &#34;&#34;&#34;
 
-from catalog._catalog_class import Catalog
-from catalog._column_classes import Col, NestedCol
-from catalog._base_dataset import BaseDataset
-from catalog._column_store_class import column_store
-from catalog.web_page.generate import generate_webpage
+from hela._catalog_class import Catalog
+from hela._column_classes import Col, NestedCol
+from hela._base_dataset import BaseDataset
+from hela._column_store_class import column_store
+from hela.web_page.generate import generate_webpage
 
 
 __all__ = [
@@ -236,39 +236,39 @@ __all__ = [
 <section>
 <h2 class="section-title" id="header-submodules">Sub-modules</h2>
 <dl>
-<dt><code class="name"><a title="catalog.data_types" href="data_types.html">catalog.data_types</a></code></dt>
+<dt><code class="name"><a title="hela.data_types" href="data_types.html">hela.data_types</a></code></dt>
 <dd>
 <div class="desc"><p>Module consisting of all pre-built data types.</p></div>
 </dd>
-<dt><code class="name"><a title="catalog.datasets" href="datasets/index.html">catalog.datasets</a></code></dt>
+<dt><code class="name"><a title="hela.datasets" href="datasets/index.html">hela.datasets</a></code></dt>
 <dd>
 <div class="desc"><p>Module with pre-built datasets for demonstrational purposes.</p></div>
 </dd>
-<dt><code class="name"><a title="catalog.errors" href="errors.html">catalog.errors</a></code></dt>
+<dt><code class="name"><a title="hela.errors" href="errors.html">hela.errors</a></code></dt>
 <dd>
 <div class="desc"><p>Module with custom errors.</p></div>
 </dd>
-<dt><code class="name"><a title="catalog.infer" href="infer.html">catalog.infer</a></code></dt>
+<dt><code class="name"><a title="hela.infer" href="infer.html">hela.infer</a></code></dt>
 <dd>
 <div class="desc"><p>Includes functions to infer Catalog schemas on various data structures.</p></div>
 </dd>
-<dt><code class="name"><a title="catalog.math" href="math/index.html">catalog.math</a></code></dt>
+<dt><code class="name"><a title="hela.math" href="math/index.html">hela.math</a></code></dt>
 <dd>
 <div class="desc"><p>Module for math and statistics related functions.</p></div>
 </dd>
-<dt><code class="name"><a title="catalog.plots" href="plots/index.html">catalog.plots</a></code></dt>
+<dt><code class="name"><a title="hela.plots" href="plots/index.html">hela.plots</a></code></dt>
 <dd>
 <div class="desc"><p>Module for plot functions.</p></div>
 </dd>
-<dt><code class="name"><a title="catalog.schema_generators" href="schema_generators.html">catalog.schema_generators</a></code></dt>
+<dt><code class="name"><a title="hela.schema_generators" href="schema_generators.html">hela.schema_generators</a></code></dt>
 <dd>
 <div class="desc"><p>Module used to translate from catalog schema to other schema types.</p></div>
 </dd>
-<dt><code class="name"><a title="catalog.test_suite" href="test_suite/index.html">catalog.test_suite</a></code></dt>
+<dt><code class="name"><a title="hela.test_suite" href="test_suite/index.html">hela.test_suite</a></code></dt>
 <dd>
 <div class="desc"><p>Module covering the test suite to make sure your catalog is set up properly …</p></div>
 </dd>
-<dt><code class="name"><a title="catalog.web_page" href="web_page/index.html">catalog.web_page</a></code></dt>
+<dt><code class="name"><a title="hela.web_page" href="web_page/index.html">hela.web_page</a></code></dt>
 <dd>
 <div class="desc"><p>This module includes function to generate a data catalog web page.</p></div>
 </dd>
@@ -279,7 +279,7 @@ __all__ = [
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="catalog.column_store"><code class="name flex">
+<dt id="hela.column_store"><code class="name flex">
 <span>def <span class="ident">column_store</span></span>(<span>cls=None, label: str = None) ‑> object</span>
 </code></dt>
 <dd>
@@ -295,8 +295,8 @@ check that any duplicated column must originate from the same column store.</p>
 <h2 id="returns">Returns</h2>
 <p>The decorated class.</p>
 <h2 id="examples">Examples</h2>
-<pre><code class="language-python-repl">&gt;&gt;&gt; from catalog import column_store, Col
-&gt;&gt;&gt; from catalog.data_types import String
+<pre><code class="language-python-repl">&gt;&gt;&gt; from hela import column_store, Col
+&gt;&gt;&gt; from hela.data_types import String
 &gt;&gt;&gt; @column_store(label='cool_columns')
 &gt;&gt;&gt; class MyStore:
 ...     my_column = Col('my_column', String(), 'Example column')
@@ -321,8 +321,8 @@ check that any duplicated column must originate from the same column store.</p>
 
 
     Examples:
-        &gt;&gt;&gt; from catalog import column_store, Col
-        &gt;&gt;&gt; from catalog.data_types import String
+        &gt;&gt;&gt; from hela import column_store, Col
+        &gt;&gt;&gt; from hela.data_types import String
         &gt;&gt;&gt; @column_store(label=&#39;cool_columns&#39;)
         &gt;&gt;&gt; class MyStore:
         ...     my_column = Col(&#39;my_column&#39;, String(), &#39;Example column&#39;)
@@ -341,8 +341,8 @@ check that any duplicated column must originate from the same column store.</p>
     raise ValueError(&#39;A column store can only be decorated with called method: `@column_store()`&#39;)</code></pre>
 </details>
 </dd>
-<dt id="catalog.generate_webpage"><code class="name flex">
-<span>def <span class="ident">generate_webpage</span></span>(<span>catalogs: Union[catalog._catalog_class.Catalog, Sequence[catalog._catalog_class.Catalog]], output_folder: str, overwrite_existing: bool = False, include_samples: bool = False, web_app_title: str = None) ‑> None</span>
+<dt id="hela.generate_webpage"><code class="name flex">
+<span>def <span class="ident">generate_webpage</span></span>(<span>catalogs: Union[hela._catalog_class.Catalog, Sequence[hela._catalog_class.Catalog]], output_folder: str, overwrite_existing: bool = False, include_samples: bool = False, web_app_title: str = None) ‑> None</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Generates an index.html file that can be used as a data catalog website.</p>
@@ -360,7 +360,7 @@ If you have a tree of catalogs, only the root catalog is required.</dd>
 <dd>Flag whether and potential index.html file should be overwritten if existing.</dd>
 <dt><strong><code>include_samples</code></strong></dt>
 <dd>Flag whether to attempt to fetch sample datapoints from the columns in each
-dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="#catalog.BaseDataset.get_samples">BaseDataset.get_samples()</a></code> function implemented.</dd>
+dataset. Requires <code><a title="hela.BaseDataset.get_samples" href="#hela.BaseDataset.get_samples">BaseDataset.get_samples()</a></code> function implemented.</dd>
 <dt><strong><code>web_app_title</code></strong></dt>
 <dd>Optional title of the web app.</dd>
 </dl>
@@ -371,7 +371,7 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="#catalo
 </dl>
 <p>Examples:</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; from my_catalog import MyCatalog
-&gt;&gt;&gt; from catalog import generate_webpage
+&gt;&gt;&gt; from hela import generate_webpage
 &gt;&gt;&gt; generate_webpage(MyCatalog, '.', overwrite_existing=True)
 </code></pre></div>
 <details class="source">
@@ -397,7 +397,7 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="#catalo
         output_folder:  The folder where index.html file should end up.
         overwrite_existing: Flag whether and potential index.html file should be overwritten if existing.
         include_samples:    Flag whether to attempt to fetch sample datapoints from the columns in each
-                            dataset. Requires `catalog.BaseDataset.get_samples` function implemented.
+                            dataset. Requires `hela.BaseDataset.get_samples` function implemented.
         web_app_title:  Optional title of the web app.
 
     Raises:
@@ -405,7 +405,7 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="#catalo
 
     Examples:
     &gt;&gt;&gt; from my_catalog import MyCatalog
-    &gt;&gt;&gt; from catalog import generate_webpage
+    &gt;&gt;&gt; from hela import generate_webpage
     &gt;&gt;&gt; generate_webpage(MyCatalog, &#39;.&#39;, overwrite_existing=True)
     &#34;&#34;&#34;
     if not isinstance(catalogs, Sequence):
@@ -440,7 +440,7 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="#catalo
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="catalog.BaseDataset"><code class="flex name class">
+<dt id="hela.BaseDataset"><code class="flex name class">
 <span>class <span class="ident">BaseDataset</span></span>
 <span>(</span><span>name: str, data_type: str, folder: Optional[Union[str, Path]] = None, database: Optional[str] = None, description: Optional[str] = None, rich_description_path: Optional[str] = None, partition_cols: Optional[Sequence[str]] = None, columns: Optional[Sequence[_ColumnType]] = None)</span>
 </code></dt>
@@ -449,7 +449,7 @@ dataset. Requires <code><a title="catalog.BaseDataset.get_samples" href="#catalo
 <p>If you choose to build data interactivity through the data catalog, it is within
 your own dataset classes you would build authentication and connection logic.</p>
 <p>For full usage of the available catalog features implement the functions
-<code><a title="catalog.BaseDataset.get_samples" href="#catalog.BaseDataset.get_samples">BaseDataset.get_samples()</a></code> and <code><a title="catalog.BaseDataset.get_dates" href="#catalog.BaseDataset.get_dates">BaseDataset.get_dates()</a></code>.</p>
+<code><a title="hela.BaseDataset.get_samples" href="#hela.BaseDataset.get_samples">BaseDataset.get_samples()</a></code> and <code><a title="hela.BaseDataset.get_dates" href="#hela.BaseDataset.get_dates">BaseDataset.get_dates()</a></code>.</p>
 <h2 id="attributes">Attributes</h2>
 <dl>
 <dt><strong><code>name</code></strong></dt>
@@ -684,13 +684,13 @@ more detailed descriptions. Primarily used for generated catalog web page.</dd>
 </ul>
 <h3>Subclasses</h3>
 <ul class="hlist">
-<li><a title="catalog.datasets.bigquery_dataset.BigqueryDataset" href="datasets/bigquery_dataset.html#catalog.datasets.bigquery_dataset.BigqueryDataset">BigqueryDataset</a></li>
-<li><a title="catalog.datasets.pandas_parquet_dataset.PandasParquetDataset" href="datasets/pandas_parquet_dataset.html#catalog.datasets.pandas_parquet_dataset.PandasParquetDataset">PandasParquetDataset</a></li>
-<li><a title="catalog.datasets.spark_parquet_dataset.SparkParquetDataset" href="datasets/spark_parquet_dataset.html#catalog.datasets.spark_parquet_dataset.SparkParquetDataset">SparkParquetDataset</a></li>
+<li><a title="hela.datasets.bigquery_dataset.BigqueryDataset" href="datasets/bigquery_dataset.html#hela.datasets.bigquery_dataset.BigqueryDataset">BigqueryDataset</a></li>
+<li><a title="hela.datasets.pandas_parquet_dataset.PandasParquetDataset" href="datasets/pandas_parquet_dataset.html#hela.datasets.pandas_parquet_dataset.PandasParquetDataset">PandasParquetDataset</a></li>
+<li><a title="hela.datasets.spark_parquet_dataset.SparkParquetDataset" href="datasets/spark_parquet_dataset.html#hela.datasets.spark_parquet_dataset.SparkParquetDataset">SparkParquetDataset</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="catalog.BaseDataset.check_columns"><code class="name flex">
+<dt id="hela.BaseDataset.check_columns"><code class="name flex">
 <span>def <span class="ident">check_columns</span></span>(<span>self, column_list: Sequence[str], raise_undefined_columns: bool = False, raise_missing_columns: bool = False) ‑> None</span>
 </code></dt>
 <dd>
@@ -758,11 +758,11 @@ defined in dataset not found in column_list</dd>
     warnings.warn(msg)</code></pre>
 </details>
 </dd>
-<dt id="catalog.BaseDataset.get_dates"><code class="name flex">
+<dt id="hela.BaseDataset.get_dates"><code class="name flex">
 <span>def <span class="ident">get_dates</span></span>(<span>self) ‑> Optional[Set[datetime.date]]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Implement this function for date inspection functionality such as <code><a title="catalog.BaseDataset.show_dates" href="#catalog.BaseDataset.show_dates">BaseDataset.show_dates()</a></code>.</p>
+<div class="desc"><p>Implement this function for date inspection functionality such as <code><a title="hela.BaseDataset.show_dates" href="#hela.BaseDataset.show_dates">BaseDataset.show_dates()</a></code>.</p>
 <p>Should return a set of dates when called or None if dates for some reason could not be fetched.</p></div>
 <details class="source">
 <summary>
@@ -776,11 +776,11 @@ defined in dataset not found in column_list</dd>
     raise NotImplementedError</code></pre>
 </details>
 </dd>
-<dt id="catalog.BaseDataset.get_samples"><code class="name flex">
+<dt id="hela.BaseDataset.get_samples"><code class="name flex">
 <span>def <span class="ident">get_samples</span></span>(<span>self) ‑> Optional[Dict[str, Any]]</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Implement this function for sample inspection functionality used in e.g. <code><a title="catalog.BaseDataset.show_columns" href="#catalog.BaseDataset.show_columns">BaseDataset.show_columns()</a></code>.</p>
+<div class="desc"><p>Implement this function for sample inspection functionality used in e.g. <code><a title="hela.BaseDataset.show_columns" href="#hela.BaseDataset.show_columns">BaseDataset.show_columns()</a></code>.</p>
 <p>Should return a dictionary of string keys for column names with samples:</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; {'my_column': 123}
 </code></pre>
@@ -809,7 +809,7 @@ defined in dataset not found in column_list</dd>
     raise NotImplementedError</code></pre>
 </details>
 </dd>
-<dt id="catalog.BaseDataset.show_columns"><code class="name flex">
+<dt id="hela.BaseDataset.show_columns"><code class="name flex">
 <span>def <span class="ident">show_columns</span></span>(<span>self, samples: bool = True) ‑> pandas.core.frame.DataFrame</span>
 </code></dt>
 <dd>
@@ -818,7 +818,7 @@ defined in dataset not found in column_list</dd>
 <dl>
 <dt><strong><code>samples</code></strong></dt>
 <dd>When true will include a sample datapoint for all columns.
-Requires implementation of <code><a title="catalog.BaseDataset.get_samples" href="#catalog.BaseDataset.get_samples">BaseDataset.get_samples()</a></code> function.</dd>
+Requires implementation of <code><a title="hela.BaseDataset.get_samples" href="#hela.BaseDataset.get_samples">BaseDataset.get_samples()</a></code> function.</dd>
 </dl>
 <h2 id="returns">Returns</h2>
 <p>A pandas dataframe with one column per row.</p></div>
@@ -853,12 +853,12 @@ Requires implementation of <code><a title="catalog.BaseDataset.get_samples" href
     return column_df</code></pre>
 </details>
 </dd>
-<dt id="catalog.BaseDataset.show_dates"><code class="name flex">
+<dt id="hela.BaseDataset.show_dates"><code class="name flex">
 <span>def <span class="ident">show_dates</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Will generate a grid plot of all available dates for this dataset.
-Requires <code><a title="catalog.BaseDataset.get_dates" href="#catalog.BaseDataset.get_dates">BaseDataset.get_dates()</a></code> implemented.</p></div>
+Requires <code><a title="hela.BaseDataset.get_dates" href="#hela.BaseDataset.get_dates">BaseDataset.get_dates()</a></code> implemented.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -876,14 +876,14 @@ Requires <code><a title="catalog.BaseDataset.get_dates" href="#catalog.BaseDatas
 </dd>
 </dl>
 </dd>
-<dt id="catalog.Catalog"><code class="flex name class">
+<dt id="hela.Catalog"><code class="flex name class">
 <span>class <span class="ident">Catalog</span></span>
 </code></dt>
 <dd>
 <div class="desc"><p>Inheritable Catalog class, used when building your own data catalog.</p>
 <p>The namesake of the python package, this class will turn your code from just being code into a data catalog.
 This class will make your datasets iterable, testable, referenceable and more.
-You can also decorate the catalog with the <code><a title="catalog.Catalog.setup" href="#catalog.Catalog.setup">Catalog.setup()</a></code> function, giving your catalog a description and
+You can also decorate the catalog with the <code><a title="hela.Catalog.setup" href="#hela.Catalog.setup">Catalog.setup()</a></code> function, giving your catalog a description and
 enriching datasets within it.</p>
 <p>Examples:</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; # Without decorator
@@ -1157,8 +1157,8 @@ enriching datasets within it.</p>
 </details>
 <h3>Static methods</h3>
 <dl>
-<dt id="catalog.Catalog.get_catalogs"><code class="name flex">
-<span>def <span class="ident">get_catalogs</span></span>(<span>recursive: bool = True) ‑> Sequence[catalog._catalog_class.Catalog]</span>
+<dt id="hela.Catalog.get_catalogs"><code class="name flex">
+<span>def <span class="ident">get_catalogs</span></span>(<span>recursive: bool = True) ‑> Sequence[hela._catalog_class.Catalog]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get a list of all sub-catalogs of this catalog, not including self.</p>
@@ -1193,8 +1193,8 @@ def get_catalogs(cls, recursive: bool = True) -&gt; Sequence[Catalog]:
     return catalog_list</code></pre>
 </details>
 </dd>
-<dt id="catalog.Catalog.get_columns_datasets"><code class="name flex">
-<span>def <span class="ident">get_columns_datasets</span></span>(<span>recursive: bool = True) ‑> Dict[catalog._column_classes._ColumnType, Sequence[catalog._base_dataset.BaseDataset]]</span>
+<dt id="hela.Catalog.get_columns_datasets"><code class="name flex">
+<span>def <span class="ident">get_columns_datasets</span></span>(<span>recursive: bool = True) ‑> Dict[hela._column_classes._ColumnType, Sequence[hela._base_dataset.BaseDataset]]</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -1214,8 +1214,8 @@ def get_columns_datasets(cls, recursive: bool = True) -&gt; Dict[_ColumnType, Se
     return column_dict</code></pre>
 </details>
 </dd>
-<dt id="catalog.Catalog.get_datasets"><code class="name flex">
-<span>def <span class="ident">get_datasets</span></span>(<span>recursive: bool = True) ‑> Sequence[catalog._base_dataset.BaseDataset]</span>
+<dt id="hela.Catalog.get_datasets"><code class="name flex">
+<span>def <span class="ident">get_datasets</span></span>(<span>recursive: bool = True) ‑> Sequence[hela._base_dataset.BaseDataset]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns a list of all datasets within this catalog, recursively if flag is set.</p>
@@ -1252,8 +1252,8 @@ def get_datasets(cls, recursive: bool = True) -&gt; Sequence[BaseDataset]:
     return dataset_list</code></pre>
 </details>
 </dd>
-<dt id="catalog.Catalog.search"><code class="name flex">
-<span>def <span class="ident">search</span></span>(<span>query_str: str, recursive: bool = True, max_hits: int = 5, min_relevance: float = 0.1) ‑> <a title="catalog.plots.html_displays.DFDisplay" href="plots/html_displays.html#catalog.plots.html_displays.DFDisplay">DFDisplay</a></span>
+<dt id="hela.Catalog.search"><code class="name flex">
+<span>def <span class="ident">search</span></span>(<span>query_str: str, recursive: bool = True, max_hits: int = 5, min_relevance: float = 0.1) ‑> <a title="hela.plots.html_displays.DFDisplay" href="plots/html_displays.html#hela.plots.html_displays.DFDisplay">DFDisplay</a></span>
 </code></dt>
 <dd>
 <div class="desc"><p>Searches across names and descriptions of Catalogs, Datasets and Columns.</p>
@@ -1354,8 +1354,8 @@ def search(cls, query_str: str, recursive: bool = True, max_hits: int = 5, min_r
     )</code></pre>
 </details>
 </dd>
-<dt id="catalog.Catalog.setup"><code class="name flex">
-<span>def <span class="ident">setup</span></span>(<span>cls: <a title="catalog.Catalog" href="#catalog.Catalog">Catalog</a> = None, folder: Optional[str] = None, database: Optional[str] = None, description: Optional[str] = None, rich_description_path: Optional[str] = None) ‑> catalog._catalog_class.Catalog</span>
+<dt id="hela.Catalog.setup"><code class="name flex">
+<span>def <span class="ident">setup</span></span>(<span>cls: <a title="hela.Catalog" href="#hela.Catalog">Catalog</a> = None, folder: Optional[str] = None, database: Optional[str] = None, description: Optional[str] = None, rich_description_path: Optional[str] = None) ‑> hela._catalog_class.Catalog</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Decorator enriching the catalog with a description, and optionally binding
@@ -1415,8 +1415,8 @@ def setup(
     return wrap(cls)</code></pre>
 </details>
 </dd>
-<dt id="catalog.Catalog.show_columns"><code class="name flex">
-<span>def <span class="ident">show_columns</span></span>(<span>recursive: bool = True) ‑> <a title="catalog.plots.html_displays.DFDisplay" href="plots/html_displays.html#catalog.plots.html_displays.DFDisplay">DFDisplay</a></span>
+<dt id="hela.Catalog.show_columns"><code class="name flex">
+<span>def <span class="ident">show_columns</span></span>(<span>recursive: bool = True) ‑> <a title="hela.plots.html_displays.DFDisplay" href="plots/html_displays.html#hela.plots.html_displays.DFDisplay">DFDisplay</a></span>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns a pandas dataframe with a description of all columns in this catalog, one column per row.</p>
@@ -1452,8 +1452,8 @@ def show_columns(cls, recursive: bool = True) -&gt; DFDisplay:
     return df.sort_values(&#39;name&#39;).reset_index(drop=True)</code></pre>
 </details>
 </dd>
-<dt id="catalog.Catalog.show_datasets"><code class="name flex">
-<span>def <span class="ident">show_datasets</span></span>(<span>recursive: bool = True) ‑> <a title="catalog.plots.html_displays.DFDisplay" href="plots/html_displays.html#catalog.plots.html_displays.DFDisplay">DFDisplay</a></span>
+<dt id="hela.Catalog.show_datasets"><code class="name flex">
+<span>def <span class="ident">show_datasets</span></span>(<span>recursive: bool = True) ‑> <a title="hela.plots.html_displays.DFDisplay" href="plots/html_displays.html#hela.plots.html_displays.DFDisplay">DFDisplay</a></span>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns a DFDisplay with a description of all datasets in this catalog, one dataset per row.</p>
@@ -1486,13 +1486,13 @@ def show_datasets(cls, recursive: bool = True) -&gt; DFDisplay:
 </dd>
 </dl>
 </dd>
-<dt id="catalog.Col"><code class="flex name class">
+<dt id="hela.Col"><code class="flex name class">
 <span>class <span class="ident">Col</span></span>
 <span>(</span><span>name: str, data_type: PrimitiveType, description: str = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>A basic column object, for nested columns see <code><a title="catalog.NestedCol" href="#catalog.NestedCol">NestedCol</a></code>.</p>
-<p>This class is used to define columns within a <code><a title="catalog.BaseDataset" href="#catalog.BaseDataset">BaseDataset</a></code> or <code><a title="catalog.column_store" href="#catalog.column_store">column_store()</a></code>.
+<div class="desc"><p>A basic column object, for nested columns see <code><a title="hela.NestedCol" href="#hela.NestedCol">NestedCol</a></code>.</p>
+<p>This class is used to define columns within a <code><a title="hela.BaseDataset" href="#hela.BaseDataset">BaseDataset</a></code> or <code><a title="hela.column_store" href="#hela.column_store">column_store()</a></code>.
 Each defined column will be searchable, testable and referenceable.</p>
 <p>If you want to give further functionality to your columns, please this class.</p>
 <h2 id="attributes">Attributes</h2>
@@ -1500,13 +1500,13 @@ Each defined column will be searchable, testable and referenceable.</p>
 <dt><strong><code>name</code></strong></dt>
 <dd>The name of the column.</dd>
 <dt><strong><code>data_type</code></strong></dt>
-<dd>The data type of the column, should be one of types found in <code><a title="catalog.data_types" href="data_types.html">catalog.data_types</a></code></dd>
+<dd>The data type of the column, should be one of types found in <code><a title="hela.data_types" href="data_types.html">hela.data_types</a></code></dd>
 <dt><strong><code>description</code></strong></dt>
 <dd>A description of this column as a string, better descriptions yield a more secure catalog.</dd>
 </dl>
 <p>Examples:</p>
-<pre><code class="language-python-repl">&gt;&gt;&gt; from catalog import Col
-&gt;&gt;&gt; from catalog.data_types import String
+<pre><code class="language-python-repl">&gt;&gt;&gt; from hela import Col
+&gt;&gt;&gt; from hela.data_types import String
 &gt;&gt;&gt; my_col = Col('my_col', String(), 'This is an example column')
 </code></pre></div>
 <details class="source">
@@ -1514,21 +1514,21 @@ Each defined column will be searchable, testable and referenceable.</p>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class Col(_ColumnType):
-    &#34;&#34;&#34;A basic column object, for nested columns see `catalog.NestedCol`.
+    &#34;&#34;&#34;A basic column object, for nested columns see `hela.NestedCol`.
 
-    This class is used to define columns within a `catalog.BaseDataset` or `catalog.column_store`.
+    This class is used to define columns within a `hela.BaseDataset` or `hela.column_store`.
     Each defined column will be searchable, testable and referenceable.
 
     If you want to give further functionality to your columns, please this class.
 
     Attributes:
         name:   The name of the column.
-        data_type:  The data type of the column, should be one of types found in `catalog.data_types`
+        data_type:  The data type of the column, should be one of types found in `hela.data_types`
         description: A description of this column as a string, better descriptions yield a more secure catalog.
 
     Examples:
-    &gt;&gt;&gt; from catalog import Col
-    &gt;&gt;&gt; from catalog.data_types import String
+    &gt;&gt;&gt; from hela import Col
+    &gt;&gt;&gt; from hela.data_types import String
     &gt;&gt;&gt; my_col = Col(&#39;my_col&#39;, String(), &#39;This is an example column&#39;)
     &#34;&#34;&#34;
 
@@ -1572,27 +1572,27 @@ Each defined column will be searchable, testable and referenceable.</p>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li>catalog._column_classes._ColumnType</li>
-<li>catalog._base_data_type.BaseDataType</li>
+<li>hela._column_classes._ColumnType</li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="catalog.Col.data_type"><code class="name">var <span class="ident">data_type</span> : catalog._base_data_type.BaseDataType</code></dt>
+<dt id="hela.Col.data_type"><code class="name">var <span class="ident">data_type</span> : hela._base_data_type.BaseDataType</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="catalog.Col.from_store"><code class="name">var <span class="ident">from_store</span> : bool</code></dt>
+<dt id="hela.Col.from_store"><code class="name">var <span class="ident">from_store</span> : bool</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="catalog.Col.label"><code class="name">var <span class="ident">label</span> : Optional[str]</code></dt>
+<dt id="hela.Col.label"><code class="name">var <span class="ident">label</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
 </dl>
 </dd>
-<dt id="catalog.NestedCol"><code class="flex name class">
+<dt id="hela.NestedCol"><code class="flex name class">
 <span>class <span class="ident">NestedCol</span></span>
 <span>(</span><span>name: str, columns: Sequence[_ColumnType])</span>
 </code></dt>
@@ -1600,7 +1600,7 @@ Each defined column will be searchable, testable and referenceable.</p>
 <div class="desc"><p>A nested style column object, should be instantiated with sub columns.</p>
 <p>Most data stores support nested style columns, these can be built using this column class.
 These columns will be referenced with dot-notation when shown in the <strong>catalog</strong>.
-For dict/struct style columns see <code><a title="catalog.data_types.Struct" href="data_types.html#catalog.data_types.Struct">Struct</a></code>.</p>
+For dict/struct style columns see <code><a title="hela.data_types.Struct" href="data_types.html#hela.data_types.Struct">Struct</a></code>.</p>
 <h2 id="attributes">Attributes</h2>
 <dl>
 <dt><strong><code>name</code></strong></dt>
@@ -1609,8 +1609,8 @@ For dict/struct style columns see <code><a title="catalog.data_types.Struct" hre
 <dd>A sequence of columns nested within this column. Can be Col or NestedCol objects.</dd>
 </dl>
 <p>Examples:</p>
-<pre><code class="language-python-repl">&gt;&gt;&gt; from catalog import NestedCol, Col
-&gt;&gt;&gt; from catalog.data_types import String, Int
+<pre><code class="language-python-repl">&gt;&gt;&gt; from hela import NestedCol, Col
+&gt;&gt;&gt; from hela.data_types import String, Int
 &gt;&gt;&gt; my_col = NestedCol('my_nested_col', [
 ...     Col('nested_string', String(), 'Nested string column'),
 ...     Col('nested_int', Int(), 'Nested int column')
@@ -1625,15 +1625,15 @@ For dict/struct style columns see <code><a title="catalog.data_types.Struct" hre
 
     Most data stores support nested style columns, these can be built using this column class.
     These columns will be referenced with dot-notation when shown in the **catalog**.
-    For dict/struct style columns see `catalog.data_types.Struct`.
+    For dict/struct style columns see `hela.data_types.Struct`.
 
     Attributes:
         name:   The name of the column.
         columns:    A sequence of columns nested within this column. Can be Col or NestedCol objects.
 
     Examples:
-    &gt;&gt;&gt; from catalog import NestedCol, Col
-    &gt;&gt;&gt; from catalog.data_types import String, Int
+    &gt;&gt;&gt; from hela import NestedCol, Col
+    &gt;&gt;&gt; from hela.data_types import String, Int
     &gt;&gt;&gt; my_col = NestedCol(&#39;my_nested_col&#39;, [
     ...     Col(&#39;nested_string&#39;, String(), &#39;Nested string column&#39;),
     ...     Col(&#39;nested_int&#39;, Int(), &#39;Nested int column&#39;)
@@ -1688,21 +1688,21 @@ For dict/struct style columns see <code><a title="catalog.data_types.Struct" hre
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li>catalog._column_classes._ColumnType</li>
-<li>catalog._base_data_type.BaseDataType</li>
+<li>hela._column_classes._ColumnType</li>
+<li>hela._base_data_type.BaseDataType</li>
 <li>abc.ABC</li>
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="catalog.NestedCol.data_type"><code class="name">var <span class="ident">data_type</span> : catalog._base_data_type.BaseDataType</code></dt>
+<dt id="hela.NestedCol.data_type"><code class="name">var <span class="ident">data_type</span> : hela._base_data_type.BaseDataType</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="catalog.NestedCol.from_store"><code class="name">var <span class="ident">from_store</span> : bool</code></dt>
+<dt id="hela.NestedCol.from_store"><code class="name">var <span class="ident">from_store</span> : bool</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="catalog.NestedCol.label"><code class="name">var <span class="ident">label</span> : Optional[str]</code></dt>
+<dt id="hela.NestedCol.label"><code class="name">var <span class="ident">label</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1730,61 +1730,61 @@ For dict/struct style columns see <code><a title="catalog.data_types.Struct" hre
 <ul id="index">
 <li><h3><a href="#header-submodules">Sub-modules</a></h3>
 <ul>
-<li><code><a title="catalog.data_types" href="data_types.html">catalog.data_types</a></code></li>
-<li><code><a title="catalog.datasets" href="datasets/index.html">catalog.datasets</a></code></li>
-<li><code><a title="catalog.errors" href="errors.html">catalog.errors</a></code></li>
-<li><code><a title="catalog.infer" href="infer.html">catalog.infer</a></code></li>
-<li><code><a title="catalog.math" href="math/index.html">catalog.math</a></code></li>
-<li><code><a title="catalog.plots" href="plots/index.html">catalog.plots</a></code></li>
-<li><code><a title="catalog.schema_generators" href="schema_generators.html">catalog.schema_generators</a></code></li>
-<li><code><a title="catalog.test_suite" href="test_suite/index.html">catalog.test_suite</a></code></li>
-<li><code><a title="catalog.web_page" href="web_page/index.html">catalog.web_page</a></code></li>
+<li><code><a title="hela.data_types" href="data_types.html">hela.data_types</a></code></li>
+<li><code><a title="hela.datasets" href="datasets/index.html">hela.datasets</a></code></li>
+<li><code><a title="hela.errors" href="errors.html">hela.errors</a></code></li>
+<li><code><a title="hela.infer" href="infer.html">hela.infer</a></code></li>
+<li><code><a title="hela.math" href="math/index.html">hela.math</a></code></li>
+<li><code><a title="hela.plots" href="plots/index.html">hela.plots</a></code></li>
+<li><code><a title="hela.schema_generators" href="schema_generators.html">hela.schema_generators</a></code></li>
+<li><code><a title="hela.test_suite" href="test_suite/index.html">hela.test_suite</a></code></li>
+<li><code><a title="hela.web_page" href="web_page/index.html">hela.web_page</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="catalog.column_store" href="#catalog.column_store">column_store</a></code></li>
-<li><code><a title="catalog.generate_webpage" href="#catalog.generate_webpage">generate_webpage</a></code></li>
+<li><code><a title="hela.column_store" href="#hela.column_store">column_store</a></code></li>
+<li><code><a title="hela.generate_webpage" href="#hela.generate_webpage">generate_webpage</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="catalog.BaseDataset" href="#catalog.BaseDataset">BaseDataset</a></code></h4>
+<h4><code><a title="hela.BaseDataset" href="#hela.BaseDataset">BaseDataset</a></code></h4>
 <ul class="">
-<li><code><a title="catalog.BaseDataset.check_columns" href="#catalog.BaseDataset.check_columns">check_columns</a></code></li>
-<li><code><a title="catalog.BaseDataset.get_dates" href="#catalog.BaseDataset.get_dates">get_dates</a></code></li>
-<li><code><a title="catalog.BaseDataset.get_samples" href="#catalog.BaseDataset.get_samples">get_samples</a></code></li>
-<li><code><a title="catalog.BaseDataset.show_columns" href="#catalog.BaseDataset.show_columns">show_columns</a></code></li>
-<li><code><a title="catalog.BaseDataset.show_dates" href="#catalog.BaseDataset.show_dates">show_dates</a></code></li>
+<li><code><a title="hela.BaseDataset.check_columns" href="#hela.BaseDataset.check_columns">check_columns</a></code></li>
+<li><code><a title="hela.BaseDataset.get_dates" href="#hela.BaseDataset.get_dates">get_dates</a></code></li>
+<li><code><a title="hela.BaseDataset.get_samples" href="#hela.BaseDataset.get_samples">get_samples</a></code></li>
+<li><code><a title="hela.BaseDataset.show_columns" href="#hela.BaseDataset.show_columns">show_columns</a></code></li>
+<li><code><a title="hela.BaseDataset.show_dates" href="#hela.BaseDataset.show_dates">show_dates</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="catalog.Catalog" href="#catalog.Catalog">Catalog</a></code></h4>
+<h4><code><a title="hela.Catalog" href="#hela.Catalog">Catalog</a></code></h4>
 <ul class="">
-<li><code><a title="catalog.Catalog.get_catalogs" href="#catalog.Catalog.get_catalogs">get_catalogs</a></code></li>
-<li><code><a title="catalog.Catalog.get_columns_datasets" href="#catalog.Catalog.get_columns_datasets">get_columns_datasets</a></code></li>
-<li><code><a title="catalog.Catalog.get_datasets" href="#catalog.Catalog.get_datasets">get_datasets</a></code></li>
-<li><code><a title="catalog.Catalog.search" href="#catalog.Catalog.search">search</a></code></li>
-<li><code><a title="catalog.Catalog.setup" href="#catalog.Catalog.setup">setup</a></code></li>
-<li><code><a title="catalog.Catalog.show_columns" href="#catalog.Catalog.show_columns">show_columns</a></code></li>
-<li><code><a title="catalog.Catalog.show_datasets" href="#catalog.Catalog.show_datasets">show_datasets</a></code></li>
+<li><code><a title="hela.Catalog.get_catalogs" href="#hela.Catalog.get_catalogs">get_catalogs</a></code></li>
+<li><code><a title="hela.Catalog.get_columns_datasets" href="#hela.Catalog.get_columns_datasets">get_columns_datasets</a></code></li>
+<li><code><a title="hela.Catalog.get_datasets" href="#hela.Catalog.get_datasets">get_datasets</a></code></li>
+<li><code><a title="hela.Catalog.search" href="#hela.Catalog.search">search</a></code></li>
+<li><code><a title="hela.Catalog.setup" href="#hela.Catalog.setup">setup</a></code></li>
+<li><code><a title="hela.Catalog.show_columns" href="#hela.Catalog.show_columns">show_columns</a></code></li>
+<li><code><a title="hela.Catalog.show_datasets" href="#hela.Catalog.show_datasets">show_datasets</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="catalog.Col" href="#catalog.Col">Col</a></code></h4>
+<h4><code><a title="hela.Col" href="#hela.Col">Col</a></code></h4>
 <ul class="">
-<li><code><a title="catalog.Col.data_type" href="#catalog.Col.data_type">data_type</a></code></li>
-<li><code><a title="catalog.Col.from_store" href="#catalog.Col.from_store">from_store</a></code></li>
-<li><code><a title="catalog.Col.label" href="#catalog.Col.label">label</a></code></li>
+<li><code><a title="hela.Col.data_type" href="#hela.Col.data_type">data_type</a></code></li>
+<li><code><a title="hela.Col.from_store" href="#hela.Col.from_store">from_store</a></code></li>
+<li><code><a title="hela.Col.label" href="#hela.Col.label">label</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="catalog.NestedCol" href="#catalog.NestedCol">NestedCol</a></code></h4>
+<h4><code><a title="hela.NestedCol" href="#hela.NestedCol">NestedCol</a></code></h4>
 <ul class="">
-<li><code><a title="catalog.NestedCol.data_type" href="#catalog.NestedCol.data_type">data_type</a></code></li>
-<li><code><a title="catalog.NestedCol.from_store" href="#catalog.NestedCol.from_store">from_store</a></code></li>
-<li><code><a title="catalog.NestedCol.label" href="#catalog.NestedCol.label">label</a></code></li>
+<li><code><a title="hela.NestedCol.data_type" href="#hela.NestedCol.data_type">data_type</a></code></li>
+<li><code><a title="hela.NestedCol.from_store" href="#hela.NestedCol.from_store">from_store</a></code></li>
+<li><code><a title="hela.NestedCol.label" href="#hela.NestedCol.label">label</a></code></li>
 </ul>
 </li>
 </ul>
