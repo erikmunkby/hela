@@ -105,7 +105,8 @@ pandas data structure.</p>
 <dt><strong><code>data</code></strong> :&ensp;<code>ndarray (structured</code> or <code>homogeneous), Iterable, dict,</code> or <code>DataFrame</code></dt>
 <dd>
 <p>Dict can contain Series, arrays, constants, dataclass or list-like objects. If
-data is a dict, column order follows insertion-order.</p>
+data is a dict, column order follows insertion-order. If a dict contains Series
+which have an index defined, it is aligned by its index.</p>
 <div class="admonition versionchanged">
 <p class="admonition-title">Changed in version:&ensp;0.25.0</p>
 <p>If data is a list of dicts, column order follows insertion-order.</p>
@@ -165,6 +166,15 @@ dtype: object
 col1    int8
 col2    int8
 dtype: object
+</code></pre>
+<p>Constructing DataFrame from a dictionary including Series:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; d = {'col1': [0, 1, 2, 3], 'col2': pd.Series([2, 3], index=[2, 3])}
+&gt;&gt;&gt; pd.DataFrame(data=d, index=[0, 1, 2, 3])
+   col1  col2
+0     0   NaN
+1     1   NaN
+2     2   2.0
+3     3   3.0
 </code></pre>
 <p>Constructing DataFrame from numpy ndarray:</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; df2 = pd.DataFrame(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),
