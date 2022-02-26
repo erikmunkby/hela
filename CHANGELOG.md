@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.3 (2022-02-26)
+### Fix
+* Better python dependency management ([`7a581ff`](https://github.com/erikmunkby/hela/commit/7a581ffd2b14295b36bf5b82e536fbd084cee4d7))
+
 ## v0.2.2 (2022-02-26)
 ### Fix
 * Renaming to available package name ([`a522449`](https://github.com/erikmunkby/hela/commit/a5224498de7e007ce4a94d8758b2de9a7a1d5804))
