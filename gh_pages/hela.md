@@ -5,8 +5,9 @@ This library is built to fit small and large data landscapes, but is happiest wh
 `Hela` (or Hel) is the norse mythological collector of souls, and the Swedish word for "whole" or "all of it". `Hela`
 is designed to give everyone a chance to build a data catalog, with a low entry barrier: pure python code.
 
-TODO: Add link to github for contributions.
-TODO: Add link to repo with example catalog.
+
+* Interested in contributing? Find `hela` on [github](https://github.com/erikmunkby/hela)
+* For an example of a larger data catalog, view this [showcase catalog](https://github.com/erikmunkby/hela-showcase)
 
 # Overview
 The catalog package consists of four primary components:
@@ -202,8 +203,21 @@ as they might include the same type of information. In these cases we can only r
 similar enough to get a hit using `hela.test_suite.description_tests.validate_description_similarity`.
 
 ## Notebook interactivity
-![Date availability grid from show_dates function](TODO: Add url to image here when repo public)
-![Show Columns functionality](TODO: Add url to image here when repo public)
+With `hela` you don't even have to leave your favorite notebook tool to study your data catalog!
+The `hela.Catalog` and `hela.BaseDataset` classes have built in functions that will in a notebook environment
+display informations such as:
+
+### Columns within the catalog
+This functionality also extends into sub-catalogs.
+
+
+![Show Columns functionality](https://github.com/erikmunkby/hela/blob/master/gh_pages/images/show_columns.png?raw=true)
+
+### Which dates a dataset is available on
+This functionality requires `hela.BaseDataset.get_dates` function implemented.
+
+
+![Date availability grid from show_dates function](https://github.com/erikmunkby/hela/blob/master/gh_pages/images/show_dates.png?raw=true)
 
 
 # Advanced
