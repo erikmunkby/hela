@@ -8,10 +8,10 @@ from hela.web_page._json_generator import JsonGenerator
 
 def generate_webpage(
     catalogs: Union[Catalog, Sequence[Catalog]],
-    output_folder: str,
+    output_path: str,
     overwrite_existing: bool = False,
     include_samples: bool = False,
-    web_app_title: str = None
+    web_app_title: str = 'Catalog'
 ) -> None:
     """Generates an index.html file that can be used as a data catalog website.
 
@@ -22,14 +22,14 @@ def generate_webpage(
     Args:
         catalogs:   One or multiple objects inheriting the Catalog class.
                     If you have a tree of catalogs, only the root catalog is required.
-        output_folder:  The folder where index.html file should end up.
+        output_path:  The folder where index.html file should end up.
         overwrite_existing: Flag whether and potential index.html file should be overwritten if existing.
         include_samples:    Flag whether to attempt to fetch sample datapoints from the columns in each
                             dataset. Requires `hela.BaseDataset.get_samples` function implemented.
         web_app_title:  Optional title of the web app.
 
     Raises:
-        FileExistsError: If the index.html file already exists under `output_folder` and overwrite_existing=False.
+        FileExistsError: If the index.html file already exists under `output_path` and overwrite_existing=False.
 
     Examples:
     >>> from my_catalog import MyCatalog
@@ -41,8 +41,8 @@ def generate_webpage(
 
     jg = JsonGenerator()
     json_str = jg.generate_docs_jsons(catalogs, include_samples=include_samples)
-    folder_path = Path(output_folder)
-    file_path = folder_path / 'index.html'
+    folder_path = Path(output_path)
+    file_path = folder_path if '.html' in output_path else folder_path / 'index.html'
     if not folder_path.exists():
         folder_path.mkdir(parents=True)
 
@@ -54,10 +54,15 @@ def generate_webpage(
     # Replace placeholder script with actual json data
     replacement_str = f'<script>window.treeListData = {json_str}</script>'
     match_str = '<script id="tree-list-data"></script>'
-    original_index_file = gzip.decompress(pkg_resources.resource_string(__name__, 'index.html.gz')).decode()
-    output_file = original_index_file.replace(match_str, replacement_str)
+    output_file = gzip.decompress(pkg_resources.resource_string(__name__, 'index.html.gz')).decode()
+    if match_str not in output_file:
+        raise ValueError('Could not insert data in frontend.')
+    output_file = output_file.replace(match_str, replacement_str)
+
+    if '[[ReplaceDashboard]]' not in output_file:
+        raise ValueError(f'Could not replace title in frontend.')
 
     # Replace web app title with custom title
-    if web_app_title:
-        output_file = output_file.replace('<title>Dashboard</title>', f'<title>{web_app_title}</title>')
+    output_file = output_file.replace('[[ReplaceTitleDashboard]]', f'<title>{web_app_title}</title>')
+    output_file = output_file.replace('[[ReplaceDashboard]]', web_app_title)
     file_path.write_text(output_file)

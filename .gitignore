@@ -8,5 +8,7 @@ __pycache__
 *_temp/**
 cdk.out
 .DS_STORE
+/dist
+**local_test_data.json
 
 

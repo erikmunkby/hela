@@ -1,3 +1,4 @@
+import pytest
 from hela.datasets.pandas_parquet_dataset import PandasParquetDataset
 from hela import Col, NestedCol, Catalog, generate_webpage
 from hela.data_types import Int, String
@@ -21,5 +22,6 @@ class TestCatalog(Catalog):
     test_dataset = test_dataset
 
 
+@pytest.mark.base
 def test_generate_index(temp_folder):
     generate_webpage(TestCatalog, str(temp_folder))
