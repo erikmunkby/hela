@@ -41,19 +41,16 @@ If you want to read more check out the [docs page](https://erikmunkby.github.io/
 First of all build your own dataset class by inheriting the `BaseDataset` class. This class will hold most of your project specific functionality such as read/write, authentication etc.
 
 ```python
-from hela import BaseDataset, Col
-from hela.data_types import String
-
 class MyDatasetClass(BaseDataset):
     def __init__(
         self,
-        name: str, # Required
-        description: str, # Optional but recommended
-        columns: list, # Optional but recommended
-        rich_description_path: str = None, # Optional, used for web app
+        name: str,  # Required
+        description: str,  # Optional but recommended
+        columns: list,  # Optional but recommended
+        rich_description_path: str = None,  # Optional, used for web app
         partition_cols: list = None,  # Optional but recommended
         # folder: str = None, # Only do one of either folder or database
-        database: str, # Optional, can also be enriched via Catalog
+        database: str = None,  # Optional, can also be enriched via Catalog
     ) -> None:
         super().__init__(
             name,
@@ -63,7 +60,6 @@ class MyDatasetClass(BaseDataset):
             description=description,
             rich_description_path=rich_description_path,
             partition_cols=partition_cols,
-            dependencies=None,
             columns=columns
         )
         # Do more of your own init stuff
@@ -71,7 +67,7 @@ class MyDatasetClass(BaseDataset):
     def my_func(self) -> None:
         # Your own dataset function
         pass
-        
+
 # Now instantiate your dataset class with one example column
 my_dataset = MyDatasetClass('my_dataset', 'An example dataset.', [
     Col('my_column', String(), 'An example column.')

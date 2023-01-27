@@ -81,7 +81,8 @@ class JsonGenerator:
             'children': child_list
         }
 
-    def generate_docs_jsons(self, catalogs: Sequence[Catalog], include_samples: bool):
+    def generate_docs_jsons(self, catalogs: Sequence[Catalog], include_samples: bool) -> str:
+        """Generates a json string via recursively iterating through the catalog."""
         # Instantiate columns dict with columns from all datasets in all catalogs
         columns_dict = defaultdict(set)
         for catalog in catalogs:

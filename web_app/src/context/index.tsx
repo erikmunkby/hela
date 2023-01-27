@@ -72,11 +72,13 @@ export const SelectedItemContextWrapper = ({
     console.log('URL', process.env.PUBLIC_URL);
     // @ts-ignore
     const treeListData = window.treeListData;
+    console.log('INPUT DATA', treeListData)
     if (treeListData) {
       init(treeListData);
     } else {
+      alert('No data was found :( Assuming local testing.')
       try {
-        fetch(`${process.env.PUBLIC_URL || ''}/data.json`)
+        fetch(`${process.env.PUBLIC_URL || ''}/local_test_data.json`)
           .then((a) => a.json())
           .then((data) => {
             init(data);

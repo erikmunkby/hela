@@ -1,4 +1,5 @@
 import json
+import pytest
 from hela.web_page._json_generator import JsonGenerator
 from hela.datasets.pandas_parquet_dataset import PandasParquetDataset
 from hela import Col, NestedCol, Catalog
@@ -23,6 +24,7 @@ class TestCatalog(Catalog):
     test_dataset = test_dataset
 
 
+@pytest.mark.base
 def test_json_generator():
     excepted_output = [
         {'name': 'TestCatalog',

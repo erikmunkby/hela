@@ -46,7 +46,7 @@ function App() {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <div className="bg-base-100 max-w-[90%] md:max-w-full">
             <div className="h-16 border-base-300 flex justify-center items-center border-b border-b-base-300">
-              Dashboard
+              [[ReplaceDashboard]]
             </div>
             <TreeList />
           </div>

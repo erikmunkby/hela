@@ -43,8 +43,8 @@ def test_json_validation_using_schema(dataframe_with_schema):
     val_schema = json_schema(schema)
 
     # Have to convert date/timestamp to string since that's what the jsonschema expects. Otherwise store as Long
-    df.loc[:, 'date'] = df.date.astype(str)
-    df.loc[:, 'time'] = df.time.astype(str)
+    df['date'] = df.date.astype(str)
+    df['time'] = df.time.astype(str)
 
     obj = df.to_dict(orient='records')[0]
 
