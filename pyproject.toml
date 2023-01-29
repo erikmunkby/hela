@@ -10,7 +10,7 @@ license = "Apache License v2.0"
 name = "hela"
 readme = "README.md"
 repository = "https://github.com/erikmunkby/hela"
-version = "0.2.4"
+version = "0.2.5"
 
 [tool.poetry.dependencies]
 "aws-cdk.aws-glue" = {version = "*", optional = true}

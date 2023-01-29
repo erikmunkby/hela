@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.5 (2023-01-29)
+### Fix
+* Semantic versioning now automated ([`ae31d1c`](https://github.com/erikmunkby/hela/commit/ae31d1c587b63ce1edd8049e61701e114cd872ca))
+
 ## v0.2.4 (2023-01-29)
 ### Fix
 * Removed workflows, moved publish to manual ([`98a5932`](https://github.com/erikmunkby/hela/commit/98a5932a710b561f0abd3957779d2e35334e743b))
