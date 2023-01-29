@@ -1,6 +1,6 @@
 name: Publish Package
 
-on: [workflow dispatch]
+on: [workflow_dispatch]
 
 jobs:
   semantic-versioning:
