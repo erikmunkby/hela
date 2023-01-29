@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.4 (2023-01-29)
+### Fix
+* Removed workflows, moved publish to manual ([`98a5932`](https://github.com/erikmunkby/hela/commit/98a5932a710b561f0abd3957779d2e35334e743b))
+* Catalog not working on chrome and making local build work again ([`cc5b236`](https://github.com/erikmunkby/hela/commit/cc5b23678b1212cd20d2bfc7d4a1a68fac45181b))
+
 ## v0.2.3 (2022-02-26)
 ### Fix
 * Better python dependency management ([`7a581ff`](https://github.com/erikmunkby/hela/commit/7a581ffd2b14295b36bf5b82e536fbd084cee4d7))
