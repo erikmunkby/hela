@@ -13,8 +13,8 @@ repository = "https://github.com/erikmunkby/hela"
 version = "0.2.3"
 
 [tool.poetry.dependencies]
-"aws-cdk.aws-glue" = {version = "^1", optional = true}
-google-cloud-bigquery = {version = "^2", optional = true}
+"aws-cdk.aws-glue" = {version = "*", optional = true}
+google-cloud-bigquery = {version = "*", optional = true}
 pandas = "^1"
 pyspark = {version = "^3", optional = true}
 python = "^3.8"
@@ -28,7 +28,6 @@ flake8 = "^3.9.1"
 jsonschema = "^3.2.0"
 nltk = "^3.6.7"
 pdoc3 = "^0.10.0"
-pyarrow = "^4.0.0"
 pytest = "^6.2.3"
 python-semantic-release = "^7.23.0"
 
@@ -36,6 +35,9 @@ python-semantic-release = "^7.23.0"
 bigquery = ["google-cloud-bigquery"]
 glue = ["aws-cdk.aws-glue"]
 spark = ["pyspark"]
+
+[tool.poetry.group.dev.dependencies]
+fastparquet = "^2023.1.0"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"

@@ -33,19 +33,18 @@ class MyDatasetClass(BaseDataset):
         pass
 
 
-# Now instantiate your dataset class with one example column
-my_dataset = MyDatasetClass('my_dataset', 'An example dataset.', [
-    Col('my_column', String(), 'An example column.')
-])
+if __name__ == '__main__':
+    # Now instantiate your dataset class with one example column
+    my_dataset = MyDatasetClass('my_dataset', 'An example dataset.', [
+        Col('my_column', String(), 'An example column.')
+    ])
 
+    class MyCatalog(Catalog):
+        my_dataset = my_dataset
 
-class MyCatalog(Catalog):
-    my_dataset = my_dataset
-
-
-jg = JsonGenerator()
-json_str = jg.generate_docs_jsons([MyCatalog], include_samples=False)
-p = Path('./public/local_test_data.json')
-if p.exists():
-    p.unlink()
-p.write_text(json_str)
+    jg = JsonGenerator()
+    json_str = jg.generate_docs_jsons([MyCatalog], include_samples=False)
+    p = Path('./public/local_test_data.json')
+    if p.exists():
+        p.unlink()
+    p.write_text(json_str)
