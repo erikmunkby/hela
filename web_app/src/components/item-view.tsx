@@ -64,6 +64,9 @@ export const ItemView = () => {
             <div className="uppercase text-md font-bold bg-base-200 flex items-center">
               Description
             </div>
+            <div className="uppercase text-md font-bold bg-base-200 flex items-center">
+              Sample
+            </div>
             <div className="uppercase text-md font-bold bg-base-200 flex items-center rounded-r-lg">
               Also exist in
             </div>
@@ -72,6 +75,7 @@ export const ItemView = () => {
                 <div>{p.name}</div>
                 <div>{p.data_type}</div>
                 <div>{p.description}</div>
+                <div>{p.sample_data}</div>
                 <div>
                   {p.other_dataset?.map((otherDataset) => (
                     <button

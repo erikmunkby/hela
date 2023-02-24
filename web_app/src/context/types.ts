@@ -19,6 +19,7 @@ export type Column = {
   data_type: string;
   description: string;
   from_store: boolean;
+  sample_data: string;
   other_dataset: OtherDatasetNode[] | null;
 };
 
