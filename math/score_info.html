@@ -53,12 +53,13 @@ class SimilarityInfo:
 <span>(</span><span>score: float, match_idx: int, match_string: str, target_string: Optional[str] = None, target_idx: Optional[str] = None)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>SimilarityInfo(score: float, match_idx: int, match_string: str, target_string: Union[str, NoneType] = None, target_idx: Union[str, NoneType] = None)</p></div>
+<div class="desc"><p>SimilarityInfo(score: float, match_idx: int, match_string: str, target_string: Optional[str] = None, target_idx: Optional[str] = None)</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class SimilarityInfo:
+<pre><code class="python">@dataclass
+class SimilarityInfo:
     score: float
     match_idx: int
     match_string: str

@@ -118,11 +118,10 @@ pandas data structure.</p>
 <dd>
 <p>Dict can contain Series, arrays, constants, dataclass or list-like objects. If
 data is a dict, column order follows insertion-order. If a dict contains Series
-which have an index defined, it is aligned by its index.</p>
-<div class="admonition versionchanged">
-<p class="admonition-title">Changed in version:&ensp;0.25.0</p>
+which have an index defined, it is aligned by its index. This alignment also
+occurs if data is a Series or a DataFrame itself. Alignment is done on
+Series/DataFrame inputs.</p>
 <p>If data is a list of dicts, column order follows insertion-order.</p>
-</div>
 </dd>
 <dt><strong><code>index</code></strong> :&ensp;<code>Index</code> or <code>array-like</code></dt>
 <dd>Index to use for resulting frame. Will default to RangeIndex if
@@ -220,6 +219,21 @@ dtype: object
 0  0  0
 1  0  3
 2  2  3
+</code></pre>
+<p>Constructing DataFrame from Series/DataFrame:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; ser = pd.Series([1, 2, 3], index=[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;])
+&gt;&gt;&gt; df = pd.DataFrame(data=ser, index=[&quot;a&quot;, &quot;c&quot;])
+&gt;&gt;&gt; df
+   0
+a  1
+c  3
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; df1 = pd.DataFrame([1, 2, 3], index=[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], columns=[&quot;x&quot;])
+&gt;&gt;&gt; df2 = pd.DataFrame(data=df1, index=[&quot;a&quot;, &quot;c&quot;])
+&gt;&gt;&gt; df2
+   x
+a  1
+c  3
 </code></pre></div>
 <details class="source">
 <summary>
