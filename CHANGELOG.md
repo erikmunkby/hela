@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.6 (2024-01-03)
+
+### Fix
+
+* Added compatability for pandas 2 ([`7f5569a`](https://github.com/erikmunkby/hela/commit/7f5569a166997906f015d36e287d4140c92d0fe8))
+
 ## v0.2.5 (2023-01-29)
 ### Fix
 * Semantic versioning now automated ([`ae31d1c`](https://github.com/erikmunkby/hela/commit/ae31d1c587b63ce1edd8049e61701e114cd872ca))
